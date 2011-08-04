@@ -34,12 +34,12 @@ public:
                double               mass)
         //set up the base class
         :MovingEntity(pos,
-                      BallSize,
                       Vector2D(0.05,0.0),     
-                      -1.0,                //max speed - unused
                       Vector2D(0,1),
-                      mass,
                       Vector2D(1.0,1.0),  //scale     - unused
+                      BallSize,
+                      -1.0,                //max speed - unused
+                      mass,
                       0,                   //turn rate - unused
                       0)                  //max force - unused
         {}

@@ -2,11 +2,11 @@ CC=g++
 CFLAGS= -c 
 LIB= -lm -lglut -lglui
 Game: main.o Game.o Grapic.o BaseGameEntity.o BasketBall.o BallTeam.o EntityManager.o \
-	FieldPlayer.o PlayerBase.o 
+	FieldPlayer.o PlayerBase.o \
+
 	$(CC) main.o Game.o Grapic.o BaseGameEntity.o BasketBall.o \
               BallTeam.o EntityManager.o FieldPlayer.o PlayerBase.o \
 	 -o Game  $(LIB)
-
 Game.o: Game.h Game.cpp Region.h Goal.h Grapic.h BasketBall.h BallTeam.h
 	$(CC) $(CFLAGS)  Game.cpp
 
@@ -33,5 +33,6 @@ FieldPlayer.o: FieldPlayer.h PlayerBase.h BasketBall.h BallTeam.h
 
 PlayerBase.o: autolist.h Vec2D.h MovingEntity.h PlayerBase.cpp
 	$(CC) $(CFLAGS) PlayerBase.cpp
+
 clean:
 	rm *.o

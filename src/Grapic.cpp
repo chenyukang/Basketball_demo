@@ -2,11 +2,9 @@
  * @file   Grapic.cpp
  * @author moorekang <moorekang@gmail.com>
  * @date   Sun Jul 18 15:42:36 2010
- * 
  * @brief  Grapic类的实现
- * 
- * 
  */
+
 #include "Grapic.h"
 
 

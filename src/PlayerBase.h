@@ -25,14 +25,11 @@ public:
 
 protected:
     player_role             m_PlayerRole;    //this player's role in the team
-    BallTeam*               m_pTeam;    //a pointer to this player's team
-    SteeringBehaviors*      m_pSteering;    //the steering behaviors
+    BallTeam*               m_pTeam;         //pointer to this player's team
+    SteeringBehaviors*      m_pSteering;     //pointer to the steering behaviors
     int                     m_iHomeRegion;    //the region that this player is assigned to.
-    int                     m_iDefaultRegion;    //the region this player moves to before kickoff
-
-    //the distance to the ball (in squared-space). This value is queried 
-    //a lot so it's calculated once each time-step and stored here.
-    double                   m_dDistSqToBall;
+    int                     m_iDefaultRegion; //the region this player moves to before kickoff
+    double                  m_dDistSqToBall; //distance to the ball, queried frequently
 
 public:
 

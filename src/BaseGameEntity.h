@@ -17,8 +17,8 @@ public:
 
 private:
     int         m_ID;    //each entity has a unique ID
-    int         m_iType;    //every entity has a type associated with it (health, troll, ammo etc)
-    bool        m_bTag;    //this is a generic flag. 
+    int         m_iType; //every entity has a type associated with it (health, troll, ammo etc)
+    bool        m_bTag;  //this is a generic flag. 
 
     //this is the next valid ID. Each time a BaseGameEntity is instantiated
     //this value is updated

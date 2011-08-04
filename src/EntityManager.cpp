@@ -21,7 +21,8 @@ BaseGameEntity* EntityManager::GetEntityFromID(int id)const
     EntityMap::const_iterator ent = m_EntityMap.find(id);
 
     //assert that the entity is a member of the map
-    assert ( (ent !=  m_EntityMap.end()) && "<EntityManager::GetEntityFromID>: invalid ID");
+    assert ( (ent !=  m_EntityMap.end()) &&
+             "<EntityManager::GetEntityFromID>: invalid ID");
 
     return ent->second;
 }

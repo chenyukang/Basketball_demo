@@ -101,7 +101,6 @@ void keyboard(unsigned char key,int x,int y)
     case 'r':
         obj_pos[0] = obj_pos[1] = 0;
         obj_pos[2]=-50.0;
-        cout<<"yes"<<endl;
         break;
     }
     glutPostRedisplay();
@@ -130,7 +129,7 @@ int main(int argc,char* argv[])
    
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB |GLUT_DEPTH);
-    glutInitWindowSize(1400,800);
+    glutInitWindowSize(1200,700);
     glutInitWindowPosition(100,100);
     
     main_window=glutCreateWindow ("BaskeBall");

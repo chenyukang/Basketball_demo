@@ -21,7 +21,7 @@ private:
 public:
 
     FieldPlayer(BallTeam*      home_team,
-                int            home_region,
+                int            home_region, //the default area player stand
                 Vector2D       heading,
                 Vector2D       velocity,
                 double         mass,

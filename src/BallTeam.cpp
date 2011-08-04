@@ -52,15 +52,15 @@ void BallTeam::CreatePlayers()
     {
         //goalkeeper
         m_Players.push_back(new FieldPlayer(this,
-                                           1,
-                                           Vector2D(0,1),
-                                           Vector2D(0.0, 0.0),
-                                           0.5,//Prm.PlayerMass,
-                                           0.5,//Prm.PlayerMaxForce,
-                                           0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                           0.5,//Prm.PlayerMaxTurnRate,
-                                           0.5,//Prm.PlayerScale
-                                           PlayerBase::Center));
+                                            1,
+                                            Vector2D(0,1),
+                                            Vector2D(0.0, 0.0),
+                                            0.5,//Prm.PlayerMass,
+                                            0.5,//Prm.PlayerMaxForce,
+                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.5,//Prm.PlayerScale
+                                            PlayerBase::Center));
  
         //create the players
         m_Players.push_back(new FieldPlayer(this,
@@ -117,15 +117,15 @@ void BallTeam::CreatePlayers()
     {
         //goalkeeper
         m_Players.push_back(new FieldPlayer(this,
-                                           1,
-                                           Vector2D(0,1),
-                                           Vector2D(0.0, 0.0),
-                                           0.5,//Prm.PlayerMass,
-                                           0.5,//Prm.PlayerMaxForce,
-                                           0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                           0.5,//Prm.PlayerMaxTurnRate,
-                                           0.5,//Prm.PlayerScale
-                                           PlayerBase::Center));
+                                            1,
+                                            Vector2D(0,1),
+                                            Vector2D(0.0, 0.0),
+                                            0.5,//Prm.PlayerMass,
+                                            0.5,//Prm.PlayerMaxForce,
+                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.5,//Prm.PlayerScale
+                                            PlayerBase::Center));
  
         //create the players
         m_Players.push_back(new FieldPlayer(this,

@@ -36,6 +36,10 @@ Game::~Game()
     printf("now in ~Game\n");
     delete m_pBall;
     delete m_pPlayingArea;
+    delete m_pBlueGoal;
+    delete m_pRedGoal;
+    delete m_pBlueTeam;
+    delete m_pRedTeam;
     for (unsigned int i=0; i<m_Regions.size(); ++i)
     {
         delete m_Regions[i];
