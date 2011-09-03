@@ -24,22 +24,20 @@ public:
                      PowerForward,Center};
 
 protected:
-    player_role             m_PlayerRole;    //this player's role in the team
-    BallTeam*               m_pTeam;         //pointer to this player's team
-    SteeringBehaviors*      m_pSteering;     //pointer to the steering behaviors
+    player_role             m_PlayerRole;     //this player's role in the team
+    BallTeam*               m_pTeam;          //pointer to this player's team
+    SteeringBehaviors*      m_pSteering;      //pointer to the steering behaviors
     int                     m_iHomeRegion;    //the region that this player is assigned to.
     int                     m_iDefaultRegion; //the region this player moves to before kickoff
-    double                  m_dDistSqToBall; //distance to the ball, queried frequently
+    double                  m_dDistSqToBall;  //distance to the ball, queried frequently
 
 public:
-
-
     PlayerBase(BallTeam*      home_team,
                Vector2D       pos,
                player_role    role);
 
+    SteeringBehaviors* const  Steering()const{return m_pSteering;}
     virtual ~PlayerBase();
-
 };
 
 #endif

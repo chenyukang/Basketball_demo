@@ -79,8 +79,8 @@ Vector2D BasketBall::FuturePosition(double time)const
 //------------------------------------------------------------------------
 void BasketBall::Render()
 {
-    gdi->SetColor(1.0f,1.0f,1.0f);
-    gdi->Circle(m_vPosition.x,m_vPosition.y,m_dBoundingRadius);
+    gdi->SetPen(white);
+    gdi->Circle(m_vPosition.x, m_vPosition.y, m_dBoundingRadius);
 
 }
 

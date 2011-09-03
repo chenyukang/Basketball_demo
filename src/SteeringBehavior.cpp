@@ -1,10 +1,10 @@
-#include "SteeringBehaviors.h"
+#include "SteeringBehavior.h"
 #include "PlayerBase.h"
 #include "Transformations.h"
 #include "utils.h"
 #include "autolist.h"
-#include "ParamLoader.h"
 #include "BasketBall.h"
+#include "Grapic.h"
 
 using std::string;
 using std::vector;
@@ -14,13 +14,13 @@ using std::vector;
 //------------------------------------------------------------------------
 SteeringBehaviors::SteeringBehaviors(PlayerBase*  agent,
                                      SoccerPitch* world,
-                                     SoccerBall*  ball):
+                                     BasketBall*  ball):
                                   
              m_pPlayer(agent),
              m_iFlags(0),
-             m_dMultSeparation(Prm.SeparationCoefficient),
+             m_dMultSeparation(1.0),
              m_bTagged(false),
-             m_dViewDistance(Prm.ViewDistance),
+             m_dViewDistance(1.0),
              m_pBall(ball),
              m_dInterposeDist(0.0),
              m_Antenna(5,Vector2D())
@@ -207,7 +207,8 @@ Vector2D SteeringBehaviors::Arrive(Vector2D    target,
 //  this behavior creates a force that steers the agent towards the 
 //  ball
 //------------------------------------------------------------------------
-Vector2D SteeringBehaviors::Pursuit(const SoccerBall* ball)
+
+Vector2D SteeringBehaviors::Pursuit(const BasketBall* ball)
 {
   Vector2D ToBall = ball->Pos() - m_pPlayer->Pos();
  
@@ -286,7 +287,7 @@ Vector2D SteeringBehaviors::Separation()
 //  Given an opponent and an object position this method returns a 
 //  force that attempts to position the agent between them
 //------------------------------------------------------------------------
-Vector2D SteeringBehaviors::Interpose(const SoccerBall* ball,
+Vector2D SteeringBehaviors::Interpose(const BasketBall* ball,
                                       Vector2D  target,
                                       double     DistFromTarget)
 {
@@ -301,11 +302,8 @@ Vector2D SteeringBehaviors::Interpose(const SoccerBall* ball,
 void SteeringBehaviors::RenderAids( )
 { 
   //render the steering force
-  gdi->RedPen();
-
-  gdi->Line(m_pPlayer->Pos(), m_pPlayer->Pos() + m_vSteeringForce * 20);
-
-
+    gdi->SetColor(0.0,0.0,1.0);
+    gdi->Line(m_pPlayer->Pos(), m_pPlayer->Pos() + m_vSteeringForce * 20);
   
 }
 

@@ -78,7 +78,6 @@ void Cgdi::Rect(double left, double top, double right, double bot)
     
 void Cgdi::Circle(double cx, double cy, double radius)
 {
-
     float angle = 0;
     glPointSize(1.2);
     glBegin(GL_POINTS);

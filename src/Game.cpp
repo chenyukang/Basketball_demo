@@ -3,7 +3,10 @@
 #include "Grapic.h"
 #include "BasketBall.h"
 #include "BallTeam.h"
+#include "FrameCounter.h"
 #include <time.h>
+#include <iostream>
+using namespace std;
 
 const int NumRegionsHorizontal = 6; 
 const int NumRegionsVertical   = 4;
@@ -63,6 +66,8 @@ void Game::Update()
     }
     m_pBlueTeam->Update();
     m_pRedTeam->Update();
+    TickCounter->Update();
+    //cout<<TickCounter->GetCurrentFrame()<<endl;
 }
 
 void Game::CreateRegions(double width,double height)
@@ -85,7 +90,7 @@ void Game::CreateRegions(double width,double height)
 void Game::Render()
 {
     gdi->StartDrawing();
-    glColor3f(1.0,1.0,0.0);
+    gdi->SetPen(yellow);
     m_pPlayingArea->Render(); //边框
     if(m_bRenderRegions)
     {

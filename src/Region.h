@@ -117,4 +117,5 @@ inline void Region::Render(bool ShowID = 0)const
     gdi->Rect(m_dLeft, m_dTop, m_dRight, m_dBottom);
     gdi->glPrint(m_vCenter.x,m_vCenter.y-0.25,"%d",m_iID);
 }
+
 #endif

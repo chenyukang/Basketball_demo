@@ -1,5 +1,6 @@
 #include "PlayerBase.h"
 #include "Vec2D.h"
+#include "SteeringBehavior.h"
 
 PlayerBase::PlayerBase(BallTeam* home_team,
                        Vector2D    pos,
@@ -18,5 +19,5 @@ PlayerBase::PlayerBase(BallTeam* home_team,
     
 PlayerBase::~PlayerBase()
 {
-    
+    delete m_pSteering;
 }
