@@ -6,6 +6,9 @@
 #include <cassert>
 #include <math.h>
 
+
+#define TIMER Timer::Instance()
+
 class Timer
 {
 private:
@@ -16,16 +19,18 @@ private:
     float   elapsed_time;
     float   fps_timediff;
     float   fps_escapetime;
-    bool pause;
+    bool    pause;
 
 public:
+
+    static Timer* Instance();
     //ctors
-    Timer(double);
+    Timer();
     
     //whatdayaknow, this starts the timer
     void Start();
     void Update();
-
+    void Reset(double);
     //determines if enough time has passed to move onto next frame
     bool    ReadyForNextFrame();
 
@@ -33,9 +38,6 @@ public:
     //double  GetTimeElapsed(){return m_TimeElapsed;}
     double  TimeElapsed() const;
     double  RealTime() const;
-    float timeval_diff( struct timeval*, struct timeval*);
+    float   TimeDiff( struct timeval*, struct timeval*);
 };
-
 #endif
-
-  

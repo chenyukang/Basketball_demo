@@ -36,7 +36,9 @@ public:
                Vector2D       pos,
                player_role    role);
 
-    SteeringBehaviors* const  Steering()const{return m_pSteering;}
+    SteeringBehaviors* const  Steering() const{return m_pSteering;}
+    BallTeam* GetTeam()  const { return m_pTeam; }
+    void SetHomeRegion(int region) { m_iHomeRegion = region; }
     virtual ~PlayerBase();
 };
 

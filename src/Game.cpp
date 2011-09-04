@@ -4,6 +4,7 @@
 #include "BasketBall.h"
 #include "BallTeam.h"
 #include "FrameCounter.h"
+#include "PrecisionTimer.h"
 #include <time.h>
 #include <iostream>
 using namespace std;
@@ -21,7 +22,9 @@ Game::Game():m_bPause(false),m_bRenderRegions(false),
              m_Regions(NumRegionsHorizontal*NumRegionsVertical)
 {
     m_pPlayingArea = new Region(-14, 7.5, 14, - 7.5);
+
     m_pBall = new BasketBall(Vector2D(0.0, 0.0), 0.123, 0.5);
+    
     CreateRegions(PlayingArea()->Width() / (double)NumRegionsHorizontal,
                   PlayingArea()->Height() / (double)NumRegionsVertical);
 
@@ -29,14 +32,16 @@ Game::Game():m_bPause(false),m_bRenderRegions(false),
     m_pRedGoal =new Goal(Vector2D(12.43,0),0.225);
 
     m_pBlueTeam=new BallTeam(m_pBlueGoal,m_pRedGoal,this,BallTeam::blue);
-    m_pRedTeam =new BallTeam(m_pRedGoal,m_pBlueGoal,this,BallTeam::red);
+    m_pRedTeam =new BallTeam(m_pRedGoal, m_pBlueGoal,this,BallTeam::red);
 
     srand(time(NULL));
+
+    TIMER->Reset(200);
 }
 
 Game::~Game()
 {
-    printf("now in ~Game\n");
+    printf("Game destructor\n");
     delete m_pBall;
     delete m_pPlayingArea;
     delete m_pBlueGoal;
@@ -53,6 +58,11 @@ void Game::Update()
 {
     if(m_bPause)
         return;
+
+    TIMER->Update();
+    if(!TIMER->ReadyForNextFrame())
+        return;
+    
     m_pBall->Update();
     if(m_pRedGoal->Scored(m_pBall))
     {
@@ -67,6 +77,8 @@ void Game::Update()
     m_pBlueTeam->Update();
     m_pRedTeam->Update();
     TickCounter->Update();
+    
+    //cout<<TIMER->TimeElapsed()<<endl;
     //cout<<TickCounter->GetCurrentFrame()<<endl;
 }
 

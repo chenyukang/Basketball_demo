@@ -13,7 +13,6 @@ using std::vector;
 //
 //------------------------------------------------------------------------
 SteeringBehaviors::SteeringBehaviors(PlayerBase*  agent,
-                                     SoccerPitch* world,
                                      BasketBall*  ball):
                                   
              m_pPlayer(agent),
@@ -25,6 +24,7 @@ SteeringBehaviors::SteeringBehaviors(PlayerBase*  agent,
              m_dInterposeDist(0.0),
              m_Antenna(5,Vector2D())
 {
+
 }
 
 //--------------------- AccumulateForce ----------------------------------

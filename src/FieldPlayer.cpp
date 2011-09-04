@@ -4,8 +4,10 @@
 #include "PlayerBase.h"
 #include "BasketBall.h"
 #include "BallTeam.h"
+#include "SteeringBehavior.h"
 #include <limits>
-
+#include <iostream>
+using namespace std;
 using std::vector;
 
 //------------------------------- dtor ---------------------------------------
@@ -38,6 +40,8 @@ void FieldPlayer::Update()
 { 
     //m_vVelocity.x+=RandInRange(-0.5,0.5);
     //m_vVelocity.y+=RandInRange(-0.5,0.5);
+    Vector2D force = m_pSteering->Calculate();
+//    cout<<"force now: "<<force.x<<" "<<force.y<<endl;
     m_vPosition += m_vVelocity;
     const Region *play_area=GAME->PlayingArea();
     if(m_vPosition.x>play_area->Right()||

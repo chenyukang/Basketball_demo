@@ -4,6 +4,8 @@
 #include "Goal.h"
 #include "Game.h"
 #include "EntityManager.h"
+#include "StateMachine.h"
+#include "TeamState.h"
 
 BallTeam::BallTeam(Goal* home_goal,
                    Goal* opponents_goal,
@@ -13,6 +15,12 @@ BallTeam::BallTeam(Goal* home_goal,
                                      m_pGame(p_game),
                                      m_Color(color)
 {
+    m_pStateMachine = new StateMachine<BallTeam>(this);
+
+    m_pStateMachine->SetCurrentState(Defending::Instance());
+    m_pStateMachine->SetPreviousState(Defending::Instance());
+    m_pStateMachine->SetGlobalState(NULL);
+
     CreatePlayers();
 }
 
@@ -185,3 +193,61 @@ void BallTeam::CreatePlayers()
         EntityMgr->RegisterEntity(*it);
     }
 }
+
+
+void BallTeam::SetPlayerHomeRegion(int player, int region) const
+{
+    assert(player>0 && player<m_Players.size() && "invalid player number");
+    m_Players[player]->SetHomeRegion(region);
+}
+
+
+void BallTeam::UpdateTargetsOfWaitingPlayers() const
+{
+  std::vector<PlayerBase*>::const_iterator it = m_Players.begin();
+
+  for (it; it != m_Players.end(); ++it)
+  {  
+      //cast to a field player
+        //FieldPlayer* plyr = static_cast<FieldPlayer*>(*it);
+      
+      // if ( plyr->GetFSM()->isInState(*Wait::Instance()) ||
+      //      plyr->GetFSM()->isInState(*ReturnToHomeRegion::Instance()) )
+      // {
+      //   plyr->Steering()->SetTarget(plyr->HomeRegion()->Center());
+      // }
+  }
+}
+
+
+void BallTeam::DetermineBestSupportingPosition()
+{
+    //TODO
+}
+
+
+void BallTeam::SetSupportingPlayer(PlayerBase* player)
+{
+    //TODO
+}
+
+void BallTeam::SetControllingPlayer(PlayerBase* player)
+{
+    //TODO;
+}
+
+void BallTeam::SetReceiver(PlayerBase* player)
+{
+    //TODO;
+}
+
+void BallTeam::SetPlayerClosestToBall(PlayerBase* player)
+{
+    //TODO;
+}
+
+void BallTeam::ReturnAllFieldPlayersToHome()
+{
+    //TODO;
+}
+

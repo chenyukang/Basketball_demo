@@ -10,6 +10,7 @@
 #ifndef _GAME_H__
 #define _GAME_H__
 #include "Region.h"
+#include <stdio.h>
 #include <vector>
 
 #define GAME Game::Instance()
@@ -45,6 +46,8 @@ public:
     void         ChangePauseFlag() { m_bPause=!m_bPause;}
     void         ChangeRenderRegionFlag() { m_bRenderRegions=!m_bRenderRegions;}
     const Region*const  PlayingArea()const{return m_pPlayingArea;}
+    BasketBall*  GetBall() const { return m_pBall; }
+    void         SetGameOn() const { /*TODO*/ };
 };
 
 #endif

@@ -2,6 +2,9 @@
 #define BALL_TEAM_H__
 #include <vector>
 #include <string>
+#include <stdio.h>
+#include "StateMachine.h"
+
 class Game;
 class Goal;
 class PlayerBase;
@@ -21,6 +24,7 @@ private:
 
     //a pointer to the opposing team
     BallTeam*                 m_pOpponents;
+    StateMachine<BallTeam>*    m_pStateMachine;
    
     //pointers to 'key' players
     PlayerBase*               m_pControllingPlayer;
@@ -46,6 +50,20 @@ public:
     void        Update();
     team_color  Color() const {return m_Color;}
     std::string Name()const{if (m_Color == blue) return "Blue"; return "Red";}
+    Game*       GetGame() const { return m_pGame;}
+    void        SetPlayerHomeRegion(int player, int region) const;
+    void        UpdateTargetsOfWaitingPlayers() const;
+    bool        InControl()const{if(m_pControllingPlayer)return true; else return false;}
+    void        DetermineBestSupportingPosition();
+    void        SetSupportingPlayer(PlayerBase*);
+    void        SetControllingPlayer(PlayerBase*);
+    void        SetReceiver(PlayerBase*);
+    void        SetPlayerClosestToBall(PlayerBase*);
+    void        ReturnAllFieldPlayersToHome();
+    bool        AllPlayersAtHome() const { return false; }
+    BallTeam*   Opponents() const { return m_pOpponents; }
+    
+    StateMachine<BallTeam>*  GetFSM() const { return m_pStateMachine; }
 };
 
 #endif

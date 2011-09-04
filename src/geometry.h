@@ -272,9 +272,8 @@ inline bool LineIntersection2D(Vector2D A,
 }
 
 //-------------------- LineIntersection2D-------------------------
-//
-//	Given 2 lines in 2D space AB, CD this returns true if an 
-//	intersection occurs and sets dist to the distance the intersection
+//  Given 2 lines in 2D space AB, CD this returns true if an 
+//  intersection occurs and sets dist to the distance the intersection
 //  occurs along AB. Also sets the 2d vector point to the point of
 //  intersection
 //----------------------------------------------------------------- 
@@ -286,36 +285,34 @@ inline bool LineIntersection2D(Vector2D   A,
                                Vector2D&  point)
 {
 
-  double rTop = (A.y-C.y)*(D.x-C.x)-(A.x-C.x)*(D.y-C.y);
-	double rBot = (B.x-A.x)*(D.y-C.y)-(B.y-A.y)*(D.x-C.x);
+    double rTop = (A.y-C.y)*(D.x-C.x)-(A.x-C.x)*(D.y-C.y);
+    double rBot = (B.x-A.x)*(D.y-C.y)-(B.y-A.y)*(D.x-C.x);
 
-	double sTop = (A.y-C.y)*(B.x-A.x)-(A.x-C.x)*(B.y-A.y);
-	double sBot = (B.x-A.x)*(D.y-C.y)-(B.y-A.y)*(D.x-C.x);
+    double sTop = (A.y-C.y)*(B.x-A.x)-(A.x-C.x)*(B.y-A.y);
+    double sBot = (B.x-A.x)*(D.y-C.y)-(B.y-A.y)*(D.x-C.x);
 
-	if ( (rBot == 0) || (sBot == 0))
-	{
-		//lines are parallel
-		return false;
-	}
+    if ( (rBot == 0) || (sBot == 0))
+    {
+        //lines are parallel
+        return false;
+    }
 
-	double r = rTop/rBot;
-	double s = sTop/sBot;
+    double r = rTop/rBot;
+    double s = sTop/sBot;
 
-	if( (r > 0) && (r < 1) && (s > 0) && (s < 1) )
-  {
+    if( (r > 0) && (r < 1) && (s > 0) && (s < 1) )
+    {
   	dist = Vec2DDistance(A,B) * r;
 
-    point = A + r * (B - A);
+        point = A + r * (B - A);
 
-    return true;
-  }
-
-	else
-  {
-		dist = 0;
-
-    return false;
-  }
+        return true;
+    }
+    else
+    {
+        dist = 0;
+        return false;
+    }
 }
 
 //----------------------- ObjectIntersection2D ---------------------------
@@ -325,22 +322,22 @@ inline bool LineIntersection2D(Vector2D   A,
 inline bool ObjectIntersection2D(const std::vector<Vector2D>& object1,
                                  const std::vector<Vector2D>& object2)
 {
-  //test each line segment of object1 against each segment of object2
-  for (unsigned int r=0; r<object1.size()-1; ++r)
-  {
-    for (unsigned int t=0; t<object2.size()-1; ++t)
+    //test each line segment of object1 against each segment of object2
+    for (unsigned int r=0; r<object1.size()-1; ++r)
     {
-      if (LineIntersection2D(object2[t],
-                             object2[t+1],
-                             object1[r],
-                             object1[r+1]))
-      {
-        return true;
-      }
+        for (unsigned int t=0; t<object2.size()-1; ++t)
+        {
+            if (LineIntersection2D(object2[t],
+                                   object2[t+1],
+                                   object1[r],
+                                   object1[r+1]))
+            {
+                return true;
+            }
+        }
     }
-  }
 
-  return false;
+    return false;
 }
 
 //----------------------- SegmentObjectIntersection2D --------------------
