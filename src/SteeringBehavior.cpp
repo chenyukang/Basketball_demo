@@ -73,7 +73,6 @@ Vector2D SteeringBehaviors::Calculate()
 
   //make sure the force doesn't exceed the vehicles maximum allowable
   m_vSteeringForce.Truncate(m_pPlayer->MaxForce());
-
   return m_vSteeringForce;
 }
 
@@ -174,9 +173,12 @@ Vector2D SteeringBehaviors::Arrive(Vector2D    target,
 {
   Vector2D ToTarget = target - m_pPlayer->Pos();
 
+//  printf("Totarget:%.3f %.3f ",ToTarget.x, ToTarget.y);
+
   //calculate the distance to the target
   double dist = ToTarget.Length();
 
+//  printf("dist:%.3f ", dist);
   if (dist > 0)
   {
     //because Deceleration is enumerated as an int, this value is required
@@ -195,7 +197,8 @@ Vector2D SteeringBehaviors::Arrive(Vector2D    target,
     //of calculating its length: dist. 
     Vector2D DesiredVelocity =  ToTarget * speed / dist;
 
-    return (DesiredVelocity - m_pPlayer->Velocity());
+    Vector2D res = (DesiredVelocity - m_pPlayer->Velocity());
+    return res;
   }
 
   return Vector2D(0,0);
@@ -301,9 +304,9 @@ Vector2D SteeringBehaviors::Interpose(const BasketBall* ball,
 //------------------------------------------------------------------------
 void SteeringBehaviors::RenderAids( )
 { 
-  //render the steering force
+    //render the steering force
     gdi->SetColor(0.0,0.0,1.0);
-    gdi->Line(m_pPlayer->Pos(), m_pPlayer->Pos() + m_vSteeringForce * 20);
+    gdi->Line(m_pPlayer->Pos(), m_pPlayer->Pos() + m_vSteeringForce * 10);
   
 }
 

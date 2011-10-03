@@ -3,7 +3,7 @@
  * @author moorekang <moorekang@gmail.com>
  * @date   Sun Jul 18 14:27:12 2010
  * 
- * @brief  Vector2D类的实现
+ * @brief  Vector2D: the basic 2D vector
  * 
  * 
  */
@@ -365,5 +365,7 @@ inline bool isSecondInFOVOfFirst(Vector2D posFirst,
 
     return facingFirst.Dot(toTarget) >= cos(fov/2.0);
 }
+
+
 
 #endif

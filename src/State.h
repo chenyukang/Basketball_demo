@@ -18,10 +18,10 @@ class State{
 public:
     virtual ~State() {};
 
-    virtual void Enter(obj_type*)=0;
-    virtual void Execute(obj_type*)=0;
-    virtual void Exit(obj_type*)=0;
-    virtual bool OnMessage(obj_type*, const Telegram&)=0;
+    virtual void Enter(obj_type* entity) = 0;
+    virtual void Execute(obj_type* entity) = 0;
+    virtual void Exit(obj_type* entity) = 0;
+    virtual bool OnMessage(obj_type* entity, const Telegram& msg) = 0;
 };
     
 

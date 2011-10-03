@@ -6,6 +6,8 @@
 #include <cassert>
 #include "Vec2D.h"
 #include "PlayerBase.h"
+#include "FieldPlayerStates.h"
+#include "StateMachine.h"
 
 class SteeringBehavior;
 class BallTeam;
@@ -17,10 +19,11 @@ struct Telegram;
 class FieldPlayer : public PlayerBase
 {
 private:
-  
+    StateMachine<FieldPlayer>*           m_pStateMachine;  //the State Machine of this player
+    
 public:
-
     FieldPlayer(BallTeam*      home_team,
+                State<FieldPlayer>* start_state,
                 int            home_region, //the default area player stand
                 Vector2D       heading,
                 Vector2D       velocity,
@@ -36,6 +39,8 @@ public:
     //call this to update the player's position and orientation
     void        Update();   
     void        Render();
+    StateMachine<FieldPlayer>* GetFSM()const{return m_pStateMachine;}
+
 };
 
 #endif

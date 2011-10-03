@@ -22,7 +22,7 @@ GLUI_Spinner    *Viewpoint_z;
 GLUI_RadioGroup *radio;
 GLUI_Panel      *obj_panel;
 
-float obj_pos[] = { 0.0, 0.0, -50.0 };
+float obj_pos[] = { 2.0, 0.0, -50.0 };
 int last_x,last_y;
 
 void update()
@@ -50,6 +50,7 @@ void init(void)
 {
     glClearColor(0.0,0.0,0.0,0.0);
     glShadeModel(GL_FLAT);
+    srand(time(NULL));
 }
 
 /***************************************** myGlutMouse() **********/
@@ -129,7 +130,7 @@ int main(int argc,char* argv[])
    
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB |GLUT_DEPTH);
-    glutInitWindowSize(1200,700);
+    glutInitWindowSize(1000,700);
     glutInitWindowPosition(100,100);
     
     main_window=glutCreateWindow ("BaskeBall");
@@ -147,7 +148,6 @@ int main(int argc,char* argv[])
     /*** Create the side subwindow ***/
     glui = GLUI_Master.create_glui_subwindow( main_window, 
                                               GLUI_SUBWINDOW_RIGHT );
-    
     glui->set_main_gfx_window( main_window );
     GLUI_Master.set_glutIdleFunc( update );
 

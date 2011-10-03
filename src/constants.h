@@ -15,8 +15,8 @@ public:
     double PlayerMaxSpeedWithoutBall;
     double PlayerMaxTurnRate;
     double PlayerScale;
-    int NumRegionsHorizontal;
-    int NumRegionsVertical;
+    int    NumRegionsHorizontal;
+    int    NumRegionsVertical;
 };
 
 #endif

@@ -15,6 +15,7 @@
 #include "Game.h"
 #include "Debug.h"
 
+#define DEBUG_TEAM_STATES
 
 #define TeamSize 5
 
@@ -41,8 +42,9 @@ void Attacking::Enter(BallTeam* team)
 #endif
 
   //these define the home regions for this state of each of the players
-  const int BlueRegions[TeamSize] = {1,12,14,6,4};
-  const int RedRegions[TeamSize] = {16,3,5,9,13};
+//  const int BlueRegions[TeamSize] = {1,12,14,6,4};
+  const int BlueRegions[TeamSize] = {16,20,23,21,13};
+  const int RedRegions[TeamSize] = {1,6,8,3,5};
 
   //set up the player's home regions
   if (team->Color() == BallTeam::blue)
@@ -97,17 +99,18 @@ void Defending::Enter(BallTeam* team)
 #endif
 
   //these define the home regions for this state of each of the players
+  const int RedRegions[TeamSize] = {16,20,23,21,13};
+//  const int RedRegions[TeamSize] = {16,9,11,12,14};
   const int BlueRegions[TeamSize] = {1,6,8,3,5};
-  const int RedRegions[TeamSize] = {16,9,11,12,14};
 
   //set up the player's home regions
   if (team->Color() == BallTeam::blue)
   {
-    ChangePlayerHomeRegions(team, BlueRegions);
+      ChangePlayerHomeRegions(team, BlueRegions);
   }
   else
   {
-    ChangePlayerHomeRegions(team, RedRegions);
+      ChangePlayerHomeRegions(team, RedRegions);
   }
   
   //if a player is in either the Wait or ReturnToHomeRegion states, its

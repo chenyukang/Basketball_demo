@@ -14,6 +14,7 @@
 
 
 #include "Vec2D.h"
+//#define DEBUG_STEERING_INFO 1
 
 class PlayerBase;
 class BasketBall;
@@ -140,6 +141,7 @@ public:
     void      UnTag(){m_bTagged = false;}
   
 
+    void SteeringClear() { m_iFlags = 0;}
     void SeekOn(){m_iFlags |= seek;}
     void ArriveOn(){m_iFlags |= arrive;}
     void PursuitOn(){m_iFlags |= pursuit;}

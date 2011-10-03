@@ -232,43 +232,38 @@ inline bool LineIntersection2D(Vector2D A,
 //----------------------------------------------------------------- 
 
 inline bool LineIntersection2D(Vector2D A,
-                        Vector2D B,
-                        Vector2D C, 
-                        Vector2D D,
-                        double &dist)
+                               Vector2D B,
+                               Vector2D C, 
+                               Vector2D D,
+                               double &dist)
 {
 
-  double rTop = (A.y-C.y)*(D.x-C.x)-(A.x-C.x)*(D.y-C.y);
-  double sTop = (A.y-C.y)*(B.x-A.x)-(A.x-C.x)*(B.y-A.y);
+    double rTop = (A.y-C.y)*(D.x-C.x)-(A.x-C.x)*(D.y-C.y);
+    double sTop = (A.y-C.y)*(B.x-A.x)-(A.x-C.x)*(B.y-A.y);
 
-	double Bot = (B.x-A.x)*(D.y-C.y)-(B.y-A.y)*(D.x-C.x);
+    double Bot = (B.x-A.x)*(D.y-C.y)-(B.y-A.y)*(D.x-C.x);
 
 
-  if (Bot == 0)//parallel
-  {
-    if (isEqual(rTop, 0) && isEqual(sTop, 0))
+    if (Bot == 0)//parallel
     {
-      return true;
+        if (isEqual(rTop, 0) && isEqual(sTop, 0))
+        {
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
-
-	double r = rTop/Bot;
-	double s = sTop/Bot;
-
-	if( (r > 0) && (r < 1) && (s > 0) && (s < 1) )
-  {
+    double r = rTop/Bot;
+    double s = sTop/Bot;
+    if( (r > 0) && (r < 1) && (s > 0) && (s < 1) )
+    {
   	dist = Vec2DDistance(A,B) * r;
-
-    return true;
-  }
-
-	else
-  {
-		dist = 0;
-
-    return false;
-  }
+        return true;
+    }
+    else
+    {
+        dist = 0;
+        return false;
+    }
 }
 
 //-------------------- LineIntersection2D-------------------------
@@ -495,9 +490,7 @@ inline double TwoCirclesIntersectionArea(double x1, double y1, double r1,
   //find the angles given that A and B are the two circle centers
   //and C and D are the intersection points
   double CBD = 2 * acos((r2*r2 + d*d - r1*r1) / (r2 * d * 2)); 
-
   double CAD = 2 * acos((r1*r1 + d*d - r2*r2) / (r1 * d * 2));
-
 
   //Then we find the segment of each of the circles cut off by the 
   //chord CD, by taking the area of the sector of the circle BCD and
@@ -506,7 +499,6 @@ inline double TwoCirclesIntersectionArea(double x1, double y1, double r1,
 
   double area = 0.5f*CBD*r2*r2 - 0.5f*r2*r2*sin(CBD) +
                 0.5f*CAD*r1*r1 - 0.5f*r1*r1*sin(CAD);
-
   return area;
 }
 
@@ -516,7 +508,7 @@ inline double TwoCirclesIntersectionArea(double x1, double y1, double r1,
 //-----------------------------------------------------------------------
 inline double CircleArea(double radius)
 {
-  return pi * radius * radius;
+    return pi * radius * radius;
 }
 
 
@@ -534,7 +526,6 @@ inline bool PointInCircle(Vector2D Pos,
   {
     return true;
   }
-
   return false;
 }
 
@@ -556,7 +547,6 @@ inline bool   LineSegmentCircleIntersection(Vector2D A,
   {
     return true;
   }
-
   else
   {
     return false;

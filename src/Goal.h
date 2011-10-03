@@ -24,12 +24,14 @@ class Goal
 private:
 
     Vector2D   m_vPos;
+    Vector2D   m_vFacing;
     double     m_radius;
-    int m_iNumGoalsScored;
+    int        m_iNumGoalsScored;
 public:
 
-    Goal(Vector2D pos,double radius):
+    Goal(Vector2D pos, Vector2D face, double radius):
         m_vPos(pos),
+        m_vFacing(face),
         m_radius(radius),
         m_iNumGoalsScored(0)
         {
@@ -44,10 +46,11 @@ public:
     //Given the current ball position and the previous ball position,
     //this method returns true if the ball has crossed the goal line 
     //and increments m_iNumGoalsScored
-    inline bool Scored(const BasketBall*const ball);
+    inline bool Scored(const Vector2D& ballpos);
 
     //-----------------------------------------------------accessor methods
     Vector2D Center() const {return m_vPos;}
+    Vector2D Facing() const {return m_vFacing;}
     int      NumGoalsScored()const{return m_iNumGoalsScored;}
     void     ResetGoalsScored(){m_iNumGoalsScored = 0;}
 
@@ -56,10 +59,13 @@ public:
 
 
 /////////////////////////////////////////////////////////////////////////
-bool Goal::Scored(const BasketBall*const ball)
+bool Goal::Scored(const Vector2D&  ball_pos)
 {
-    Vector2D ball_pos=ball->Pos();
-    float dist=ball_pos.Distance(m_vPos);
+    //Vector2D ball_pos = ball->Pos();
+    printf("ball:%.3f %.3f\n", ball_pos.x, ball_pos.y);
+    printf("goal:%.3f %.3f\n", m_vPos.x, m_vPos.y);
+    float dist = ball_pos.Distance(m_vPos);
+    printf("done\n");
     if(dist<=m_radius)
     {
         ++m_iNumGoalsScored;

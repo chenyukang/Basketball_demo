@@ -3,7 +3,7 @@
  * @author moorekang <moorekang@gmail.com>
  * @date   Sun Jul 18 15:21:23 2010
  * 
- * @brief  矩形类
+ * @brief  thre little region in Court, this is choosed by Player.
  * 
  * 
  */
@@ -27,27 +27,22 @@ protected:
     double        m_dLeft;
     double        m_dRight;
     double        m_dBottom;
-
     double        m_dWidth;
     double        m_dHeight;
-
-    Vector2D     m_vCenter;
-  
-    int          m_iID;
+    int           m_iID;
+    Vector2D      m_vCenter;
 
 public:
-
     Region():m_dTop(0),m_dBottom(0),m_dLeft(0),m_dRight(0)
         {}
-
 
     Region(double left,
            double top,
            double right,
            double bottom,
-           int id = -1):m_dTop(top),
+           int id = -1):m_dLeft(left),
+                        m_dTop(top),
                         m_dRight(right),
-                        m_dLeft(left),
                         m_dBottom(bottom),
                         m_iID(id)
         {
@@ -112,10 +107,11 @@ inline bool Region::Inside(Vector2D pos, region_modifier r=normal)const
 
 }
 
-inline void Region::Render(bool ShowID = 0)const
+inline void Region::Render(bool ShowID = 0) const
 {
     gdi->Rect(m_dLeft, m_dTop, m_dRight, m_dBottom);
-    gdi->glPrint(m_vCenter.x,m_vCenter.y-0.25,"%d",m_iID);
+    if(m_iID != -1)
+        gdi->glPrint(m_vCenter.x,m_vCenter.y-0.25,"%d",m_iID);
 }
 
 #endif

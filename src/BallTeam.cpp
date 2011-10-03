@@ -6,6 +6,9 @@
 #include "EntityManager.h"
 #include "StateMachine.h"
 #include "TeamState.h"
+#include "Regulator.h"
+#include "FieldPlayerStates.h"
+#include "SteeringBehavior.h"
 
 BallTeam::BallTeam(Goal* home_goal,
                    Goal* opponents_goal,
@@ -13,14 +16,17 @@ BallTeam::BallTeam(Goal* home_goal,
                    team_color color):m_pHomeGoal(home_goal),
                                      m_pOpponentsGoal(opponents_goal),
                                      m_pGame(p_game),
-                                     m_Color(color)
+                                     m_Color(color),
+                                     m_dDistSqToBallOfClosestPlayer(0.0),
+                                     m_pSupportingPlayer(NULL),
+                                     m_pReceivingPlayer(NULL),
+                                     m_pControllingPlayer(NULL),
+                                     m_pPlayerClosestToBall(NULL)
 {
     m_pStateMachine = new StateMachine<BallTeam>(this);
-
     m_pStateMachine->SetCurrentState(Defending::Instance());
     m_pStateMachine->SetPreviousState(Defending::Instance());
     m_pStateMachine->SetGlobalState(NULL);
-
     CreatePlayers();
 }
 
@@ -35,7 +41,8 @@ BallTeam::~BallTeam()
 
 void BallTeam::Update()
 {
-  
+    CalculateClosestPlayerToBall();
+    m_pStateMachine->Update();
     //now update each player
     std::vector<PlayerBase*>::iterator it = m_Players.begin();
     for (it; it != m_Players.end(); ++it)
@@ -60,62 +67,66 @@ void BallTeam::CreatePlayers()
     {
         //goalkeeper
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             1,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::Center));
  
         //create the players
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             6,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PointGuard));
 
 
-
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             8,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::ShootingGuard));
 
 
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             3,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::SmallForward));
 
 
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             5,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PowerForward));
 
@@ -125,62 +136,67 @@ void BallTeam::CreatePlayers()
     {
         //goalkeeper
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             1,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::Center));
  
         //create the players
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             6,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PointGuard));
 
 
 
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             8,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::ShootingGuard));
 
 
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             3,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::SmallForward));
 
 
         m_Players.push_back(new FieldPlayer(this,
+                                            Wait::Instance(),
                                             5,
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
                                             0.5,//Prm.PlayerMaxForce,
-                                            0.5,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.5,//Prm.PlayerMaxTurnRate,
+                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.1,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PowerForward));
     }
@@ -197,7 +213,8 @@ void BallTeam::CreatePlayers()
 
 void BallTeam::SetPlayerHomeRegion(int player, int region) const
 {
-    assert(player>0 && player<m_Players.size() && "invalid player number");
+//bin/    printf("player:%d %d\n", player, region);
+    assert(player>=0 && player<=m_Players.size() && "invalid player number");
     m_Players[player]->SetHomeRegion(region);
 }
 
@@ -208,18 +225,44 @@ void BallTeam::UpdateTargetsOfWaitingPlayers() const
 
   for (it; it != m_Players.end(); ++it)
   {  
-      //cast to a field player
-        //FieldPlayer* plyr = static_cast<FieldPlayer*>(*it);
+      FieldPlayer* plyr = static_cast<FieldPlayer*>(*it);
       
-      // if ( plyr->GetFSM()->isInState(*Wait::Instance()) ||
-      //      plyr->GetFSM()->isInState(*ReturnToHomeRegion::Instance()) )
-      // {
-      //   plyr->Steering()->SetTarget(plyr->HomeRegion()->Center());
-      // }
+      if ( plyr->GetFSM()->isInState(*Wait::Instance()) ||
+           plyr->GetFSM()->isInState(*ReturnToHomeRegion::Instance()) )
+      {
+        plyr->Steering()->SetTarget(plyr->HomeRegion()->Center());
+      }
+      if( plyr == PlayerClosestToBall() && plyr != m_pControllingPlayer ){
+          cout<<"yes"<<endl;
+          plyr->GetFSM()->ChangeState(ChaseBall::Instance());
+      }
   }
 }
 
 
+void BallTeam::CalculateClosestPlayerToBall()
+{
+    double ClosestSoFar = MaxFloat;
+    std::vector<PlayerBase*>::iterator it = m_Players.begin();
+
+    for (it; it != m_Players.end(); ++it)
+    {
+        //calculate the dist. Use the squared value to avoid sqrt
+        double dist = Vec2DDistanceSq((*it)->Pos(), GetGame()->GetBall()->Pos());
+
+        //keep a record of this value for each player
+        (*it)->SetDistSqToBall(dist);
+    
+        if (dist < ClosestSoFar)
+        {
+            ClosestSoFar = dist;
+
+            m_pPlayerClosestToBall = *it;
+        }
+    }
+
+    m_dDistSqToBallOfClosestPlayer = ClosestSoFar;
+}
 void BallTeam::DetermineBestSupportingPosition()
 {
     //TODO
@@ -233,7 +276,9 @@ void BallTeam::SetSupportingPlayer(PlayerBase* player)
 
 void BallTeam::SetControllingPlayer(PlayerBase* player)
 {
-    //TODO;
+    m_pControllingPlayer = player;
+    //rub it in the opponents faces!
+    Opponents()->LostControl();
 }
 
 void BallTeam::SetReceiver(PlayerBase* player)
@@ -251,3 +296,11 @@ void BallTeam::ReturnAllFieldPlayersToHome()
     //TODO;
 }
 
+
+bool BallTeam::CanShoot(const Vector2D& pos)
+{
+    double distance = OpponentsGoal()->Center().Distance(pos);
+    if( distance < 5.0 )
+        return true;
+    return false;
+}
