@@ -62,10 +62,10 @@ public:
 bool Goal::Scored(const Vector2D&  ball_pos)
 {
     //Vector2D ball_pos = ball->Pos();
-    printf("ball:%.3f %.3f\n", ball_pos.x, ball_pos.y);
-    printf("goal:%.3f %.3f\n", m_vPos.x, m_vPos.y);
+    //printf("ball:%.3f %.3f\n", ball_pos.x, ball_pos.y);
+    //printf("goal:%.3f %.3f\n", m_vPos.x, m_vPos.y);
     float dist = ball_pos.Distance(m_vPos);
-    printf("done\n");
+    //printf("done\n");
     if(dist<=m_radius)
     {
         ++m_iNumGoalsScored;

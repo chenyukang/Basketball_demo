@@ -68,6 +68,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
 
     //send the telegram to the recipient
     Discharge(pReceiver, telegram);
+    printf("process message\n");
   }
 
   //else calculate the time when the telegram should be dispatched

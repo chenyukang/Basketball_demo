@@ -10,6 +10,7 @@
 #define FIELDPLAYERSTATES_H
 
 #include "State.h"
+#include "StateMachine.h"
 #include "Telegram.h"
 #include <string.h>
 
@@ -17,6 +18,8 @@ using namespace std;
 
 class FieldPlayer;
 class BaskeBall;
+
+std::string StateToStr(StateMachine<FieldPlayer>* machine);
 
 class GlobalPlayerState : public State<FieldPlayer>
 {
@@ -101,6 +104,24 @@ public:
     void Exit(FieldPlayer* player);
     bool OnMessage(FieldPlayer*, const Telegram&) { return false;}
 };
+
+
+//------------------------------------------------------------------------
+class ReceiveBall: public State<FieldPlayer>
+{
+private:
+  ReceiveBall(){}
+
+public:
+
+  //this is a singleton
+  static ReceiveBall* Instance();
+  void Enter(FieldPlayer* player);
+  void Execute(FieldPlayer* player);
+  void Exit(FieldPlayer* player);
+  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+};
+
 
 /*
 //------------------------------------------------------------------------

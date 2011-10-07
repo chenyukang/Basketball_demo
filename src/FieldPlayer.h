@@ -39,6 +39,7 @@ public:
     //call this to update the player's position and orientation
     void        Update();   
     void        Render();
+    bool        HandleMessage(const Telegram& msg);
     StateMachine<FieldPlayer>* GetFSM()const{return m_pStateMachine;}
 
 };

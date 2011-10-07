@@ -25,6 +25,7 @@ typedef enum {
     inAir,
     inGround,
     inPrepareBegin,
+    inPassing,
 }BallState;
     
 class BasketBall : public MovingEntity

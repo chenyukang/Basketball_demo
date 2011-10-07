@@ -57,7 +57,6 @@ public:
             m_ElapseTime += TIMER->TimeDiff(&prevTime, &nowTime);
             //prevTime = nowTime;
             gettimeofday(&prevTime, NULL);
-            //printf("%3.f\n",m_ElapseTime);
             return false;
         }
 };

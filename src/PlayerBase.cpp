@@ -9,13 +9,14 @@
 
 PlayerBase::PlayerBase(BallTeam* home_team,
                        int       home_region,
+                       double    maxSpeed,
                        Vector2D    pos,
                        player_role role):MovingEntity(pos,
                                                       Vector2D(0,0),
                                                       Vector2D(1,0),
                                                       Vector2D(1,1),
                                                       0.3,
-                                                      0.2,
+                                                      maxSpeed,
                                                       0.5,
                                                       0.5,
                                                       0.2),
@@ -55,9 +56,20 @@ const Region* PlayerBase::HomeRegion() const
     return GetGame()->GetRegionFromIndex(m_iHomeRegion);
 }
 
+
+bool PlayerBase::BallWithinReceivingRange() const
+{
+    return (Vec2DDistanceSq(Pos(), Ball()->Pos()) < 0.05);
+}
+
+
+bool PlayerBase::BallWithinPassRange() const
+{
+    return true;
+}
 bool PlayerBase::BallWithinControlRange() const
 {
-  return (Vec2DDistanceSq(this->Ball()->Pos(), Pos()) < 0.5);
+  return (Vec2DDistanceSq(this->Ball()->Pos(), Pos()) < 0.08);
 }
 
 bool PlayerBase::AtTarget() const
@@ -72,8 +84,14 @@ void PlayerBase::TrackBall()
 
 bool PlayerBase::isAheadOfAttacker() const
 {
-  return fabs(Pos().x - GetTeam()->OpponentsGoal()->Center().x) <
-         fabs(GetTeam()->ControllingPlayer()->Pos().x - GetTeam()->OpponentsGoal()->Center().x);
+    Vector2D target = Vector2D(GetTeam()->OpponentsGoal()->Center().x,
+                               GetTeam()->OpponentsGoal()->Center().y);
+    double dist_a = target.Distance(Pos());
+    double dist_b = target.Distance(GetTeam()->ControllingPlayer()->Pos());
+    return dist_a < dist_b;
+    
+//  return fabs(Pos().y - GetTeam()->OpponentsGoal()->Center().y) <
+//         fabs(GetTeam()->ControllingPlayer()->Pos().y - GetTeam()->OpponentsGoal()->Center().y);
 }
 
 bool PlayerBase::isControllingPlayer() const

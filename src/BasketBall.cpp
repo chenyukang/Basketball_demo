@@ -57,7 +57,8 @@ void BasketBall::Update()
     m_vHeading = Vec2DNormalize(m_vVelocity);
     //Simulate Prm.Friction. Make sure the speed is positive 
     //first though
-    if ( m_state != inAir && m_vVelocity.LengthSq() > 0.03*0.03 )
+    if ( m_state != inAir && m_state != inPassing &&
+         m_vVelocity.LengthSq() > 0.03*0.03 )
     {
         m_vVelocity = 0.1*m_vHeading;
     }
@@ -65,9 +66,14 @@ void BasketBall::Update()
     {
         m_vVelocity = 0.3*m_vHeading;
     }
+    
+    if ( m_state == inPassing )
+    {
+        m_vVelocity = 0.3*m_vHeading;
+    }
+    
     if(m_state == inAir)
         TestGetGoal();
-    //printf("state:%d\n", m_state);
     m_vPosition += m_vVelocity;
 }
 
@@ -128,32 +134,34 @@ void BasketBall::ChangePosition(Vector2D NewPos)
 //  the new velocity to make sure it doesn't exceed the max allowable.
 //------------------------------------------------------------------------
 void BasketBall::Kick(Vector2D direction, double force)
-{  
-  //ensure direction is normalized
-  direction.Normalize();
-  
-  //calculate the acceleration
-  Vector2D acceleration = (direction * force) / m_dMass;
+{
+    m_pControllingPlayer = NULL;
+    m_state = inPassing;
 
-  //update the velocity
-  m_vVelocity = acceleration;
+    //ensure direction is normalized
+    direction.Normalize();
+  
+    //calculate the acceleration
+    Vector2D acceleration = (direction * force) / m_dMass;
+
+    //update the velocity
+    m_vVelocity = acceleration;
 }
 
 void BasketBall::Shot(Vector2D direction, double force, Goal* goal)
 {
-  m_pControllingPlayer = NULL;
-  m_state = inAir;
-  //ensure direction is normalized
-  direction.Normalize();
+    m_pControllingPlayer = NULL;
+    m_state = inAir;
+    //ensure direction is normalized
+    direction.Normalize();
   
-  //calculate the acceleration
-  Vector2D acceleration = (direction * force) / m_dMass;
+    //calculate the acceleration
+    Vector2D acceleration = (direction * force) / m_dMass;
 
-  //update the velocity
-  m_vVelocity = acceleration;
-  m_pGoal = goal;
-  printf("now shot:%d %.3f %.3f %x\n",m_state, m_vVelocity.x, m_vVelocity.y, (unsigned)m_pGoal);
-  //getchar();
+    //update the velocity
+    m_vVelocity = acceleration;
+    m_pGoal = goal;
+    //getchar();
 }
 
 void BasketBall::TestCollisionWithWalls(const std::vector<Wall2D>& walls)
@@ -240,14 +248,11 @@ void BasketBall::SetControllingPlayer(PlayerBase* player)
     m_pControllingPlayer = player;
     m_state = inControl;
     printf("player: %d get ball control\n", player->ID());
-//    getchar();
 }
 
 
 bool BasketBall::TestGetGoal()
 {
-    printf("%x\n",(unsigned)m_pGoal);
-    printf("Goal:%.3f %.3f\n",m_pGoal->Center().x , m_pGoal->Center().y);
     bool res = m_pGoal->Scored(m_vPosition);
     if( res )
     {

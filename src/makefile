@@ -5,12 +5,12 @@ Game: main.o Game.o Grapic.o BaseGameEntity.o BasketBall.o BallTeam.o EntityMana
 	FieldPlayer.o PlayerBase.o \
 	constants.o Messages.o FrameCounter.o MessageDispatcher.o \
 	SteeringBehavior.o FrameCounter.o PrecisionTimer.o TeamState.o  \
-	FieldPlayerStates.o \
+	FieldPlayerStates.o MessageDispatcher.o\
 
 	$(CC) main.o Game.o Grapic.o BaseGameEntity.o BasketBall.o \
               BallTeam.o EntityManager.o FieldPlayer.o PlayerBase.o \
 	      Messages.o FrameCounter.o PrecisionTimer.o SteeringBehavior.o \
-	      TeamState.o FieldPlayerStates.o \
+	      TeamState.o FieldPlayerStates.o MessageDispatcher.o \
 	 -o Game  $(LIB)
 
 # main.o: main.cpp

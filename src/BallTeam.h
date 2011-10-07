@@ -38,6 +38,8 @@ private:
 
     void CreatePlayers();//初始化时创造成员
     void CalculateClosestPlayerToBall();
+
+    bool        isPassSafeFromAllOpponents(const Vector2D&, const Vector2D&, PlayerBase*, double);
 public:
     BallTeam(Goal*        home_goal,
              Goal*        opponents_goal,
@@ -73,6 +75,7 @@ public:
     Goal*       HomeGoal()const{return m_pHomeGoal;}
     StateMachine<BallTeam>*  GetFSM() const { return m_pStateMachine; }
     bool        CanShoot(const Vector2D& pos);
+    void        RequestPass(PlayerBase* player);
 };
 
 #endif

@@ -36,6 +36,7 @@ protected:
 public:
     PlayerBase(BallTeam*      home_team,
                int            home_region,
+               double         maxSpeed,
                Vector2D       pos,
                player_role    role);
 
@@ -48,12 +49,15 @@ public:
     void        SetDistSqToBall(double val) { m_dDistSqToBall = val; }
     const Region* HomeRegion() const;
     bool        BallWithinControlRange() const;
+    bool        BallWithinReceivingRange() const;
     bool        AtTarget()const;
     void        TrackBall();
     bool        isAheadOfAttacker()const;
     bool        isControllingPlayer() const;
     void        setWaitTimeRegulator(double);
     bool        isRegulatorReady();
+    bool        BallWithinPassRange() const;
+    
     virtual     ~PlayerBase();
 };
 

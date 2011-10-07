@@ -9,6 +9,8 @@
 #include "Regulator.h"
 #include "FieldPlayerStates.h"
 #include "SteeringBehavior.h"
+#include "MessageDispatcher.h"
+#include "Messages.h"
 
 BallTeam::BallTeam(Goal* home_goal,
                    Goal* opponents_goal,
@@ -72,8 +74,8 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::Center));
@@ -85,8 +87,8 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PointGuard));
@@ -98,8 +100,8 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::ShootingGuard));
@@ -111,8 +113,8 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
                                             0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::SmallForward));
@@ -124,9 +126,9 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.1,//Prm.PlayerMaxTurnRate,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PowerForward));
 
@@ -141,9 +143,9 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.1,//Prm.PlayerMaxTurnRate,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::Center));
  
@@ -154,9 +156,9 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.1,//Prm.PlayerMaxTurnRate,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PointGuard));
 
@@ -168,9 +170,9 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.1,//Prm.PlayerMaxTurnRate,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::ShootingGuard));
 
@@ -181,9 +183,9 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.1,//Prm.PlayerMaxTurnRate,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::SmallForward));
 
@@ -194,9 +196,9 @@ void BallTeam::CreatePlayers()
                                             Vector2D(0,1),
                                             Vector2D(0.0, 0.0),
                                             0.5,//Prm.PlayerMass,
-                                            0.5,//Prm.PlayerMaxForce,
-                                            0.1,//Prm.PlayerMaxSpeedWithoutBall,
-                                            0.1,//Prm.PlayerMaxTurnRate,
+                                            0.15,//Prm.PlayerMaxForce,
+                                            0.12,//Prm.PlayerMaxSpeedWithoutBall,
+                                            0.5,//Prm.PlayerMaxTurnRate,
                                             0.5,//Prm.PlayerScale
                                             PlayerBase::PowerForward));
     }
@@ -233,7 +235,6 @@ void BallTeam::UpdateTargetsOfWaitingPlayers() const
         plyr->Steering()->SetTarget(plyr->HomeRegion()->Center());
       }
       if( plyr == PlayerClosestToBall() && plyr != m_pControllingPlayer ){
-          cout<<"yes"<<endl;
           plyr->GetFSM()->ChangeState(ChaseBall::Instance());
       }
   }
@@ -303,4 +304,32 @@ bool BallTeam::CanShoot(const Vector2D& pos)
     if( distance < 5.0 )
         return true;
     return false;
+}
+
+
+bool BallTeam::isPassSafeFromAllOpponents(const Vector2D& from,
+                                          const Vector2D& topos,
+                                          PlayerBase* receiver,
+                                          double maxPassForce)
+{
+    return true;
+                    
+}
+
+void BallTeam::RequestPass(PlayerBase* requester)
+{
+    if (isPassSafeFromAllOpponents(ControllingPlayer()->Pos(),
+                                   requester->Pos(),
+                                   requester,
+                                   0.5))
+    {
+
+        //tell the player to make the pass
+        //let the receiver know a pass is coming 
+        Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
+                                requester->ID(),
+                                ControllingPlayer()->ID(),
+                                Msg_GiveMeBall,
+                                requester);
+    }
 }

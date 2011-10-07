@@ -31,6 +31,7 @@ FieldPlayer::FieldPlayer(BallTeam* home_team,
                          double    scale,
                          player_role role):PlayerBase(home_team,
                                                       home_region,
+                                                      max_speed,
                                                       Vector2D(0,0),
                                                       role)
                                            
@@ -95,8 +96,14 @@ void FieldPlayer::Render()
     else
         gdi->SetColor(1.0f, 0.0f, 0.0f);
     gdi->Circle(m_vPosition.x, m_vPosition.y, m_dBoundingRadius);
-    gdi->glPrint(m_vPosition.x-0.1, m_vPosition.y-0.5 ,"%d",ID());
+    //gdi->glPrint(m_vPosition.x-0.1, m_vPosition.y-0.5 ,"%d:%.1f, %.1f",ID(), Pos().x, Pos().y);
+    gdi->glPrint(m_vPosition.x-0.1, m_vPosition.y-0.5 ,"%d:%s", ID(), StateToStr(this->GetFSM()).c_str());
     #ifdef DEBUG_STEERING_INFO
     m_pSteering->RenderAids();
     #endif
+}
+
+bool FieldPlayer::HandleMessage(const Telegram& msg)
+{
+    return m_pStateMachine->HandleMessage(msg);
 }

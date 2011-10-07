@@ -15,6 +15,8 @@ class Telegram;
 template <class obj_type>
 
 class State{
+private:
+    std::string state_info;
 public:
     virtual ~State() {};
 
