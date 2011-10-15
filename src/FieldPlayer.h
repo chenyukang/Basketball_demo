@@ -19,7 +19,7 @@ struct Telegram;
 class FieldPlayer : public PlayerBase
 {
 private:
-    StateMachine<FieldPlayer>*           m_pStateMachine;  //the State Machine of this player
+    StateMachine<FieldPlayer>* m_pStateMachine;  //the State Machine of this player
     
 public:
     FieldPlayer(BallTeam*      home_team,

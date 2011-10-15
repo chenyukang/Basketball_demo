@@ -62,6 +62,10 @@ bool PlayerBase::BallWithinReceivingRange() const
     return (Vec2DDistanceSq(Pos(), Ball()->Pos()) < 0.05);
 }
 
+bool PlayerBase::InHomeRegion() const
+{
+    return GetGame()->GetRegionFromIndex(m_iHomeRegion)->Inside(Pos(), Region::normal);
+}
 
 bool PlayerBase::BallWithinPassRange() const
 {
@@ -69,7 +73,9 @@ bool PlayerBase::BallWithinPassRange() const
 }
 bool PlayerBase::BallWithinControlRange() const
 {
-  return (Vec2DDistanceSq(this->Ball()->Pos(), Pos()) < 0.08);
+    double dist = Vec2DDistanceSq(this->Ball()->Pos(), Pos());
+    printf("%.3f\n", dist);
+    return (Vec2DDistanceSq(this->Ball()->Pos(), Pos()) < 0.4);
 }
 
 bool PlayerBase::AtTarget() const
@@ -109,5 +115,15 @@ void PlayerBase::setWaitTimeRegulator(double periodTime)
 
 bool PlayerBase::isRegulatorReady()
 {
+    if(m_regulator == NULL)
+        return true;
     return m_regulator->isReady();
 }
+
+
+double PlayerBase::getRegulatorTime() const
+{
+    assert(m_regulator!=NULL && "regulator is null");
+    return m_regulator->getElapseTime();
+}
+    

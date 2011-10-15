@@ -98,6 +98,7 @@ void FieldPlayer::Render()
     gdi->Circle(m_vPosition.x, m_vPosition.y, m_dBoundingRadius);
     //gdi->glPrint(m_vPosition.x-0.1, m_vPosition.y-0.5 ,"%d:%.1f, %.1f",ID(), Pos().x, Pos().y);
     gdi->glPrint(m_vPosition.x-0.1, m_vPosition.y-0.5 ,"%d:%s", ID(), StateToStr(this->GetFSM()).c_str());
+    //gdi->glPrint(m_vPosition.x-0.1, m_vPosition.y-0.5 ,"%d", ID());
     #ifdef DEBUG_STEERING_INFO
     m_pSteering->RenderAids();
     #endif

@@ -91,19 +91,22 @@ inline Vector2D Region::GetRandomPosition()const
 
 inline bool Region::Inside(Vector2D pos, region_modifier r=normal)const
 {
-  if (r == normal)
-  {
-    return ((pos.x > m_dLeft) && (pos.x < m_dRight) &&
-         (pos.y > m_dTop) && (pos.y < m_dBottom));
-  }
-  else
-  {
-    const double marginX = m_dWidth * 0.25;
-    const double marginY = m_dHeight * 0.25;
-
-    return ((pos.x > (m_dLeft+marginX)) && (pos.x < (m_dRight-marginX)) &&
-         (pos.y > (m_dTop+marginY)) && (pos.y < (m_dBottom-marginY)));
-  }
+    if (r == normal)
+    {
+        //printf("pos:%.3f %.3f\n", pos.x, pos.y);
+        //printf("l:%.3f r:%.3f t:%.3f b:%.3f\n",m_dLeft, m_dRight, m_dTop, m_dBottom);
+        return ((pos.x > m_dLeft) && (pos.x < m_dRight) &&
+                (pos.y > m_dTop) && (pos.y < m_dBottom));
+    }
+    else
+    {
+        const double marginX = m_dWidth * 0.25;
+        const double marginY = m_dHeight * 0.25;
+        //printf("pos:%.3f %.3f\n", pos.x, pos.y);
+        //printf("l:%.3f r:%.3f t:%.3f b:%.3f\n",m_dLeft, m_dRight, m_dTop, m_dBottom);
+        return ((pos.x > (m_dLeft+marginX)) && (pos.x < (m_dRight-marginX)) &&
+                (pos.y > (m_dTop+marginY)) && (pos.y < (m_dBottom-marginY)));
+    }
 
 }
 

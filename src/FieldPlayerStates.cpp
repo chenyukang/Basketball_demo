@@ -59,10 +59,8 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
         player->GetFSM()->ChangeState(ReceiveBall::Instance());
         return true;
     }
-
-    break;
-    
     case Msg_GiveMeBall:
+    {
         //get the position of the player requesting the pass 
         FieldPlayer* receiver = static_cast<FieldPlayer*>(telegram.ExtraInfo);
 
@@ -78,7 +76,8 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
             !player->BallWithinPassRange() )
         {
 #ifdef PLAYER_STATE_INFO_ON
-            debug_con << "Player " << player->ID() << " cannot make requested pass <cannot kick ball>" << "";
+            debug_con << "Player " << player->ID()
+                      << " cannot make requested pass <cannot kick ball>" << "";
 #endif
             return true;
         }
@@ -86,12 +85,14 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
         //make the pass   
         player->Ball()->Kick(receiver->Pos() - player->Ball()->Pos(),
                              2.0);
-        printf("I have passed\n");
           
 #ifdef PLAYER_STATE_INFO_ON
-        debug_con << "Player " << player->ID() << " Passed ball to requesting player" << "";
+        debug_con << "Player " << player->ID()
+                  << " Passed ball to requesting player" << "";
 #endif
-        
+
+        printf("player:%d pass ball to player:%d\n", player->ID(), receiver->ID());
+        //getchar();
         //let the receiver know a pass is coming
         Vector2D pos = receiver->Pos();
         Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
@@ -99,13 +100,10 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
                                 receiver->ID(),
                                 Msg_ReceiveBall,
                                 &pos);
-
-        
-
         //change state   
         player->GetFSM()->ChangeState(Dummpy::Instance());
-
         return true;
+    }
     }
     return false;
 }
@@ -126,6 +124,9 @@ void ChaseBall::Enter(FieldPlayer* player)
 
 void ChaseBall::Execute(FieldPlayer* player)
 {
+    bool res = player->Ball()->isCanControl();
+    if(res) printf("yes\n");
+    
     if (player->Ball()->isCanControl() &&
         player->BallWithinControlRange())
     {
@@ -231,9 +232,10 @@ void ControlBall::Enter(FieldPlayer* player)
     player->GetTeam()->SetControllingPlayer(player);
     player->Ball()->SetControllingPlayer(player);
     player->Steering()->SeekOn();
-    Vector2D target  = Vector2D((player->GetTeam()->OpponentsGoal()->Center().x + RandInRange(-1.0,1.0)),
-                                player->GetTeam()->OpponentsGoal()->Center().y + RandInRange(-1.0, 1.0));
+    Vector2D target  = Vector2D((player->GetTeam()->OpponentsGoal()->Center().x + RandInRange(-2.0,2.0)),
+                                player->GetTeam()->OpponentsGoal()->Center().y + RandInRange(-2.0, 2.0));
     player->Steering()->SetTarget(target);
+    player->setWaitTimeRegulator(RandInRange(3.0,4.0));
                                   
 #ifdef PLAYER_STATE_INFO_ON
     cout<< "Player " << player->ID() << " enters ControlBall state" <<endl;
@@ -245,21 +247,30 @@ void ControlBall::Enter(FieldPlayer* player)
 void ControlBall::Execute(FieldPlayer* player)
 {
 
-    double r = RandInRange(0.0,1.0);
-    if(r < 0.1 && 
-       player->GetTeam()->Opponents()->GetClosestDistToBall() < 1.0){
-        player->Ball()->Kick(player->GetTeam()->HomeGoal()->Facing(),
-                             2.0);
-        player->GetFSM()->ChangeState(Dummpy::Instance()); //lose ball
+    if(player->isRegulatorReady())
+    {
+        double r = RandInRange(0.0,1.0);
+        bool lose = false;
+        if((r < 0.4 &&
+            player->isRegulatorReady() && 
+            player->GetTeam()->Opponents()->GetClosestDistToBall() < 1.0) ||
+           (player->getRegulatorTime()>7.0)){
+
+            lose = true;
+            player->Ball()->Kick(player->GetTeam()->HomeGoal()->Facing(),
+                                 2.0);
+            player->GetFSM()->ChangeState(Dummpy::Instance()); //lose ball
+        }
     }
 
     float power = RandInRange(2.0f,3.0f); //try to shot the ball
     if ( player->GetTeam()->Opponents()->GetClosestDistToBall()>2.5 && 
          player->GetTeam()->CanShoot(player->Ball()->Pos()) &&
          RandInRange(0.0, 1.0) < 0.2 ) {
-        #ifdef PLAYER_STATE_INFO_ON
+        
+#ifdef PLAYER_STATE_INFO_ON
         cout<<"Player "<<player->ID() << "attempts a shot "<<endl;
-        #endif
+#endif
         Vector2D target = player->GetTeam()->OpponentsGoal()->Center();
         target = AddNoiseToShot(player->Ball()->Pos(), target);
 
@@ -268,6 +279,19 @@ void ControlBall::Execute(FieldPlayer* player)
         //change state
         player->GetFSM()->ChangeState(Dummpy::Instance());
         return;
+    }
+
+    if( player->GetTeam()->CanDunk(player->Ball()->Pos()) ) {
+        
+#ifdef PLAYER_STATE_INFO_ON
+        cout<<"Player "<<player->ID() << "Dunk!! "<<endl;
+#endif
+
+        Vector2D target = player->GetTeam()->OpponentsGoal()->Center();
+        Vector2D ShotDirection = target - player->Ball()->Pos();
+        player->Ball()->Shot(ShotDirection, power, player->GetTeam()->OpponentsGoal());
+        //change state
+        player->GetFSM()->ChangeState(Dummpy::Instance());
     }
 
 }
@@ -380,6 +404,7 @@ void Wait::Enter(FieldPlayer* player)
     if (player->GetGame()->GameOn())
     {
         player->Steering()->SetTarget(player->HomeRegion()->Center());
+        //player->setWaitTimeRegulator(3.0);
     }
 }
 
@@ -402,10 +427,10 @@ void Wait::Execute(FieldPlayer* player)
     //if this player's team is controlling AND this player is not the attacker
     //AND is further up the field than the attacker he should request a pass.
     double r  = RandInRange(0.0,1.0);
-        if ( r < 0.1 && player->GetTeam()->InControl()    &&
-             (!player->isControllingPlayer()) &&
-             player->isAheadOfAttacker() &&
-             player->GetTeam()->Receiver()==NULL)
+    if ( r < 0.1 && player->GetTeam()->InControl() &&
+         (!player->isControllingPlayer()) &&
+         player->isAheadOfAttacker() &&
+         player->GetTeam()->Receiver()==NULL)
     {
         player->GetTeam()->RequestPass(player);
         printf("Player %d request Pass\n", player->ID());

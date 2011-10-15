@@ -215,7 +215,6 @@ void BallTeam::CreatePlayers()
 
 void BallTeam::SetPlayerHomeRegion(int player, int region) const
 {
-//bin/    printf("player:%d %d\n", player, region);
     assert(player>=0 && player<=m_Players.size() && "invalid player number");
     m_Players[player]->SetHomeRegion(region);
 }
@@ -230,11 +229,14 @@ void BallTeam::UpdateTargetsOfWaitingPlayers() const
       FieldPlayer* plyr = static_cast<FieldPlayer*>(*it);
       
       if ( plyr->GetFSM()->isInState(*Wait::Instance()) ||
-           plyr->GetFSM()->isInState(*ReturnToHomeRegion::Instance()) )
+           plyr->GetFSM()->isInState(*Dummpy::Instance()) ||
+           plyr->GetFSM()->isInState(*ReturnToHomeRegion::Instance())||
+           plyr->GetFSM()->isInState(*ReceiveBall::Instance()))
       {
         plyr->Steering()->SetTarget(plyr->HomeRegion()->Center());
       }
-      if( plyr == PlayerClosestToBall() && plyr != m_pControllingPlayer ){
+      if( plyr == PlayerClosestToBall() && plyr != m_pControllingPlayer &&
+          plyr->GetGame()->GameOn()){
           plyr->GetFSM()->ChangeState(ChaseBall::Instance());
       }
   }
@@ -294,7 +296,16 @@ void BallTeam::SetPlayerClosestToBall(PlayerBase* player)
 
 void BallTeam::ReturnAllFieldPlayersToHome()
 {
-    //TODO;
+    std::vector<PlayerBase*>::const_iterator it = m_Players.begin();
+      
+    for (it; it != m_Players.end(); ++it)
+    {
+        Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
+                                1,
+                                (*it)->ID(),
+                                Msg_GoHome,
+                                NULL);
+    }
 }
 
 
@@ -306,6 +317,13 @@ bool BallTeam::CanShoot(const Vector2D& pos)
     return false;
 }
 
+bool BallTeam::CanDunk(const Vector2D& pos)
+{
+    double distance = OpponentsGoal()->Center().Distance(pos);
+    if( distance < 1.0 )
+        return true;
+    return false;
+}
 
 bool BallTeam::isPassSafeFromAllOpponents(const Vector2D& from,
                                           const Vector2D& topos,
@@ -332,4 +350,19 @@ void BallTeam::RequestPass(PlayerBase* requester)
                                 Msg_GiveMeBall,
                                 requester);
     }
+}
+
+bool BallTeam::AllPlayersAtHome() const
+{
+    std::vector<PlayerBase*>::const_iterator it = m_Players.begin();
+    int cnt = 0;
+    for (it; it != m_Players.end(); ++it)
+    {
+        Vector2D center = (*it)->HomeRegion()->Center();
+        if( (*it)->Pos().x * center.x > 0)
+            cnt ++;
+    }
+    if(cnt>=3)
+        return true;
+    return false;
 }

@@ -100,6 +100,7 @@ public:
     bool      isCanControl() { if (m_state == inAir) {return false;}
                                 return m_state != inControl && m_pControllingPlayer == NULL;}
     bool      TestGetGoal();
+
 };
 
 //this can be used to vary the accuracy of a player's kick.

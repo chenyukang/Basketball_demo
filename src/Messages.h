@@ -15,6 +15,7 @@ enum MsgType{
     Msg_ReceiveBall,
     Msg_GiveMeBall,
     Msg_SupportAttack,
+    Msg_GoHome,
     Msg_GoDefensePos,
     Msg_GoOffensePos,
     Msg_ChaseBall,

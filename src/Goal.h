@@ -27,13 +27,15 @@ private:
     Vector2D   m_vFacing;
     double     m_radius;
     int        m_iNumGoalsScored;
+    int        m_isScored;
 public:
 
     Goal(Vector2D pos, Vector2D face, double radius):
         m_vPos(pos),
         m_vFacing(face),
         m_radius(radius),
-        m_iNumGoalsScored(0)
+        m_iNumGoalsScored(0),
+        m_isScored(0)
         {
         }
 
@@ -53,8 +55,8 @@ public:
     Vector2D Facing() const {return m_vFacing;}
     int      NumGoalsScored()const{return m_iNumGoalsScored;}
     void     ResetGoalsScored(){m_iNumGoalsScored = 0;}
-
-    
+    int       isScored() const { return m_isScored;}
+    void      UnScored() { m_isScored = 0;}
 };
 
 
@@ -69,10 +71,10 @@ bool Goal::Scored(const Vector2D&  ball_pos)
     if(dist<=m_radius)
     {
         ++m_iNumGoalsScored;
+        m_isScored = 2;
         return true;
     }
     return false;
 }
-
 
 #endif

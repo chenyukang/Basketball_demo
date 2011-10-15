@@ -28,6 +28,7 @@ private:
 
     BasketBall*  m_pBall;
     bool         m_bPause;
+    bool         m_bState;
     bool         m_bRenderRegions;
     Region*      m_pPlayingArea; 
     std::vector<Region*> m_Regions;
@@ -39,6 +40,8 @@ private:
     Regulator*   m_pRegulator;
     std::vector<Wall2D>  m_vecWalls;
     void         CreateRegions(double,double);
+
+    int          m_ScoreTeam;
     
 public:
     void Render();
@@ -49,8 +52,11 @@ public:
     void         ChangeRenderRegionFlag() { m_bRenderRegions=!m_bRenderRegions;}
     const Region*const  PlayingArea()const{return m_pPlayingArea;}
     BasketBall*  GetBall() const { return m_pBall; }
-    void         SetGameOn() const { /*TODO*/ };
-    bool         GameOn() { return true; }
+    void         SetGameOn() { m_bState = true; }
+    void         SetGameOff() { m_bState = false; }
+    bool         GameOn() { return m_bState; }
+    int          isScored() ;
+    int          GetScored() { return m_ScoreTeam;}
     const Region* const GetRegionFromIndex(int idx)                                
         {
             assert ( (idx >= 0) && (idx < (int)m_Regions.size()) );

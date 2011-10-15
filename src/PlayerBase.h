@@ -57,6 +57,8 @@ public:
     void        setWaitTimeRegulator(double);
     bool        isRegulatorReady();
     bool        BallWithinPassRange() const;
+    bool        InHomeRegion() const;
+    double      getRegulatorTime() const;
     
     virtual     ~PlayerBase();
 };

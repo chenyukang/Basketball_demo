@@ -14,6 +14,7 @@
 #include "constants.h"
 #include "Game.h"
 #include "Debug.h"
+#include "BasketBall.h"
 
 #define DEBUG_TEAM_STATES
 
@@ -65,14 +66,14 @@ void Attacking::Enter(BallTeam* team)
 
 void Attacking::Execute(BallTeam* team)
 {
-  //if this team is no longer in control change states
-  if (!team->InControl())
-  {
-    team->GetFSM()->ChangeState(Defending::Instance()); return;
-  }
+    //if this team is no longer in control change states
+    if (!team->InControl() && team->GetGame()->GameOn())
+    {
+        team->GetFSM()->ChangeState(Defending::Instance()); return;
+    }
 
-  //calculate the best position for any supporting attacker to move to
-  team->DetermineBestSupportingPosition();
+    //calculate the best position for any supporting attacker to move to
+    team->DetermineBestSupportingPosition();
 }
 
 void Attacking::Exit(BallTeam* team)
@@ -120,11 +121,11 @@ void Defending::Enter(BallTeam* team)
 
 void Defending::Execute(BallTeam* team)
 {
-  //if in control change states
-  if (team->InControl())
-  {
-    team->GetFSM()->ChangeState(Attacking::Instance()); return;
-  }
+    //if in control change states
+    if (team->InControl() && team->GetGame()->GameOn())
+    {
+        team->GetFSM()->ChangeState(Attacking::Instance()); return;
+    }
 }
 
 
@@ -141,23 +142,52 @@ PrepareForKickOff* PrepareForKickOff::Instance()
 
 void PrepareForKickOff::Enter(BallTeam* team)
 {
-  //reset key player pointers
-  team->SetControllingPlayer(NULL);
-  team->SetSupportingPlayer(NULL);
-  team->SetReceiver(NULL);
-  team->SetPlayerClosestToBall(NULL);
+    //reset key player pointers
+    team->SetControllingPlayer(NULL);
+    team->SetSupportingPlayer(NULL);
+    team->SetReceiver(NULL);
+    team->SetPlayerClosestToBall(NULL);
+    team->GetGame()->SetGameOff();
 
-  //send Msg_GoHome to each player.
-  team->ReturnAllFieldPlayersToHome();
+    printf("now team:%d scored\n", team->GetGame()->GetScored());
+    if(team->Color() == BallTeam::blue){
+        if(team->GetGame()->GetScored() == BallTeam::blue){
+            const int BlueRegions[TeamSize] = {1,6,8,3,5};
+            ChangePlayerHomeRegions(team, BlueRegions);
+        }
+        else {
+            const int BlueRegions[TeamSize] = {16,20,23,21,13};
+            ChangePlayerHomeRegions(team, BlueRegions);
+        }
+    }
+    else //red team
+    {
+        if(team->GetGame()->GetScored() == BallTeam::red){
+            const int RedRegions[TeamSize] = {16,20,23,21,13};
+            ChangePlayerHomeRegions(team, RedRegions);
+        }
+        else{
+            const int RedRegions[TeamSize] = {1,6,8,3,5};
+            ChangePlayerHomeRegions(team, RedRegions);
+        }
+    }
+    team->UpdateTargetsOfWaitingPlayers();
+    if(team->GetGame()->GetScored() == blue) {
+        team->GetGame()->GetBall()->PlaceAtPosition(Vector2D(1,0));
+    }
+    else
+    {
+        team->GetGame()->GetBall()->PlaceAtPosition(Vector2D(-1,0));
+    }
 }
 
 void PrepareForKickOff::Execute(BallTeam* team)
 {
-  //if both teams in position, start the game
-  if (team->AllPlayersAtHome() && team->Opponents()->AllPlayersAtHome())
-  {
-    team->GetFSM()->ChangeState(Defending::Instance());
-  }
+    if (team->AllPlayersAtHome() && team->Opponents()->AllPlayersAtHome())
+    {
+        printf("now in PrepareForKickOff\n");
+        team->GetFSM()->ChangeState(Defending::Instance());
+    }
 }
 
 void PrepareForKickOff::Exit(BallTeam* team)

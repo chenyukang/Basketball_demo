@@ -3,6 +3,7 @@
 #include "Grapic.h"
 #include "BasketBall.h"
 #include "BallTeam.h"
+#include "TeamState.h"
 #include "FrameCounter.h"
 #include "PrecisionTimer.h"
 #include "Regulator.h"
@@ -21,7 +22,7 @@ Game* Game::Instance()
     return &game;
 }
 
-Game::Game():m_bPause(false),m_bRenderRegions(false),
+Game::Game():m_bPause(false),m_bRenderRegions(false),m_bState(true),
              m_Regions(NumRegionsHorizontal*NumRegionsVertical)
 {
     m_pPlayingArea = new Region(14, 7.5, -14, - 7.5);
@@ -91,9 +92,17 @@ void Game::Update()
         ///m_pBall->ChangePosition(Vector2D(0,0));
         //m_pBall->SetVelocity(m_pBall->Velocity().GetReverse());
 //    }
+
+    if( this->isScored() ){
+        printf("yes scored\n");
+        m_pBlueTeam->GetFSM()->ChangeState(PrepareForKickOff::Instance());
+        m_pRedTeam->GetFSM()->ChangeState(PrepareForKickOff::Instance());
+    }
+    
     m_pBlueTeam->Update();
     m_pRedTeam->Update();
     TickCounter->Update();
+
 
 //   if(m_pRegulator->isReady()){
 //       cout<<"Yes ready"<<endl;
@@ -204,4 +213,22 @@ void Game::Render()
     m_pRedTeam->Render();
     gdi->StopDrawing();
     
+}
+
+int Game::isScored()
+{
+    if(m_pBlueGoal->isScored())
+    {
+        m_pBlueGoal->UnScored();
+        m_ScoreTeam = BallTeam::red;
+        return 1;
+    }
+    if(m_pRedGoal->isScored())
+    {
+        m_pRedGoal->UnScored();
+        m_ScoreTeam = BallTeam::blue;
+        return 1;
+    }
+    m_ScoreTeam = -1;
+    return 0;
 }

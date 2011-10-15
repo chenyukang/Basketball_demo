@@ -162,6 +162,7 @@ void BasketBall::Shot(Vector2D direction, double force, Goal* goal)
     m_vVelocity = acceleration;
     m_pGoal = goal;
     //getchar();
+    //测试一下
 }
 
 void BasketBall::TestCollisionWithWalls(const std::vector<Wall2D>& walls)

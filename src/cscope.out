@@ -1,4 +1,4 @@
-cscope 15 $HOME/source/Basketball_demo/src               0000474881
+cscope 15 $HOME/source/Basketball_demo/src               0000479105
 	@BallTeam.cpp
 
 1 
@@ -687,7 +687,7 @@ EÁ™yMgr
 »giÚ
 ) const
 
-219 
+218 
 	`as£¹
 (
 ¶ay”
@@ -697,7 +697,7 @@ m_PÏy”s
 	`size
 () && "invalid…layer‚umber");
 
-220 
+219 
 m_PÏy”s
 [
 ¶ay”
@@ -707,17 +707,17 @@ m_PÏy”s
 »giÚ
 );
 
-221 
+220 
 	}
 }
 
-224 
+223 
 	gB®lT—m
 ::
 	$Upd©eT¬g‘sOfWa™šgPÏy”s
 () const
 
-226 
+225 
 ¡d
 ::
 veùÜ
@@ -733,7 +733,7 @@ m_PÏy”s
 	`begš
 ();
 
-228 
+227 
 ™
 ; iˆ!ğ
 m_PÏy”s
@@ -741,7 +741,7 @@ m_PÏy”s
 	`’d
 (); ++it)
 
-230 
+229 
 F›ldPÏy”
 * 
 ¶yr
@@ -751,7 +751,7 @@ F›ldPÏy”
 ™
 );
 
-232 iàĞ
+231 iàĞ
 ¶yr
 ->
 	`G‘FSM
@@ -759,6 +759,18 @@ F›ldPÏy”
 	`isInS‹
 (*
 Wa™
+::
+	`In¡ªû
+()) ||
+
+232 
+¶yr
+->
+	`G‘FSM
+()->
+	`isInS‹
+(*
+Dummpy
 ::
 	`In¡ªû
 ()) ||
@@ -773,9 +785,21 @@ Wa™
 R‘uºToHomeRegiÚ
 ::
 	`In¡ªû
-()) )
+())||
 
-235 
+234 
+¶yr
+->
+	`G‘FSM
+()->
+	`isInS‹
+(*
+ReûiveB®l
+::
+	`In¡ªû
+()))
+
+236 
 ¶yr
 ->
 	`S‹”šg
@@ -787,15 +811,23 @@ R‘uºToHomeRegiÚ
 	`C’‹r
 ());
 
-237 ifĞ
+238 ifĞ
 ¶yr
  =ğ
 	`PÏy”Clo£¡ToB®l
 (è&&…ly¸!ğ
 m_pCÚŒŞlšgPÏy”
- ){
+ &&
 
-238 
+239 
+¶yr
+->
+	`G‘Game
+()->
+	`GameOn
+()){
+
+240 
 ¶yr
 ->
 	`G‘FSM
@@ -807,23 +839,23 @@ Cha£B®l
 	`In¡ªû
 ());
 
-241 
+243 
 	}
 }
 
-244 
+246 
 	gB®lT—m
 ::
 	$C®cuÏ‹Clo£¡PÏy”ToB®l
 ()
 
-246 
+248 
 Clo£¡SoF¬
  = 
 MaxFlßt
 ;
 
-247 
+249 
 ¡d
 ::
 veùÜ
@@ -839,7 +871,7 @@ m_PÏy”s
 	`begš
 ();
 
-249 
+251 
 ™
 ; iˆ!ğ
 m_PÏy”s
@@ -847,7 +879,7 @@ m_PÏy”s
 	`’d
 (); ++it)
 
-252 
+254 
 di¡
  = 
 	`Vec2DDi¡ªûSq
@@ -861,7 +893,7 @@ di¡
 	`G‘B®l
 ()->Pos());
 
-255 (*
+257 (*
 ™
 )->
 	`S‘Di¡SqToB®l
@@ -869,45 +901,45 @@ di¡
 di¡
 );
 
-257 ià(
+259 ià(
 di¡
  < 
 Clo£¡SoF¬
 )
 
-259 
+261 
 Clo£¡SoF¬
  = 
 di¡
 ;
 
-261 
+263 
 m_pPÏy”Clo£¡ToB®l
  = *
 ™
 ;
 
-265 
+267 
 m_dDi¡SqToB®lOfClo£¡PÏy”
  = 
 Clo£¡SoF¬
 ;
 
-266 
+268 
 	}
 }
 
-267 
+269 
 	gB®lT—m
 ::
 	$D‘”mšeBe¡SuµÜtšgPos™iÚ
 ()
 
-270 
+272 
 	}
 }
 
-273 
+275 
 B®lT—m
 ::
 	$S‘SuµÜtšgPÏy”
@@ -917,11 +949,11 @@ PÏy”Ba£
 ¶ay”
 )
 
-276 
+278 
 	}
 }
 
-278 
+280 
 B®lT—m
 ::
 	$S‘CÚŒŞlšgPÏy”
@@ -931,23 +963,23 @@ PÏy”Ba£
 ¶ay”
 )
 
-280 
+282 
 m_pCÚŒŞlšgPÏy”
  = 
 ¶ay”
 ;
 
-282 
+284 
 	`OµÚ’ts
 ()->
 	`Lo¡CÚŒŞ
 ();
 
-283 
+285 
 	}
 }
 
-285 
+287 
 	gB®lT—m
 ::
 	$S‘Reûiv”
@@ -957,11 +989,11 @@ PÏy”Ba£
 ¶ay”
 )
 
-288 
+290 
 	}
 }
 
-290 
+292 
 B®lT—m
 ::
 	$S‘PÏy”Clo£¡ToB®l
@@ -971,24 +1003,70 @@ PÏy”Ba£
 ¶ay”
 )
 
-293 
+295 
 	}
 }
 
-295 
+297 
 B®lT—m
 ::
 	$R‘uºAÎF›ldPÏy”sToHome
 ()
 
-298 
+299 
+¡d
+::
+veùÜ
+<
+PÏy”Ba£
+*>::
+cÚ¡_™”©Ü
+ 
+™
+ = 
+m_PÏy”s
+.
+	`begš
+();
+
+301 
+™
+; iˆ!ğ
+m_PÏy”s
+.
+	`’d
+(); ++it)
+
+303 
+Di¥©ch”
+->
+	`Di¥©chMsg
+(
+SEND_MSG_IMMEDIATELY
+,
+
+305 (*
+™
+)->
+	`ID
+(),
+
+306 
+Msg_GoHome
+,
+
+307 
+NULL
+);
+
+309 
 	}
 }
 
-301 
+312 
 boŞ
  
-B®lT—m
+	gB®lT—m
 ::
 	$CªShoÙ
 (cÚ¡ 
@@ -997,7 +1075,7 @@ VeùÜ2D
 pos
 )
 
-303 
+314 
 di¡ªû
  = 
 	`OµÚ’tsGßl
@@ -1009,23 +1087,23 @@ di¡ªû
 pos
 );
 
-304 ifĞ
+315 ifĞ
 di¡ªû
  < 5.0 )
 
-305  
+316  
 Œue
 ;
 
-306  
+317  
 çl£
 ;
 
-307 
+318 
 	}
 }
 
-310 
+321 
 boŞ
  
 	gB®lT—m
@@ -1037,31 +1115,31 @@ VeùÜ2D
 äom
 ,
 
-311 cÚ¡ 
+322 cÚ¡ 
 VeùÜ2D
 & 
 tİos
 ,
 
-312 
+323 
 PÏy”Ba£
 * 
 »ûiv”
 ,
 
-313 
+324 
 maxPassFÜû
 )
 
-315  
+326  
 Œue
 ;
 
-317 
+328 
 	}
 }
 
-319 
+330 
 	gB®lT—m
 ::
 	$Reque¡Pass
@@ -1071,7 +1149,7 @@ PÏy”Ba£
 »que¡”
 )
 
-324 ià(
+332 ià(
 	`isPassSaãFromAÎOµÚ’ts
 (
 	`CÚŒŞlšgPÏy”
@@ -1079,17 +1157,17 @@ PÏy”Ba£
 	`Pos
 (),
 
-325 
+333 
 »que¡”
 ->
 	`Pos
 (),
 
-326 
+334 
 »que¡”
 ,
 
-332 
+340 
 Di¥©ch”
 ->
 	`Di¥©chMsg
@@ -1097,27 +1175,105 @@ Di¥©ch”
 SEND_MSG_IMMEDIATELY
 ,
 
-333 
+341 
 »que¡”
 ->
 	`ID
 (),
 
-334 
+342 
 	`CÚŒŞlšgPÏy”
 ()->
 	`ID
 (),
 
-335 
+343 
 Msg_GiveMeB®l
 ,
 
-336 
+344 
 »que¡”
 );
 
-338 
+346 
+	}
+}
+
+348 
+boŞ
+ 
+	gB®lT—m
+::
+	$AÎPÏy”sAtHome
+() const
+
+350 
+¡d
+::
+veùÜ
+<
+PÏy”Ba£
+*>::
+cÚ¡_™”©Ü
+ 
+™
+ = 
+m_PÏy”s
+.
+	`begš
+();
+
+351 
+út
+ = 0;
+
+352 
+™
+; iˆ!ğ
+m_PÏy”s
+.
+	`’d
+(); ++it)
+
+354 
+VeùÜ2D
+ 
+ûÁ”
+ = (*
+™
+)->
+	`HomeRegiÚ
+()->
+	`C’‹r
+();
+
+355 ifĞ(*
+™
+)->
+	`Pos
+().
+x
+ * 
+ûÁ”
+.x > 0)
+
+356 
+út
+ ++;
+
+358 if(
+út
+>=3)
+
+359  
+Œue
+;
+
+360  
+çl£
+;
+
+361 
 	}
 }
 
@@ -1265,19 +1421,25 @@ PÏy”Ba£
 	gm_pPÏy”Clo£¡ToB®l
 ;
 
-37 
+35 
+PÏy”Ba£
+* 
+	gm_pScÜedPÏy”
+;
+
+38 
 	gm_dDi¡SqToB®lOfClo£¡PÏy”
 ;
 
-39 
+40 
 C»©ePÏy”s
 ();
 
-40 
+41 
 C®cuÏ‹Clo£¡PÏy”ToB®l
 ();
 
-42 
+43 
 boŞ
  
 isPassSaãFromAÎOµÚ’ts
@@ -1287,11 +1449,11 @@ VeùÜ2D
 PÏy”Ba£
 *, );
 
-43 
+44 
 	gpublic
 :
 
-44 
+45 
 B®lT—m
 (
 Gßl
@@ -1299,37 +1461,37 @@ Gßl
 home_gßl
 ,
 
-45 
+46 
 Gßl
 * 
 İpÚ’ts_gßl
 ,
 
-46 
+47 
 Game
 * 
 p_game
 ,
 
-47 
+48 
 ‹am_cŞÜ
  
 cŞÜ
 );
 
-49 ~
+50 ~
 B®lT—m
 ();
 
-52 
+53 
 	$R’d”
 ()const;
 
-53 
+54 
 	`Upd©e
 ();
 
-54 
+55 
 ‹am_cŞÜ
  
 	$CŞÜ
@@ -1339,7 +1501,7 @@ m_CŞÜ
 	}
 }
 
-55 
+56 
 	g¡d
 ::
 ¡ršg
@@ -1353,7 +1515,7 @@ blue
 	}
 }
 
-56 
+57 
 	$G‘Clo£¡Di¡ToB®l
 (è{  
 m_dDi¡SqToB®lOfClo£¡PÏy”
@@ -1361,7 +1523,7 @@ m_dDi¡SqToB®lOfClo£¡PÏy”
 	}
 }
 
-57 
+58 
 Game
 * 
 	$G‘Game
@@ -1371,7 +1533,7 @@ m_pGame
 	}
 }
 
-58 
+59 
 	$S‘PÏy”HomeRegiÚ
 (
 ¶ay”
@@ -1379,7 +1541,7 @@ m_pGame
 »giÚ
 ) const;
 
-59 
+60 
 	$S‘OµÚ’ts
 (
 B®lT—m
@@ -1391,11 +1553,11 @@ m_pOµÚ’ts
 	}
 }
 
-60 
+61 
 	$Upd©eT¬g‘sOfWa™šgPÏy”s
 () const;
 
-61 
+62 
 boŞ
  
 	$InCÚŒŞ
@@ -1409,23 +1571,23 @@ m_pCÚŒŞlšgPÏy”
 	}
 }
 
-62 
+63 
 D‘”mšeBe¡SuµÜtšgPos™iÚ
 ();
 
-63 
+64 
 S‘SuµÜtšgPÏy”
 (
 PÏy”Ba£
 *);
 
-64 
+65 
 S‘CÚŒŞlšgPÏy”
 (
 PÏy”Ba£
 *);
 
-65 
+66 
 	$Lo¡CÚŒŞ
 (){ 
 m_pCÚŒŞlšgPÏy”
@@ -1435,33 +1597,29 @@ NULL
 	}
 }
 
-66 
+67 
 S‘Reûiv”
 (
 PÏy”Ba£
 *);
 
-67 
+68 
 S‘PÏy”Clo£¡ToB®l
 (
 PÏy”Ba£
 *);
 
-68 
+69 
 R‘uºAÎF›ldPÏy”sToHome
 ();
 
-69 
+70 
 boŞ
  
 	$AÎPÏy”sAtHome
-(ècÚ¡ {  
-çl£
-; 
-	}
-}
+() const ;
 
-70 
+71 
 B®lT—m
 * 
 	$OµÚ’ts
@@ -1471,7 +1629,7 @@ m_pOµÚ’ts
 	}
 }
 
-71 
+72 
 PÏy”Ba£
 * 
 	$PÏy”Clo£¡ToB®l
@@ -1481,7 +1639,7 @@ m_pPÏy”Clo£¡ToB®l
 	}
 }
 
-72 
+73 
 PÏy”Ba£
 * 
 	$Reûiv”
@@ -1491,7 +1649,7 @@ m_pReûivšgPÏy”
 	}
 }
 
-73 
+74 
 PÏy”Ba£
 * 
 	$CÚŒŞlšgPÏy”
@@ -1501,7 +1659,7 @@ m_pCÚŒŞlšgPÏy”
 	}
 }
 
-74 
+75 
 Gßl
 * 
 	$OµÚ’tsGßl
@@ -1511,7 +1669,7 @@ m_pOµÚ’tsGßl
 	}
 }
 
-75 
+76 
 Gßl
 * 
 	$HomeGßl
@@ -1521,7 +1679,7 @@ m_pHomeGßl
 	}
 }
 
-76 
+77 
 	gS‹Machše
 <
 	gB®lT—m
@@ -1533,7 +1691,7 @@ m_pS‹Machše
 	}
 }
 
-77 
+78 
 boŞ
  
 CªShoÙ
@@ -1543,7 +1701,7 @@ VeùÜ2D
 pos
 );
 
-78 
+79 
 Reque¡Pass
 (
 PÏy”Ba£
@@ -3187,7 +3345,7 @@ boŞ
 Te¡G‘Gßl
 ();
 
-106 
+107 
 VeùÜ2D
  
 AddNoi£ToShÙ
@@ -4911,25 +5069,33 @@ m_vPos™iÚ
 x
 -0.1, m_vPos™iÚ.
 y
--0.5 ,"%d:", 
+-0.5 ,"%d:%s", 
 	`ID
+(), 
+	`S‹ToSŒ
+(
+this
+->
+	`G‘FSM
+()).
+	`c_¡r
 ());
 
-101 #ifdeà
+102 #ifdeà
 DEBUG_STEERING_INFO
 
 
-102 
+103 
 m_pS‹”šg
 ->
 	`R’d”Aids
 ();
 
-104 
+105 
 	}
 }
 
-106 
+107 
 boŞ
  
 	gF›ldPÏy”
@@ -4941,7 +5107,7 @@ T–eg¿m
 msg
 )
 
-108  
+109  
 m_pS‹Machše
 ->
 	`HªdËMes§ge
@@ -4949,7 +5115,7 @@ m_pS‹Machše
 msg
 );
 
-109 
+110 
 	}
 }
 
@@ -5186,6 +5352,80 @@ m_pS‹Machše
 "
 
 22 
+	g¡d
+::
+¡ršg
+ 
+S‹ToSŒ
+(
+S‹Machše
+<
+F›ldPÏy”
+>* 
+machše
+)
+
+24 if(
+machše
+->
+isInS‹
+(*
+Cha£B®l
+::
+In¡ªû
+()))
+
+26 if(
+	gmachše
+->
+isInS‹
+(*
+CÚŒŞB®l
+::
+In¡ªû
+()))
+
+28 if(
+	gmachše
+->
+isInS‹
+(*
+ReûiveB®l
+::
+In¡ªû
+()))
+
+30 if(
+	gmachše
+->
+isInS‹
+(*
+Wa™
+::
+In¡ªû
+()))
+
+32 if(
+	gmachše
+->
+isInS‹
+(*
+Dummpy
+::
+In¡ªû
+()))
+
+34 if(
+	gmachše
+->
+isInS‹
+(*
+R‘uºToHomeRegiÚ
+::
+In¡ªû
+()))
+
+39 
 Glob®PÏy”S‹
 * 
 	gGlob®PÏy”S‹
@@ -5193,21 +5433,21 @@ Glob®PÏy”S‹
 	$In¡ªû
 ()
 
-24 
+41 
 Glob®PÏy”S‹
  
 š¡ªû
 ;
 
-25  &
+42  &
 š¡ªû
 ;
 
-26 
+43 
 	}
 }
 
-28 
+45 
 	gGlob®PÏy”S‹
 ::
 	$Execu‹
@@ -5217,11 +5457,11 @@ F›ldPÏy”
 ¶ay”
 )
 
-32 
+49 
 	}
 }
 
-34 
+51 
 boŞ
  
 Glob®PÏy”S‹
@@ -5237,17 +5477,17 @@ T–eg¿m
 ‹Ëg¿m
 )
 
-36 
+53 
 ‹Ëg¿m
 .
 Msg
 ){
 
-37 
+54 
 Msg_ReûiveB®l
 :
 
-40 
+57 
 ¶ay”
 ->
 	`S‹”šg
@@ -5263,7 +5503,7 @@ VeùÜ2D
 ExŒaInfo
 )));
 
-42 
+59 
 ¶ay”
 ->
 	`G‘FSM
@@ -5275,15 +5515,15 @@ ReûiveB®l
 	`In¡ªû
 ());
 
-43  
+60  
 Œue
 ;
 
-48 
+65 
 Msg_GiveMeB®l
 :
 
-50 
+67 
 F›ldPÏy”
 * 
 »ûiv”
@@ -5295,11 +5535,11 @@ F›ldPÏy”
 ExŒaInfo
 );
 
-52 #ifdeà
+69 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-53 
+70 
 debug_cÚ
  << "PÏy” " << 
 ¶ay”
@@ -5307,13 +5547,13 @@ debug_cÚ
 	`ID
 () << "„eceived„equest from " <<
 
-54 
+71 
 »ûiv”
 ->
 	`ID
 () << "o make…ass" << "";
 
-60 ià(
+77 ià(
 ¶ay”
 ->
 	`G‘T—m
@@ -5323,17 +5563,17 @@ debug_cÚ
 NULL
  ||
 
-61 !
+78 !
 ¶ay”
 ->
 	`B®lW™hšPassRªge
 () )
 
-63 #ifdeà
+80 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-64 
+81 
 debug_cÚ
  << "PÏy” " << 
 ¶ay”
@@ -5341,11 +5581,11 @@ debug_cÚ
 	`ID
 () << " cannot make„equested…ass <cannot kick ball>" << "";
 
-66  
+83  
 Œue
 ;
 
-70 
+87 
 ¶ay”
 ->
 	`B®l
@@ -5357,15 +5597,15 @@ debug_cÚ
 	`Pos
 () -…layer->Ball()->Pos(),
 
-72 
+89 
 	`´štf
 ("I have…assed\n");
 
-74 #ifdeà
+91 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-75 
+92 
 debug_cÚ
  << "PÏy” " << 
 ¶ay”
@@ -5373,7 +5613,7 @@ debug_cÚ
 	`ID
 () << " Passed ballo„equesting…layer" << "";
 
-79 
+96 
 VeùÜ2D
  
 pos
@@ -5383,7 +5623,7 @@ pos
 	`Pos
 ();
 
-80 
+97 
 Di¥©ch”
 ->
 	`Di¥©chMsg
@@ -5391,27 +5631,27 @@ Di¥©ch”
 SEND_MSG_IMMEDIATELY
 ,
 
-81 
+98 
 ¶ay”
 ->
 	`ID
 (),
 
-82 
+99 
 »ûiv”
 ->
 	`ID
 (),
 
-83 
+100 
 Msg_ReûiveB®l
 ,
 
-84 &
+101 &
 pos
 );
 
-89 
+106 
 ¶ay”
 ->
 	`G‘FSM
@@ -5423,19 +5663,19 @@ Dummpy
 	`In¡ªû
 ());
 
-91  
+108  
 Œue
 ;
 
-93  
+110  
 çl£
 ;
 
-94 
+111 
 	}
 }
 
-96 
+113 
 Cha£B®l
 * 
 	gCha£B®l
@@ -5443,21 +5683,21 @@ Cha£B®l
 	$In¡ªû
 ()
 
-98 
+115 
 Cha£B®l
  
 š¡ªû
 ;
 
-99  &
+116  &
 š¡ªû
 ;
 
-100 
+117 
 	}
 }
 
-102 
+119 
 	gCha£B®l
 ::
 	$EÁ”
@@ -5467,11 +5707,11 @@ F›ldPÏy”
 ¶ay”
 )
 
-104 #ifdeà
+121 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-105 
+122 
 cout
 <<"PÏy” "<<
 ¶ay”
@@ -5481,7 +5721,7 @@ cout
 ’dl
 ;
 
-107 
+124 
 ¶ay”
 ->
 	`S‹”šg
@@ -5489,11 +5729,11 @@ cout
 	`S“kOn
 ();
 
-108 
+125 
 	}
 }
 
-110 
+127 
 	gCha£B®l
 ::
 	$Execu‹
@@ -5503,7 +5743,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-112 ià(
+129 ià(
 ¶ay”
 ->
 	`B®l
@@ -5511,13 +5751,13 @@ F›ldPÏy”
 	`isCªCÚŒŞ
 () &&
 
-113 
+130 
 ¶ay”
 ->
 	`B®lW™hšCÚŒŞRªge
 ())
 
-115 
+132 
 ¶ay”
 ->
 	`G‘FSM
@@ -5529,13 +5769,13 @@ CÚŒŞB®l
 	`In¡ªû
 ());
 
-119 ià(
+136 ià(
 ¶ay”
 ->
 	`isClo£¡T—mMemb”ToB®l
 ()){
 
-120 
+137 
 ¶ay”
 ->
 	`S‹”šg
@@ -5547,11 +5787,11 @@ CÚŒŞB®l
 	`Pos
 ());
 
-123 #ifdeà
+140 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-124 
+141 
 cout
 <<
 ¶ay”
@@ -5561,7 +5801,7 @@ cout
 ’dl
 ;
 
-126 
+143 
 ¶ay”
 ->
 	`G‘FSM
@@ -5573,11 +5813,11 @@ R‘uºToHomeRegiÚ
 	`In¡ªû
 ());
 
-128 
+145 
 	}
 }
 
-130 
+147 
 	gCha£B®l
 ::
 	$Ex™
@@ -5587,7 +5827,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-132 
+149 
 ¶ay”
 ->
 	`S‹”šg
@@ -5595,11 +5835,11 @@ F›ldPÏy”
 	`S“kOff
 ();
 
-133 
+150 
 	}
 }
 
-135 
+152 
 R‘uºToHomeRegiÚ
 * 
 	gR‘uºToHomeRegiÚ
@@ -5607,21 +5847,21 @@ R‘uºToHomeRegiÚ
 	$In¡ªû
 ()
 
-137 
+154 
 R‘uºToHomeRegiÚ
  
 š¡ªû
 ;
 
-138  &
+155  &
 š¡ªû
 ;
 
-139 
+156 
 	}
 }
 
-141 
+158 
 	gR‘uºToHomeRegiÚ
 ::
 	$EÁ”
@@ -5631,11 +5871,11 @@ F›ldPÏy”
 ¶ay”
 )
 
-143 #ifdeà
+160 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-144 
+161 
 cout
 <<
 ¶ay”
@@ -5645,7 +5885,7 @@ cout
 ’dl
 ;
 
-147 
+164 
 ¶ay”
 ->
 	`S‹”šg
@@ -5653,7 +5893,7 @@ cout
 	`A¼iveOn
 ();
 
-148 ià(!
+165 ià(!
 ¶ay”
 ->
 	`HomeRegiÚ
@@ -5669,7 +5909,7 @@ RegiÚ
 h®fsize
 ))
 
-150 
+167 
 ¶ay”
 ->
 	`S‹”šg
@@ -5681,11 +5921,11 @@ h®fsize
 	`C’‹r
 ());
 
-153 #ifdeà
+170 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-154 
+171 
 cout
  << "PÏy” " << 
 ¶ay”
@@ -5695,11 +5935,11 @@ cout
 ’dl
 ;
 
-156 
+173 
 	}
 }
 
-158 
+175 
 	gR‘uºToHomeRegiÚ
 ::
 	$Execu‹
@@ -5709,7 +5949,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-160 ià(
+177 ià(
 ¶ay”
 ->
 	`G‘Game
@@ -5717,13 +5957,13 @@ F›ldPÏy”
 	`GameOn
 ())
 
-165 iàĞ
+182 iàĞ
 ¶ay”
 ->
 	`isClo£¡T—mMemb”ToB®l
 () &&
 
-166 (
+183 (
 ¶ay”
 ->
 	`G‘T—m
@@ -5733,7 +5973,7 @@ F›ldPÏy”
 NULL
 ))
 
-169 
+186 
 ¶ay”
 ->
 	`G‘FSM
@@ -5745,13 +5985,13 @@ Cha£B®l
 	`In¡ªû
 ());
 
-173 
+190 
 r
  = 
 	`RªdInRªge
 (0,1.0);
 
-174 iàĞ
+191 iàĞ
 r
  < 0.2 && 
 ¶ay”
@@ -5761,19 +6001,29 @@ r
 	`InCÚŒŞ
 () &&
 
-175 (!
+192 (!
 ¶ay”
 ->
 	`isCÚŒŞlšgPÏy”
 ()) &&
 
-176 
+193 
 ¶ay”
 ->
 	`isAh—dOfA‰ack”
-() )
+() &&
 
-178 
+194 
+¶ay”
+->
+	`G‘T—m
+()->
+	`Reûiv”
+()==
+NULL
+)
+
+196 
 ¶ay”
 ->
 	`G‘T—m
@@ -5781,7 +6031,7 @@ r
 	`Reque¡Pass
 (player);
 
-179 
+197 
 	`´štf
 ("PÏy” %d„eque¡ Pass\n", 
 ¶ay”
@@ -5789,7 +6039,7 @@ r
 	`ID
 ());
 
-183 ià(
+201 ià(
 ¶ay”
 ->
 	`G‘Game
@@ -5803,13 +6053,13 @@ r
 	`Pos
 (),
 
-184 
+202 
 RegiÚ
 ::
 h®fsize
 ))
 
-186 
+204 
 ¶ay”
 ->
 	`S‹”šg
@@ -5819,7 +6069,7 @@ h®fsize
 	`Pos
 ());
 
-187 
+205 
 ¶ay”
 ->
 	`G‘FSM
@@ -5831,7 +6081,7 @@ Wa™
 	`In¡ªû
 ());
 
-191 if(!
+209 if(!
 ¶ay”
 ->
 	`G‘Game
@@ -5841,7 +6091,7 @@ Wa™
 	`AtT¬g‘
 ())
 
-193 
+211 
 ¶ay”
 ->
 	`G‘FSM
@@ -5853,11 +6103,11 @@ Wa™
 	`In¡ªû
 ());
 
-195 
+213 
 	}
 }
 
-197 
+215 
 	gR‘uºToHomeRegiÚ
 ::
 	$Ex™
@@ -5867,7 +6117,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-199 
+217 
 ¶ay”
 ->
 	`S‹”šg
@@ -5875,11 +6125,11 @@ F›ldPÏy”
 	`A¼iveOff
 ();
 
-200 
+218 
 	}
 }
 
-203 
+221 
 CÚŒŞB®l
 * 
 	gCÚŒŞB®l
@@ -5887,21 +6137,21 @@ CÚŒŞB®l
 	$In¡ªû
 ()
 
-205 
+223 
 CÚŒŞB®l
  
 š¡ªû
 ;
 
-206  &
+224  &
 š¡ªû
 ;
 
-207 
+225 
 	}
 }
 
-210 
+228 
 	gCÚŒŞB®l
 ::
 	$EÁ”
@@ -5911,7 +6161,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-213 
+231 
 ¶ay”
 ->
 	`G‘T—m
@@ -5919,7 +6169,7 @@ F›ldPÏy”
 	`S‘CÚŒŞlšgPÏy”
 (player);
 
-214 
+232 
 ¶ay”
 ->
 	`B®l
@@ -5927,7 +6177,7 @@ F›ldPÏy”
 	`S‘CÚŒŞlšgPÏy”
 (player);
 
-215 
+233 
 ¶ay”
 ->
 	`S‹”šg
@@ -5935,7 +6185,7 @@ F›ldPÏy”
 	`S“kOn
 ();
 
-216 
+234 
 VeùÜ2D
  
 rg‘
@@ -5953,9 +6203,9 @@ VeùÜ2D
 x
  + 
 	`RªdInRªge
-(-1.0,1.0)),
+(-2.0,2.0)),
 
-217 
+235 
 ¶ay”
 ->
 	`G‘T—m
@@ -5967,9 +6217,9 @@ x
 y
  + 
 	`RªdInRªge
-(-1.0, 1.0));
+(-2.0, 2.0));
 
-218 
+236 
 ¶ay”
 ->
 	`S‹”šg
@@ -5979,11 +6229,11 @@ y
 rg‘
 );
 
-220 #ifdeà
+238 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-221 
+239 
 cout
 << "PÏy” " << 
 ¶ay”
@@ -5993,11 +6243,11 @@ cout
 ’dl
 ;
 
-224 
+242 
 	}
 }
 
-227 
+245 
 	gCÚŒŞB®l
 ::
 	$Execu‹
@@ -6007,17 +6257,17 @@ F›ldPÏy”
 ¶ay”
 )
 
-230 
+248 
 r
  = 
 	`RªdInRªge
 (0.0,1.0);
 
-231 if(
+249 if(
 r
- < 0.2&&
+ < 0.1 &&
 
-232 
+250 
 ¶ay”
 ->
 	`G‘T—m
@@ -6025,9 +6275,9 @@ r
 	`OµÚ’ts
 ()->
 	`G‘Clo£¡Di¡ToB®l
-() < 2){
+() < 1.0){
 
-233 
+251 
 ¶ay”
 ->
 	`B®l
@@ -6041,7 +6291,7 @@ r
 	`Facšg
 (),
 
-235 
+253 
 ¶ay”
 ->
 	`G‘FSM
@@ -6053,13 +6303,13 @@ Dummpy
 	`In¡ªû
 ());
 
-238 
+256 
 pow”
  = 
 	`RªdInRªge
 (2.0f,3.0f);
 
-239 iàĞ
+257 iàĞ
 ¶ay”
 ->
 	`G‘T—m
@@ -6069,7 +6319,7 @@ pow”
 	`G‘Clo£¡Di¡ToB®l
 ()>2.5 &&
 
-240 
+258 
 ¶ay”
 ->
 	`G‘T—m
@@ -6081,15 +6331,15 @@ pow”
 	`Pos
 ()) &&
 
-241 
+259 
 	`RªdInRªge
 (0.0, 1.0) < 0.2 ) {
 
-242 #ifdeà
+260 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-243 
+261 
 cout
 <<"PÏy” "<<
 ¶ay”
@@ -6099,7 +6349,7 @@ cout
 ’dl
 ;
 
-245 
+263 
 VeùÜ2D
  
 rg‘
@@ -6113,7 +6363,7 @@ VeùÜ2D
 	`C’‹r
 ();
 
-246 
+264 
 rg‘
  = 
 	`AddNoi£ToShÙ
@@ -6125,7 +6375,7 @@ VeùÜ2D
 	`Pos
 (),arget);
 
-248 
+266 
 VeùÜ2D
  
 ShÙDœeùiÚ
@@ -6139,7 +6389,7 @@ ShÙDœeùiÚ
 	`Pos
 ();
 
-249 
+267 
 ¶ay”
 ->
 	`B®l
@@ -6155,7 +6405,7 @@ pow”
 	`OµÚ’tsGßl
 ());
 
-251 
+269 
 ¶ay”
 ->
 	`G‘FSM
@@ -6167,11 +6417,11 @@ Dummpy
 	`In¡ªû
 ());
 
-255 
+273 
 	}
 }
 
-258 
+276 
 	gCÚŒŞB®l
 ::
 	$Ex™
@@ -6181,7 +6431,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-260 
+278 
 ¶ay”
 ->
 	`B®l
@@ -6189,11 +6439,11 @@ F›ldPÏy”
 	`S‘UnCÚŒŞ
 ();
 
-261 
+279 
 	}
 }
 
-263 
+281 
 Dummpy
 * 
 	gDummpy
@@ -6201,21 +6451,21 @@ Dummpy
 	$In¡ªû
 ()
 
-265 
+283 
 Dummpy
  
 š¡ªû
 ;
 
-266  &
+284  &
 š¡ªû
 ;
 
-267 
+285 
 	}
 }
 
-270 
+288 
 	gDummpy
 ::
 	$EÁ”
@@ -6225,11 +6475,11 @@ F›ldPÏy”
 ¶ay”
 )
 
-272 #ifdeà
+290 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-273 
+291 
 cout
 <<"PÏy” "<< 
 ¶ay”
@@ -6239,7 +6489,7 @@ cout
 ’dl
 ;
 
-276 
+294 
 ¶ay”
 ->
 	`S‘V–oc™y
@@ -6247,7 +6497,7 @@ cout
 	`VeùÜ2D
 (0,0));
 
-277 
+295 
 ¶ay”
 ->
 	`S‹”šg
@@ -6255,7 +6505,7 @@ cout
 	`S‹”šgCË¬
 ();
 
-278 
+296 
 ¶ay”
 ->
 	`£tWa™TimeReguÏtÜ
@@ -6263,11 +6513,11 @@ cout
 	`RªdInRªge
 (0.5f,1.0f));
 
-279 
+297 
 	}
 }
 
-281 
+299 
 	gDummpy
 ::
 	$Execu‹
@@ -6277,13 +6527,13 @@ F›ldPÏy”
 ¶ay”
 )
 
-283 if(
+301 if(
 ¶ay”
 ->
 	`isReguÏtÜR—dy
 ()){
 
-284 
+302 
 ¶ay”
 ->
 	`G‘FSM
@@ -6295,11 +6545,11 @@ Wa™
 	`In¡ªû
 ());
 
-289 
+307 
 	}
 }
 
-291 
+309 
 	gDummpy
 ::
 	$Ex™
@@ -6309,31 +6559,31 @@ F›ldPÏy”
 ¶ay”
 )
 
-294 
+312 
 	}
 }
 
-297 
+315 
 ReûiveB®l
 * ReûiveB®l::
 	$In¡ªû
 ()
 
-299 
+317 
 ReûiveB®l
  
 š¡ªû
 ;
 
-300  &
+318  &
 š¡ªû
 ;
 
-301 
+319 
 	}
 }
 
-303 
+321 
 	gReûiveB®l
 ::
 	$EÁ”
@@ -6343,7 +6593,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-306 
+324 
 	`´štf
 ("PÏy” %dƒÁ” ReûiveB®l\n",
 ¶ay”
@@ -6351,7 +6601,15 @@ F›ldPÏy”
 	`ID
 ());
 
-307 
+325 
+¶ay”
+->
+	`G‘T—m
+()->
+	`S‘Reûiv”
+(player);
+
+326 
 ¶ay”
 ->
 	`S‹”šg
@@ -6359,11 +6617,19 @@ F›ldPÏy”
 	`Pursu™On
 ();
 
-308 
+327 
+¶ay”
+->
+	`£tWa™TimeReguÏtÜ
+(
+	`RªdInRªge
+(1.0,2.0));
+
+328 
 	}
 }
 
-310 
+330 
 	gReûiveB®l
 ::
 	$Execu‹
@@ -6373,25 +6639,25 @@ F›ldPÏy”
 ¶ay”
 )
 
-312 ià(
+332 ià(
 ¶ay”
 ->
 	`B®lW™hšReûivšgRªge
 ())
 
-314 
+334 
 ¶ay”
 ->
 	`G‘FSM
 ()->
 	`ChªgeS‹
 (
-Cha£b®l
+CÚŒŞB®l
 ::
 	`In¡ªû
 ());
 
-318 ià(
+338 ià(
 ¶ay”
 ->
 	`S‹”šg
@@ -6399,7 +6665,7 @@ Cha£b®l
 	`Pursu™IsOn
 ())
 
-320 
+340 
 ¶ay”
 ->
 	`S‹”šg
@@ -6411,13 +6677,13 @@ Cha£b®l
 	`Pos
 ());
 
-325 ià(
+345 ià(
 ¶ay”
 ->
 	`AtT¬g‘
 ())
 
-327 
+347 
 ¶ay”
 ->
 	`S‹”šg
@@ -6425,7 +6691,7 @@ Cha£b®l
 	`A¼iveOff
 ();
 
-328 
+348 
 ¶ay”
 ->
 	`S‹”šg
@@ -6433,13 +6699,13 @@ Cha£b®l
 	`Pursu™Off
 ();
 
-329 
+349 
 ¶ay”
 ->
 	`T¿ckB®l
 ();
 
-330 
+350 
 ¶ay”
 ->
 	`S‘V–oc™y
@@ -6447,11 +6713,29 @@ Cha£b®l
 	`VeùÜ2D
 (0,0));
 
-332 
+353 if(
+¶ay”
+->
+	`isReguÏtÜR—dy
+())
+
+355 
+¶ay”
+->
+	`G‘FSM
+()->
+	`ChªgeS‹
+(
+Wa™
+::
+	`In¡ªû
+());
+
+357 
 	}
 }
 
-334 
+359 
 	gReûiveB®l
 ::
 	$Ex™
@@ -6461,7 +6745,7 @@ F›ldPÏy”
 ¶ay”
 )
 
-336 
+361 
 ¶ay”
 ->
 	`S‹”šg
@@ -6469,11 +6753,21 @@ F›ldPÏy”
 	`Pursu™Off
 ();
 
-337 
+362 
+¶ay”
+->
+	`G‘T—m
+()->
+	`S‘Reûiv”
+(
+NULL
+);
+
+363 
 	}
 }
 
-339 
+365 
 Wa™
 * 
 	gWa™
@@ -6481,21 +6775,21 @@ Wa™
 	$In¡ªû
 ()
 
-341 
+367 
 Wa™
  
 š¡ªû
 ;
 
-342  &
+368  &
 š¡ªû
 ;
 
-343 
+369 
 	}
 }
 
-345 
+371 
 	gWa™
 ::
 	$EÁ”
@@ -6505,11 +6799,11 @@ F›ldPÏy”
 ¶ay”
 )
 
-347 #ifdeà
+373 #ifdeà
 PLAYER_STATE_INFO_ON
 
 
-348 
+374 
 cout
  << "PÏy” " << 
 ¶ay”
@@ -6519,7 +6813,7 @@ cout
 ’dl
 ;
 
-354 ià(
+380 ià(
 ¶ay”
 ->
 	`G‘Game
@@ -6527,7 +6821,7 @@ cout
 	`GameOn
 ())
 
-356 
+382 
 ¶ay”
 ->
 	`S‹”šg
@@ -6539,11 +6833,11 @@ cout
 	`C’‹r
 ());
 
-358 
+384 
 	}
 }
 
-360 
+386 
 	gWa™
 ::
 	$Execu‹
@@ -6553,13 +6847,13 @@ F›ldPÏy”
 ¶ay”
 )
 
-363 ià(!
+389 ià(!
 ¶ay”
 ->
 	`AtT¬g‘
 ())
 
-365 
+391 
 ¶ay”
 ->
 	`S‹”šg
@@ -6567,7 +6861,7 @@ F›ldPÏy”
 	`A¼iveOn
 ();
 
-370 
+396 
 ¶ay”
 ->
 	`S‹”šg
@@ -6575,13 +6869,21 @@ F›ldPÏy”
 	`A¼iveOff
 ();
 
-373 
+399 
 ¶ay”
 ->
 	`T¿ckB®l
 ();
 
-378 iàĞ
+404 
+r
+ = 
+	`RªdInRªge
+(0.0,1.0);
+
+405 iàĞ
+r
+ < 0.1 && 
 ¶ay”
 ->
 	`G‘T—m
@@ -6589,19 +6891,29 @@ F›ldPÏy”
 	`InCÚŒŞ
 () &&
 
-379 (!
+406 (!
 ¶ay”
 ->
 	`isCÚŒŞlšgPÏy”
 ()) &&
 
-380 
+407 
 ¶ay”
 ->
 	`isAh—dOfA‰ack”
-() )
+() &&
 
-382 
+408 
+¶ay”
+->
+	`G‘T—m
+()->
+	`Reûiv”
+()==
+NULL
+)
+
+410 
 ¶ay”
 ->
 	`G‘T—m
@@ -6609,7 +6921,7 @@ F›ldPÏy”
 	`Reque¡Pass
 (player);
 
-383 
+411 
 	`´štf
 ("PÏy” %d„eque¡ Pass\n", 
 ¶ay”
@@ -6617,7 +6929,7 @@ F›ldPÏy”
 	`ID
 ());
 
-387 ià(
+415 ià(
 ¶ay”
 ->
 	`G‘Game
@@ -6625,13 +6937,13 @@ F›ldPÏy”
 	`GameOn
 ())
 
-389 ià(
+417 ià(
 ¶ay”
 ->
 	`isClo£¡T—mMemb”ToB®l
 () &&
 
-390 
+418 
 ¶ay”
 ->
 	`G‘T—m
@@ -6641,7 +6953,7 @@ F›ldPÏy”
 NULL
 )
 
-392 
+420 
 ¶ay”
 ->
 	`G‘FSM
@@ -6653,11 +6965,11 @@ Cha£B®l
 	`In¡ªû
 ());
 
-396 
+424 
 	}
 }
 
-398 
+426 
 	gWa™
 ::
 	$Ex™
@@ -6688,14 +7000,18 @@ FIELDPLAYERSTATES_H
 "
 
 13 
-	~"T–eg¿m.h
+	~"S‹Machše.h
 "
 
 14 
+	~"T–eg¿m.h
+"
+
+15 
 	~<¡ršg.h
 >
 
-16 
+17 
 usšg
  
 Çme¥aû
@@ -6703,19 +7019,33 @@ usšg
 	g¡d
 ;
 
-18 
+19 
 şass
  
 	gF›ldPÏy”
 ;
 
-19 
+20 
 şass
  
 	gBaskeB®l
 ;
 
-21 
+22 
+	g¡d
+::
+¡ršg
+ 
+S‹ToSŒ
+(
+S‹Machše
+<
+F›ldPÏy”
+>* 
+machše
+);
+
+24 
 şass
  
 	gGlob®PÏy”S‹
@@ -6727,25 +7057,25 @@ S‹
 F›ldPÏy”
 >
 
-23 
+26 
 ´iv©e
 :
 
-24 
+27 
 Glob®PÏy”S‹
 () {}
 
-26 
+29 
 public
 :
 
-27 
+30 
 Glob®PÏy”S‹
 * 
 In¡ªû
 ();
 
-28 
+31 
 EÁ”
 (
 F›ldPÏy”
@@ -6753,7 +7083,7 @@ F›ldPÏy”
 ¶ay”
 ) {}
 
-29 
+32 
 Execu‹
 (
 F›ldPÏy”
@@ -6761,7 +7091,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-30 
+33 
 Ex™
 (
 F›ldPÏy”
@@ -6769,7 +7099,7 @@ F›ldPÏy”
 ¶ay”
 ) {}
 
-31 
+34 
 boŞ
  
 OnMes§ge
@@ -6783,7 +7113,7 @@ T–eg¿m
 msg
 );
 
-34 
+37 
 şass
  
 	gCha£B®l
@@ -6795,25 +7125,25 @@ S‹
 F›ldPÏy”
 >
 
-36 
+39 
 ´iv©e
 :
 
-37 
+40 
 Cha£B®l
 (){}
 
-39 
+42 
 public
 :
 
-40 
+43 
 Cha£B®l
 * 
 In¡ªû
 ();
 
-41 
+44 
 EÁ”
 (
 F›ldPÏy”
@@ -6821,7 +7151,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-42 
+45 
 Execu‹
 (
 F›ldPÏy”
@@ -6829,7 +7159,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-43 
+46 
 Ex™
 (
 F›ldPÏy”
@@ -6837,7 +7167,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-44 
+47 
 boŞ
  
 OnMes§ge
@@ -6849,7 +7179,7 @@ T–eg¿m
 	gçl£
 ;}
 
-47 
+50 
 şass
  
 	gR‘uºToHomeRegiÚ
@@ -6861,25 +7191,25 @@ S‹
 F›ldPÏy”
 >
 
-49 
+52 
 ´iv©e
 :
 
-50 
+53 
 R‘uºToHomeRegiÚ
 (){}
 
-52 
+55 
 public
 :
 
-55 
+58 
 R‘uºToHomeRegiÚ
 * 
 In¡ªû
 ();
 
-56 
+59 
 EÁ”
 (
 F›ldPÏy”
@@ -6887,7 +7217,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-57 
+60 
 Execu‹
 (
 F›ldPÏy”
@@ -6895,7 +7225,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-58 
+61 
 Ex™
 (
 F›ldPÏy”
@@ -6903,7 +7233,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-59 
+62 
 boŞ
  
 OnMes§ge
@@ -6915,7 +7245,7 @@ T–eg¿m
 	gçl£
 ;}
 
-62 
+65 
 şass
  
 	gCÚŒŞB®l
@@ -6927,25 +7257,25 @@ S‹
 F›ldPÏy”
 >
 
-64 
+67 
 ´iv©e
 :
 
-65 
+68 
 CÚŒŞB®l
 (){}
 
-67 
+70 
 public
 :
 
-70 
+73 
 CÚŒŞB®l
 * 
 In¡ªû
 ();
 
-71 
+74 
 EÁ”
 (
 F›ldPÏy”
@@ -6953,7 +7283,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-72 
+75 
 Execu‹
 (
 F›ldPÏy”
@@ -6961,7 +7291,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-73 
+76 
 Ex™
 (
 F›ldPÏy”
@@ -6969,7 +7299,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-74 
+77 
 boŞ
  
 OnMes§ge
@@ -6981,7 +7311,7 @@ T–eg¿m
 	gçl£
 ;}
 
-77 
+80 
 şass
  
 	gWa™
@@ -6993,25 +7323,25 @@ S‹
 F›ldPÏy”
 >
 
-79 
+82 
 ´iv©e
 :
 
-80 
+83 
 Wa™
 (){}
 
-82 
+85 
 public
 :
 
-85 
+88 
 Wa™
 * 
 In¡ªû
 ();
 
-86 
+89 
 EÁ”
 (
 F›ldPÏy”
@@ -7019,7 +7349,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-87 
+90 
 Execu‹
 (
 F›ldPÏy”
@@ -7027,7 +7357,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-88 
+91 
 Ex™
 (
 F›ldPÏy”
@@ -7035,7 +7365,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-89 
+92 
 boŞ
  
 OnMes§ge
@@ -7047,7 +7377,7 @@ T–eg¿m
 	gçl£
 ;}
 
-92 
+95 
 şass
  
 	gDummpy
@@ -7059,25 +7389,25 @@ S‹
 F›ldPÏy”
 >
 
-94 
+97 
 ´iv©e
 :
 
-95 
+98 
 Dummpy
 () {}
 
-97 
+100 
 public
 :
 
-98 
+101 
 Dummpy
 * 
 In¡ªû
 ();
 
-99 
+102 
 EÁ”
 (
 F›ldPÏy”
@@ -7085,7 +7415,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-100 
+103 
 Execu‹
 (
 F›ldPÏy”
@@ -7093,7 +7423,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-101 
+104 
 Ex™
 (
 F›ldPÏy”
@@ -7101,7 +7431,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-102 
+105 
 boŞ
  
 OnMes§ge
@@ -7113,7 +7443,7 @@ T–eg¿m
 	gçl£
 ;}
 
-107 
+110 
 şass
  
 	gReûiveB®l
@@ -7125,25 +7455,25 @@ S‹
 F›ldPÏy”
 >
 
-109 
+112 
 ´iv©e
 :
 
-110 
+113 
 ReûiveB®l
 (){}
 
-112 
+115 
 public
 :
 
-115 
+118 
 ReûiveB®l
 * 
 In¡ªû
 ();
 
-116 
+119 
 EÁ”
 (
 F›ldPÏy”
@@ -7151,7 +7481,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-117 
+120 
 Execu‹
 (
 F›ldPÏy”
@@ -7159,7 +7489,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-118 
+121 
 Ex™
 (
 F›ldPÏy”
@@ -7167,7 +7497,7 @@ F›ldPÏy”
 ¶ay”
 );
 
-119 
+122 
 boŞ
  
 OnMes§ge
@@ -7342,34 +7672,38 @@ m_iF¿mesEÏp£d
 "
 
 6 
-	~"F¿meCouÁ”.h
+	~"T—mS‹.h
 "
 
 7 
-	~"P»cisiÚTim”.h
+	~"F¿meCouÁ”.h
 "
 
 8 
-	~"ReguÏtÜ.h
+	~"P»cisiÚTim”.h
 "
 
 9 
-	~"RegiÚ.h
+	~"ReguÏtÜ.h
 "
 
 10 
-	~"W®l2D.h
+	~"RegiÚ.h
 "
 
 11 
+	~"W®l2D.h
+"
+
+12 
 	~<time.h
 >
 
-12 
+13 
 	~<io¡»am
 >
 
-13 
+14 
 usšg
  
 Çme¥aû
@@ -7377,15 +7711,15 @@ usšg
 	g¡d
 ;
 
-15 cÚ¡ 
+16 cÚ¡ 
 	gNumRegiÚsHÜizÚl
  = 6;
 
-16 cÚ¡ 
+17 cÚ¡ 
 	gNumRegiÚsV”tiÿl
  = 4;
 
-18 
+19 
 Game
 * 
 	gGame
@@ -7393,21 +7727,21 @@ Game
 	$In¡ªû
 ()
 
-20 
+21 
 Game
  
 game
 ;
 
-21  &
+22  &
 game
 ;
 
-22 
+23 
 	}
 }
 
-24 
+25 
 	gGame
 ::
 	$Game
@@ -7417,9 +7751,13 @@ game
 çl£
 ),
 	`m_bR’d”RegiÚs
-(false),
+(çl£),
+	`m_bS‹
+(
+Œue
+),
 
-25 
+26 
 	$m_RegiÚs
 (
 NumRegiÚsHÜizÚl
@@ -7427,7 +7765,7 @@ NumRegiÚsHÜizÚl
 NumRegiÚsV”tiÿl
 )
 
-27 
+28 
 m_pPÏyšgA»a
  = 
 Ãw
@@ -7435,7 +7773,7 @@ m_pPÏyšgA»a
 	`RegiÚ
 (14, 7.5, -14, - 7.5);
 
-29 
+30 
 m_pB®l
  = 
 Ãw
@@ -7447,7 +7785,7 @@ m_pB®l
 m_vecW®ls
 );
 
-31 
+32 
 	`C»©eRegiÚs
 (
 	`PÏyšgA»a
@@ -7457,7 +7795,7 @@ m_vecW®ls
 NumRegiÚsHÜizÚl
 ,
 
-32 
+33 
 	`PÏyšgA»a
 ()->
 	`Height
@@ -7465,7 +7803,7 @@ NumRegiÚsHÜizÚl
 NumRegiÚsV”tiÿl
 );
 
-34 
+35 
 m_pBlueGßl
  = 
 Ãw
@@ -7475,7 +7813,7 @@ m_pBlueGßl
 	`VeùÜ2D
 (-12.43,0), Vector2D(1,0), 0.225);
 
-35 
+36 
 m_pRedGßl
  = 
 Ãw
@@ -7485,7 +7823,7 @@ m_pRedGßl
 	`VeùÜ2D
 (12.43,0), Vector2D(-1,0), 0.225);
 
-37 
+38 
 m_pRedT—m
  = 
 Ãw
@@ -7503,7 +7841,7 @@ B®lT—m
 »d
 );
 
-38 
+39 
 m_pBlueT—m
  = 
 Ãw
@@ -7521,15 +7859,15 @@ B®lT—m
 blue
 );
 
-40 
-m_pRedT—m
-->
-	`S‘OµÚ’ts
-(
-m_pBlueT—m
-);
-
 41 
+m_pRedT—m
+->
+	`S‘OµÚ’ts
+(
+m_pBlueT—m
+);
+
+42 
 m_pBlueT—m
 ->
 	`S‘OµÚ’ts
@@ -7537,7 +7875,7 @@ m_pBlueT—m
 m_pRedT—m
 );
 
-43 
+44 
 m_pReguÏtÜ
  = 
 Ãw
@@ -7545,7 +7883,7 @@ m_pReguÏtÜ
 	`ReguÏtÜ
 (10.0);
 
-44 
+45 
 VeùÜ2D
  
 	`TİLeá
@@ -7557,7 +7895,7 @@ m_pPÏyšgA»a
 	`Tİ
 ());
 
-45 
+46 
 VeùÜ2D
  
 	`TİRight
@@ -7569,7 +7907,7 @@ m_pPÏyšgA»a
 	`Tİ
 ());
 
-46 
+47 
 VeùÜ2D
  
 	`BÙtomRight
@@ -7581,7 +7919,7 @@ m_pPÏyšgA»a
 	`BÙtom
 ());
 
-47 
+48 
 VeùÜ2D
  
 	`BÙtomLeá
@@ -7593,7 +7931,7 @@ m_pPÏyšgA»a
 	`BÙtom
 ());
 
-49 
+50 
 m_vecW®ls
 .
 	`push_back
@@ -7603,18 +7941,6 @@ m_vecW®ls
 BÙtomLeá
 , 
 TİLeá
-));
-
-50 
-m_vecW®ls
-.
-	`push_back
-(
-	`W®l2D
-(
-TİLeá
-, 
-TİRight
 ));
 
 51 
@@ -7624,12 +7950,24 @@ m_vecW®ls
 (
 	`W®l2D
 (
+TİLeá
+, 
+TİRight
+));
+
+52 
+m_vecW®ls
+.
+	`push_back
+(
+	`W®l2D
+(
 TİRight
 , 
 BÙtomRight
 ));
 
-52 
+53 
 m_vecW®ls
 .
 	`push_back
@@ -7641,7 +7979,7 @@ BÙtomRight
 BÙtomLeá
 ));
 
-54 
+55 
 	`¤ªd
 (
 	`time
@@ -7649,69 +7987,69 @@ BÙtomLeá
 NULL
 ));
 
-55 
+56 
 TIMER
 ->
 	`Re£t
 (60);
 
-56 
+57 
 	}
 }
 
-58 
+59 
 	gGame
 ::~
 	$Game
 ()
 
-60 
+61 
 	`´štf
 ("Game destructor\n");
 
-61 
+62 
 d–‘e
  
 m_pB®l
 ;
 
-62 
+63 
 d–‘e
  
 m_pPÏyšgA»a
 ;
 
-63 
+64 
 d–‘e
  
 m_pBlueGßl
 ;
 
-64 
+65 
 d–‘e
  
 m_pRedGßl
 ;
 
-65 
+66 
 d–‘e
  
 m_pBlueT—m
 ;
 
-66 
+67 
 d–‘e
  
 m_pRedT—m
 ;
 
-67 
+68 
 d–‘e
  
 m_pReguÏtÜ
 ;
 
-68 
+69 
 i
 =0; i<
 m_RegiÚs
@@ -7719,7 +8057,7 @@ m_RegiÚs
 	`size
 (); ++i)
 
-70 
+71 
 d–‘e
  
 m_RegiÚs
@@ -7727,61 +8065,95 @@ m_RegiÚs
 i
 ];
 
-72 
+73 
 	}
 }
 
-74 
+75 
 	gGame
 ::
 	$Upd©e
 ()
 
-76 if(
+77 if(
 m_bPau£
 )
 
-79 
+80 
 TIMER
 ->
 	`Upd©e
 ();
 
-80 if(!
+81 if(!
 TIMER
 ->
 	`R—dyFÜNextF¿me
 ())
 
-83 
+84 
 m_pB®l
 ->
 	`Upd©e
 ();
 
-94 
+96 ifĞ
+this
+->
+	`isScÜed
+() ){
+
+97 
+	`´štf
+("yes scored\n");
+
+98 
+m_pBlueT—m
+->
+	`G‘FSM
+()->
+	`ChªgeS‹
+(
+P»·»FÜKickOff
+::
+	`In¡ªû
+());
+
+99 
+m_pRedT—m
+->
+	`G‘FSM
+()->
+	`ChªgeS‹
+(
+P»·»FÜKickOff
+::
+	`In¡ªû
+());
+
+102 
 m_pBlueT—m
 ->
 	`Upd©e
 ();
 
-95 
+103 
 m_pRedT—m
 ->
 	`Upd©e
 ();
 
-96 
+104 
 TickCouÁ”
 ->
 	`Upd©e
 ();
 
-105 
+114 
 	}
 }
 
-107 
+116 
 	gGame
 ::
 	$C»©eRegiÚs
@@ -7791,7 +8163,7 @@ width
 height
 )
 
-110 
+119 
 idx
  = 
 m_RegiÚs
@@ -7799,19 +8171,19 @@ m_RegiÚs
 	`size
 ()-1;
 
-111 
+120 
 cŞ
 =0; cŞ<
 NumRegiÚsHÜizÚl
 ; ++col)
 
-113 
+122 
 row
 =0;„ow<
 NumRegiÚsV”tiÿl
 ; ++row)
 
-115 
+124 
 m_RegiÚs
 [
 idx
@@ -7829,7 +8201,7 @@ cŞ
 width
 ,
 
-116 
+125 
 	`PÏyšgA»a
 ()->
 	`Tİ
@@ -7839,7 +8211,7 @@ row
 height
 ,
 
-117 
+126 
 	`PÏyšgA»a
 ()->
 	`Leá
@@ -7849,7 +8221,7 @@ cŞ
 width
 ,
 
-118 
+127 
 	`PÏyšgA»a
 ()->
 	`Tİ
@@ -7859,27 +8231,27 @@ row
 height
 ,
 
-119 
+128 
 idx
 +1);
 
-122 
+131 
 	}
 }
 
-124 
+133 
 	gGame
 ::
 	$R’d”
 ()
 
-126 
+135 
 gdi
 ->
 	`S¹D¿wšg
 ();
 
-127 
+136 
 gdi
 ->
 	`S‘P’
@@ -7887,17 +8259,17 @@ gdi
 y–low
 );
 
-128 
+137 
 m_pPÏyšgA»a
 ->
 	`R’d”
 ();
 
-129 if(
+138 if(
 m_bR’d”RegiÚs
 )
 
-131 
+140 
 i
 =0;i<
 m_RegiÚs
@@ -7905,7 +8277,7 @@ m_RegiÚs
 	`size
 ();i++)
 
-132 
+141 
 m_RegiÚs
 [
 i
@@ -7913,7 +8285,7 @@ i
 	`R’d”
 ();
 
-136 
+145 
 gdi
 ->
 	`Lše
@@ -7925,13 +8297,13 @@ m_pPÏyšgA»a
 	`Right
 ()) / 2,
 
-137 
+146 
 m_pPÏyšgA»a
 ->
 	`Tİ
 (),
 
-138 (
+147 (
 m_pPÏyšgA»a
 ->
 	`Leá
@@ -7939,43 +8311,43 @@ m_pPÏyšgA»a
 	`Right
 ()) / 2,
 
-139 
+148 
 m_pPÏyšgA»a
 ->
 	`BÙtom
 ());
 
-141 
+150 
 gdi
 ->
 	`Cœşe
 (0.0, 0.0, 1.8);
 
-144 
+153 
 gdi
 ->
 	`Lše
 (14, 6.25, 12.43, 6.25);
 
-145 
+154 
 gdi
 ->
 	`Lše
 (14, -6.25, 12.43, -6.25);
 
-146 
+155 
 gdi
 ->
 	`Lše
 (-14, 6.25, -12.43, 6.25);
 
-147 
+156 
 gdi
 ->
 	`Lše
 (-14, - 6.25, - 12.43, - 6.25);
 
-150 
+159 
 x
 , 
 y
@@ -7985,37 +8357,37 @@ y
 ¿dius
 ;
 
-151 
+160 
 x
  = -12.43;
 
-152 
+161 
 y
  = 0;
 
-153 
+162 
 ªgË
  = (
 PI
 /2);
 
-154 
+163 
 ¿dius
  = 6.25;
 
-155 
+164 
 	`glBegš
 (
 GL_POINTS
 );
 
-156 
+165 
 ªgË
  > (-
 PI
  / 2))
 
-158 
+167 
 	`glV”‹x2f
 (
 x
@@ -8027,7 +8399,7 @@ x
 ªgË
 ),
 
-159 
+168 
 y
  + 
 ¿dius
@@ -8037,41 +8409,41 @@ y
 ªgË
 ));
 
-160 
+169 
 ªgË
 -=0.01;
 
-162 
+171 
 	`glEnd
 ();
 
-163 
+172 
 x
  = 12.43;
 
-164 
+173 
 y
  = 0;
 
-165 
+174 
 ªgË
  = (
 PI
  / 2);
 
-166 
+175 
 	`glBegš
 (
 GL_POINTS
 );
 
-167 
+176 
 ªgË
  > (-
 PI
  / 2))
 
-169 
+178 
 	`glV”‹x2f
 (
 x
@@ -8083,7 +8455,7 @@ x
 ªgË
 ),
 
-170 
+179 
 y
  + 
 ¿dius
@@ -8093,87 +8465,87 @@ y
 ªgË
 ));
 
-171 
+180 
 ªgË
  -= 0.01;
 
-173 
+182 
 	`glEnd
 ();
 
-178 
+187 
 gdi
 ->
 	`Cœşe
 (-8.2, 0, 1.8);
 
-179 
+188 
 gdi
 ->
 	`Cœşe
 (8.2, 0, 1.8);
 
-180 
+189 
 gdi
 ->
 	`Lše
 (-8.2, 1.8, - 8.2, - 1.8);
 
-181 
+190 
 gdi
 ->
 	`Lše
 (8.2, 1.8, 8.2, - 1.8);
 
-182 
+191 
 gdi
 ->
 	`Lše
 (-8.2, 1.8, - 14, 3.0);
 
-183 
+192 
 gdi
 ->
 	`Lše
 (-8.2, - 1.8, - 14, - 3.0);
 
-184 
+193 
 gdi
 ->
 	`Lše
 (8.2, 1.8, 14, 3.0);
 
-185 
+194 
 gdi
 ->
 	`Lše
 (8.2, - 1.8, 14, - 3.0);
 
-187 
+196 
 gdi
 ->
 	`Lše
 (-12.655,0,-14,0);
 
-188 
+197 
 gdi
 ->
 	`Lše
 (12.655,0,14,0);
 
-189 
+198 
 gdi
 ->
 	`Lše
 (-12.655,0.9,-12.655,-0.9);
 
-190 
+199 
 gdi
 ->
 	`Lše
 (12.655,0.9,12.655,-0.9);
 
-194 
+203 
 gdi
 ->
 	`glPršt
@@ -8187,7 +8559,7 @@ m_pBlueGßl
 	`NumGßlsScÜed
 ());
 
-195 
+204 
 gdi
 ->
 	`glPršt
@@ -8201,43 +8573,97 @@ m_pRedGßl
 	`NumGßlsScÜed
 ());
 
-198 
+207 
 m_pB®l
 ->
 	`R’d”
 ();
 
-200 
+209 
 m_pRedGßl
 ->
 	`R’d”
 ();
 
-201 
+210 
 m_pBlueGßl
 ->
 	`R’d”
 ();
 
-203 
+212 
 m_pBlueT—m
 ->
 	`R’d”
 ();
 
-204 
+213 
 m_pRedT—m
 ->
 	`R’d”
 ();
 
-205 
+214 
 gdi
 ->
 	`StİD¿wšg
 ();
 
-207 
+216 
+	}
+}
+
+218 
+	gGame
+::
+	$isScÜed
+()
+
+220 if(
+m_pBlueGßl
+->
+	`isScÜed
+())
+
+222 
+m_pBlueGßl
+->
+	`UnScÜed
+();
+
+223 
+m_ScÜeT—m
+ = 
+B®lT—m
+::
+»d
+;
+
+226 if(
+m_pRedGßl
+->
+	`isScÜed
+())
+
+228 
+m_pRedGßl
+->
+	`UnScÜed
+();
+
+229 
+m_ScÜeT—m
+ = 
+B®lT—m
+::
+blue
+;
+
+232 
+m_ScÜeT—m
+ = -1;
+
+234 
 	}
 }
 
@@ -8336,16 +8762,22 @@ boŞ
 31 
 boŞ
  
-	mm_bR’d”RegiÚs
+	mm_bS‹
 ;
 
 32 
+boŞ
+ 
+	mm_bR’d”RegiÚs
+;
+
+33 
 RegiÚ
 * 
 	mm_pPÏyšgA»a
 ;
 
-33 
+34 
 	m¡d
 ::
 veùÜ
@@ -8355,37 +8787,37 @@ RegiÚ
 m_RegiÚs
 ;
 
-35 
+36 
 B®lT—m
 * 
 	mm_pRedT—m
 ;
 
-36 
+37 
 B®lT—m
 * 
 	mm_pBlueT—m
 ;
 
-37 
+38 
 Gßl
 * 
 	mm_pBlueGßl
 ;
 
-38 
+39 
 Gßl
 * 
 	mm_pRedGßl
 ;
 
-39 
+40 
 ReguÏtÜ
 * 
 	mm_pReguÏtÜ
 ;
 
-40 
+41 
 	m¡d
 ::
 veùÜ
@@ -8395,35 +8827,39 @@ W®l2D
 m_vecW®ls
 ;
 
-41 
+42 
 C»©eRegiÚs
 (,);
 
-43 
+44 
+	mm_ScÜeT—m
+;
+
+46 
 	mpublic
 :
 
-44 
+47 
 R’d”
 ();
 
-45 
+48 
 Upd©e
 ();
 
-46 
+49 
 Game
 * 
 In¡ªû
 ();
 
-48 
+51 
 	$ChªgePau£FÏg
 (è{ 
 m_bPau£
 =!m_bPause;}
 
-49 
+52 
 	$ChªgeR’d”RegiÚFÏg
 (è{ 
 m_bR’d”RegiÚs
@@ -8431,7 +8867,7 @@ m_bR’d”RegiÚs
 	}
 }
 
-50 cÚ¡ 
+53 cÚ¡ 
 RegiÚ
 *cÚ¡ 
 	$PÏyšgA»a
@@ -8441,7 +8877,7 @@ m_pPÏyšgA»a
 	}
 }
 
-51 
+54 
 Bask‘B®l
 * 
 	$G‘B®l
@@ -8451,23 +8887,49 @@ m_pB®l
 	}
 }
 
-52 
+55 
 	$S‘GameOn
-(ècÚ¡ { 
-	}
-};
-
-53 
-boŞ
- 
-	$GameOn
-(è{  
+(è{ 
+m_bS‹
+ = 
 Œue
 ; 
 	}
 }
 
-54 cÚ¡ 
+56 
+	$S‘GameOff
+(è{ 
+m_bS‹
+ = 
+çl£
+; 
+	}
+}
+
+57 
+boŞ
+ 
+	$GameOn
+(è{  
+m_bS‹
+; 
+	}
+}
+
+58 
+isScÜed
+() ;
+
+59 
+	$G‘ScÜed
+(è{  
+m_ScÜeT—m
+;
+	}
+}
+
+60 cÚ¡ 
 RegiÚ
 * cÚ¡ 
 	$G‘RegiÚFromIndex
@@ -8475,7 +8937,7 @@ RegiÚ
 idx
 )
 
-56 
+62 
 	`as£¹
  ( (
 idx
@@ -8485,13 +8947,13 @@ m_RegiÚs
 	`size
 ()) );
 
-58  
+64  
 m_RegiÚs
 [
 idx
 ];
 
-59 
+65 
 	}
 }
 
@@ -8551,11 +9013,15 @@ VeùÜ2D
 	mm_iNumGßlsScÜed
 ;
 
-30 
+30 
+	mm_isScÜed
+;
+
+31 
 	mpublic
 :
 
-32 
+33 
 	$Gßl
 (
 VeùÜ2D
@@ -8567,33 +9033,37 @@ pos
 ¿dius
 ):
 
-33 
+34 
 	`m_vPos
 (
 pos
 ),
 
-34 
+35 
 	`m_vFacšg
 (
 çû
 ),
 
-35 
+36 
 	`m_¿dius
 (
 ¿dius
 ),
 
-36 
-	$m_iNumGßlsScÜed
+37 
+	`m_iNumGßlsScÜed
+(0),
+
+38 
+	$m_isScÜed
 (0)
 
-41 
+43 
 	$R’d”
 ()
 
-43 
+45 
 gdi
 ->
 	`Cœşe
@@ -8607,11 +9077,11 @@ y
 m_¿dius
 );
 
-44 
+46 
 	}
 }
 
-49 
+51 
 šlše
  
 boŞ
@@ -8623,7 +9093,7 @@ VeùÜ2D
 b®Íos
 );
 
-52 
+54 
 VeùÜ2D
  
 	$C’‹r
@@ -8633,7 +9103,7 @@ m_vPos
 	}
 }
 
-53 
+55 
 VeùÜ2D
  
 	$Facšg
@@ -8643,7 +9113,7 @@ m_vFacšg
 	}
 }
 
-54 
+56 
 	$NumGßlsScÜed
 ()cÚ¡{ 
 m_iNumGßlsScÜed
@@ -8651,7 +9121,7 @@ m_iNumGßlsScÜed
 	}
 }
 
-55 
+57 
 	$Re£tGßlsScÜed
 (){
 m_iNumGßlsScÜed
@@ -8659,7 +9129,23 @@ m_iNumGßlsScÜed
 	}
 }
 
-62 
+58 
+	$isScÜed
+(ècÚ¡ {  
+m_isScÜed
+;
+	}
+}
+
+59 
+	$UnScÜed
+(è{ 
+m_isScÜed
+ = 0;
+	}
+}
+
+64 
 boŞ
  
 	gGßl
@@ -8671,7 +9157,7 @@ VeùÜ2D
 b®l_pos
 )
 
-67 
+69 
 di¡
  = 
 b®l_pos
@@ -8681,25 +9167,29 @@ b®l_pos
 m_vPos
 );
 
-69 if(
+71 if(
 di¡
 <=
 m_¿dius
 )
 
-71 ++
+73 ++
 m_iNumGßlsScÜed
 ;
 
-72  
+74 
+m_isScÜed
+ = 2;
+
+75  
 Œue
 ;
 
-74  
+77  
 çl£
 ;
 
-75 
+78 
 	}
 }
 
@@ -9761,11 +10251,7 @@ pReûiv”
 ‹Ëg¿m
 );
 
-71 
-	`´štf
-("process message\n");
-
-77 
+76 
 Cu¼’tTime
  = 
 TickCouÁ”
@@ -9773,7 +10259,7 @@ TickCouÁ”
 	`G‘Cu¼’tF¿me
 ();
 
-79 
+78 
 ‹Ëg¿m
 .
 Di¥©chTime
@@ -9783,7 +10269,7 @@ Cu¼’tTime
 d–ay
 ;
 
-82 
+81 
 PriÜ™yQ
 .
 	`š£¹
@@ -9791,17 +10277,17 @@ PriÜ™yQ
 ‹Ëg¿m
 );
 
-84 #ifdeà
+83 #ifdeà
 SHOW_MESSAGING_INFO
 
 
-85 
+84 
 debug_cÚ
  << "\nD–ayed–eg¿m from " << 
 £nd”
  << "„ecorded‡time "
 
-86 << 
+85 << 
 TickCouÁ”
 ->
 	`G‘Cu¼’tF¿me
@@ -9809,21 +10295,21 @@ TickCouÁ”
 »ûiv”
 
 
-87 << ". Msg i " << 
+86 << ". Msg i " << 
 msg
  << "";
 
-90 
+89 
 	}
 }
 
-97 
+96 
 	gMes§geDi¥©ch”
 ::
 	$Di¥©chD–ayedMes§ges
 ()
 
-100 
+99 
 Cu¼’tTime
  = 
 TickCouÁ”
@@ -9831,13 +10317,13 @@ TickCouÁ”
 	`G‘Cu¼’tF¿me
 ();
 
-105  !
+104  !
 PriÜ™yQ
 .
 	`em±y
 () &&
 
-106 (
+105 (
 PriÜ™yQ
 .
 	`begš
@@ -9847,7 +10333,7 @@ Di¥©chTime
 Cu¼’tTime
 ) &&
 
-107 (
+106 (
 PriÜ™yQ
 .
 	`begš
@@ -9855,7 +10341,7 @@ PriÜ™yQ
 Di¥©chTime
  > 0) )
 
-110 cÚ¡ 
+109 cÚ¡ 
 T–eg¿m
 & 
 ‹Ëg¿m
@@ -9865,7 +10351,7 @@ PriÜ™yQ
 	`begš
 ();
 
-113 
+112 
 Ba£GameEÁ™y
 * 
 pReûiv”
@@ -9879,15 +10365,15 @@ EÁ™yMgr
 Reûiv”
 );
 
-115 #ifdeà
+114 #ifdeà
 SHOW_MESSAGING_INFO
 
 
-116 
+115 
 debug_cÚ
  << "\nQueuedelegram„eady for dispatch: Sento "
 
-117 << 
+116 << 
 pReûiv”
 ->
 	`ID
@@ -9897,7 +10383,7 @@ pReûiv”
 Msg
  << "";
 
-121 
+120 
 	`Disch¬ge
 (
 pReûiv”
@@ -9905,7 +10391,7 @@ pReûiv”
 ‹Ëg¿m
 );
 
-124 
+123 
 PriÜ™yQ
 .
 	`”a£
@@ -9913,7 +10399,7 @@ PriÜ™yQ
 	`begš
 ());
 
-126 
+125 
 	}
 }
 
@@ -10150,22 +10636,26 @@ MESSAGES_H
 ,
 
 18 
-	mMsg_GoDeãn£Pos
+	mMsg_GoHome
 ,
 
 19 
-	mMsg_GoOfãn£Pos
+	mMsg_GoDeãn£Pos
 ,
 
 20 
-	mMsg_Cha£B®l
+	mMsg_GoOfãn£Pos
 ,
 
 21 
+	mMsg_Cha£B®l
+,
+
+22 
 	mMsg_ShÙB®l
 
 
-24 
+25 
 šlše
  
 	g¡d
@@ -10934,18 +11424,66 @@ boŞ
  
 	gPÏy”Ba£
 ::
-	$B®lW™hšPassRªge
+	$B®lW™hšReûivšgRªge
 () const
 
-62  
-Œue
-;
+62  (
+	`Vec2DDi¡ªûSq
+(
+	`Pos
+(), 
+	`B®l
+()->Pos()) < 0.05);
 
 63 
 	}
 }
 
-64 
+65 
+boŞ
+ 
+	gPÏy”Ba£
+::
+	$InHomeRegiÚ
+() const
+
+67  
+	`G‘Game
+()->
+	`G‘RegiÚFromIndex
+(
+m_iHomeRegiÚ
+)->
+	`Inside
+(
+	`Pos
+(), 
+RegiÚ
+::
+nÜm®
+);
+
+68 
+	}
+}
+
+70 
+boŞ
+ 
+	gPÏy”Ba£
+::
+	$B®lW™hšPassRªge
+() const
+
+72  
+Œue
+;
+
+73 
+	}
+}
+
+74 
 boŞ
  
 	gPÏy”Ba£
@@ -10953,7 +11491,7 @@ boŞ
 	$B®lW™hšCÚŒŞRªge
 () const
 
-66  (
+76  (
 	`Vec2DDi¡ªûSq
 (
 this
@@ -10961,47 +11499,7 @@ this
 	`B®l
 ()->
 	`Pos
-(), Pos()) < 0.1);
-
-67 
-	}
-}
-
-69 
-boŞ
- 
-	gPÏy”Ba£
-::
-	$AtT¬g‘
-() const
-
-71  (
-	`Vec2DDi¡ªûSq
-(
-	`Pos
-(), 
-	`S‹”šg
-()->
-	`T¬g‘
-()) < 3.0);
-
-72 
-	}
-}
-
-74 
-	gPÏy”Ba£
-::
-	$T¿ckB®l
-()
-
-76 
-	`RÙ©eH—dšgToFaûPos™iÚ
-(
-	`B®l
-()->
-	`Pos
-());
+(), Pos()) < 0.08);
 
 77 
 	}
@@ -11012,10 +11510,50 @@ boŞ
  
 	gPÏy”Ba£
 ::
+	$AtT¬g‘
+() const
+
+81  (
+	`Vec2DDi¡ªûSq
+(
+	`Pos
+(), 
+	`S‹”šg
+()->
+	`T¬g‘
+()) < 3.0);
+
+82 
+	}
+}
+
+84 
+	gPÏy”Ba£
+::
+	$T¿ckB®l
+()
+
+86 
+	`RÙ©eH—dšgToFaûPos™iÚ
+(
+	`B®l
+()->
+	`Pos
+());
+
+87 
+	}
+}
+
+89 
+boŞ
+ 
+	gPÏy”Ba£
+::
 	$isAh—dOfA‰ack”
 () const
 
-81 
+91 
 VeùÜ2D
  
 rg‘
@@ -11031,7 +11569,7 @@ VeùÜ2D
 x
 ,
 
-82 
+92 
 	`G‘T—m
 ()->
 	`OµÚ’tsGßl
@@ -11041,7 +11579,7 @@ x
 y
 );
 
-83 
+93 
 di¡_a
  = 
 rg‘
@@ -11051,7 +11589,7 @@ di¡_a
 	`Pos
 ());
 
-84 
+94 
 di¡_b
  = 
 rg‘
@@ -11065,17 +11603,17 @@ di¡_b
 	`Pos
 ());
 
-85  
+95  
 di¡_a
  < 
 di¡_b
 ;
 
-89 
+99 
 	}
 }
 
-91 
+101 
 boŞ
  
 	gPÏy”Ba£
@@ -11083,7 +11621,7 @@ boŞ
 	$isCÚŒŞlšgPÏy”
 () const
 
-93  
+103  
 	`G‘T—m
 ()->
 	`CÚŒŞlšgPÏy”
@@ -11091,11 +11629,11 @@ boŞ
 this
 ;
 
-94 
+104 
 	}
 }
 
-97 
+107 
 	gPÏy”Ba£
 ::
 	$£tWa™TimeReguÏtÜ
@@ -11103,19 +11641,19 @@ this
 ³riodTime
 )
 
-99 if(
+109 if(
 m_»guÏtÜ
 !=
 NULL
 )
 
-100 
+110 
 d–‘e
  
 m_»guÏtÜ
 ;
 
-101 
+111 
 m_»guÏtÜ
  = 
 Ãw
@@ -11125,11 +11663,11 @@ m_»guÏtÜ
 ³riodTime
 );
 
-102 
+112 
 	}
 }
 
-104 
+114 
 boŞ
  
 	gPÏy”Ba£
@@ -11137,13 +11675,13 @@ boŞ
 	$isReguÏtÜR—dy
 ()
 
-106  
+116  
 m_»guÏtÜ
 ->
 	`isR—dy
 ();
 
-107 
+117 
 	}
 }
 
@@ -11394,42 +11932,54 @@ B®lW™hšCÚŒŞRªge
 52 
 boŞ
  
+B®lW™hšReûivšgRªge
+() const;
+
+53 
+boŞ
+ 
 AtT¬g‘
 ()const;
 
-53 
+54 
 T¿ckB®l
 ();
 
-54 
+55 
 boŞ
  
 isAh—dOfA‰ack”
 ()const;
 
-55 
+56 
 boŞ
  
 isCÚŒŞlšgPÏy”
 () const;
 
-56 
+57 
 £tWa™TimeReguÏtÜ
 ();
 
-57 
+58 
 boŞ
  
 isReguÏtÜR—dy
 ();
 
-58 
+59 
 boŞ
  
 B®lW™hšPassRªge
 () const;
 
 60 
+boŞ
+ 
+InHomeRegiÚ
+() const;
+
+62 
 	gvœtu®
  ~
 PÏy”Ba£
@@ -12241,7 +12791,29 @@ r
 nÜm®
 )
 
-96  ((
+96 
+	`´štf
+("pos:%.3à%.3f\n", 
+pos
+.
+x
+,…os.
+y
+);
+
+97 
+	`´štf
+("l:%.3àr:%.3àt:%.3àb:%.3f\n",
+m_dLeá
+, 
+m_dRight
+, 
+m_dTİ
+, 
+m_dBÙtom
+);
+
+98  ((
 pos
 .
 x
@@ -12251,7 +12823,7 @@ m_dLeá
 m_dRight
 ) &&
 
-97 (
+99 (
 pos
 .
 y
@@ -12261,19 +12833,41 @@ m_dTİ
 m_dBÙtom
 ));
 
-101 cÚ¡ 
+103 cÚ¡ 
 m¬gšX
  = 
 m_dWidth
  * 0.25;
 
-102 cÚ¡ 
+104 cÚ¡ 
 m¬gšY
  = 
 m_dHeight
  * 0.25;
 
-104  ((
+105 
+	`´štf
+("pos:%.3à%.3f\n", 
+pos
+.
+x
+,…os.
+y
+);
+
+106 
+	`´štf
+("l:%.3àr:%.3àt:%.3àb:%.3f\n",
+m_dLeá
+, 
+m_dRight
+, 
+m_dTİ
+, 
+m_dBÙtom
+);
+
+107  ((
 pos
 .
 x
@@ -12285,7 +12879,7 @@ m¬gšX
 m_dRight
 -marginX)) &&
 
-105 (
+108 (
 pos
 .
 y
@@ -12297,11 +12891,11 @@ m¬gšY
 m_dBÙtom
 -marginY)));
 
-108 
+111 
 	}
 }
 
-110 
+113 
 šlše
  
 	gRegiÚ
@@ -12313,7 +12907,7 @@ boŞ
 ShowID
  = 0) const
 
-112 
+115 
 gdi
 ->
 	`Reù
@@ -12327,11 +12921,11 @@ m_dRight
 m_dBÙtom
 );
 
-113 if(
+116 if(
 m_iID
  != -1)
 
-114 
+117 
 gdi
 ->
 	`glPršt
@@ -12345,7 +12939,7 @@ y
 m_iID
 );
 
-115 
+118 
 	}
 }
 
@@ -12566,16 +13160,28 @@ STATE_H
 {
 
 18 
-	mpublic
+	m´iv©e
 :
 
 19 
+¡d
+::
+¡ršg
+ 
+¡©e_šfo
+;
+
+20 
+	mpublic
+:
+
+21 
 vœtu®
  ~
 	$S‹
 () {};
 
-21 
+23 
 vœtu®
  
 	`EÁ”
@@ -12585,7 +13191,7 @@ obj_ty³
 ’t™y
 ) = 0;
 
-22 
+24 
 vœtu®
  
 	`Execu‹
@@ -12595,7 +13201,7 @@ obj_ty³
 ’t™y
 ) = 0;
 
-23 
+25 
 vœtu®
  
 	`Ex™
@@ -12605,7 +13211,7 @@ obj_ty³
 ’t™y
 ) = 0;
 
-24 
+26 
 vœtu®
  
 boŞ
@@ -12621,7 +13227,7 @@ T–eg¿m
 msg
 ) = 0;
 
-25 
+27 
 	}
 };
 
@@ -14461,19 +15067,23 @@ boŞ
 	~"Debug.h
 "
 
-18 
+17 
+	~"Bask‘B®l.h
+"
+
+19 
 	#DEBUG_TEAM_STATES
 
 
 	)
 
-20 
+21 
 	#T—mSize
  5
 
 	)
 
-22 
+23 
 	$ChªgePÏy”HomeRegiÚs
 (
 B®lT—m
@@ -14485,13 +15095,13 @@ NewRegiÚs
 T—mSize
 ])
 
-24 
+25 
 ¶yr
 =0;…lyr<
 T—mSize
 ; ++plyr)
 
-26 
+27 
 ‹am
 ->
 	`S‘PÏy”HomeRegiÚ
@@ -14501,11 +15111,11 @@ T—mSize
 NewRegiÚs
 [plyr]);
 
-28 
+29 
 	}
 }
 
-30 
+31 
 A‰ackšg
 * 
 	gA‰ackšg
@@ -14513,21 +15123,21 @@ A‰ackšg
 	$In¡ªû
 ()
 
-32 
+33 
 A‰ackšg
  
 š¡ªû
 ;
 
-34  &
+35  &
 š¡ªû
 ;
 
-35 
+36 
 	}
 }
 
-38 
+39 
 	gA‰ackšg
 ::
 	$EÁ”
@@ -14537,11 +15147,11 @@ B®lT—m
 ‹am
 )
 
-40 #ifdeà
+41 #ifdeà
 DEBUG_TEAM_STATES
 
 
-41 
+42 
 debug_cÚ
  << 
 ‹am
@@ -14549,19 +15159,19 @@ debug_cÚ
 	`Name
 () << "ƒntering Attacking state" << "\n";
 
-46 cÚ¡ 
+47 cÚ¡ 
 BlueRegiÚs
 [
 T—mSize
 ] = {16,20,23,21,13};
 
-47 cÚ¡ 
+48 cÚ¡ 
 RedRegiÚs
 [
 T—mSize
 ] = {1,6,8,3,5};
 
-50 ià(
+51 ià(
 ‹am
 ->
 	`CŞÜ
@@ -14571,7 +15181,7 @@ B®lT—m
 blue
 )
 
-52 
+53 
 	`ChªgePÏy”HomeRegiÚs
 (
 ‹am
@@ -14579,7 +15189,7 @@ blue
 BlueRegiÚs
 );
 
-56 
+57 
 	`ChªgePÏy”HomeRegiÚs
 (
 ‹am
@@ -14587,17 +15197,17 @@ BlueRegiÚs
 RedRegiÚs
 );
 
-62 
+63 
 ‹am
 ->
 	`Upd©eT¬g‘sOfWa™šgPÏy”s
 ();
 
-63 
+64 
 	}
 }
 
-66 
+67 
 	gA‰ackšg
 ::
 	$Execu‹
@@ -14607,13 +15217,17 @@ B®lT—m
 ‹am
 )
 
-69 ià(!
+70 ià(!
 ‹am
 ->
 	`InCÚŒŞ
+(è&&—m->
+	`G‘Game
+()->
+	`GameOn
 ())
 
-71 
+72 
 ‹am
 ->
 	`G‘FSM
@@ -14625,17 +15239,17 @@ Deãndšg
 	`In¡ªû
 ()); ;
 
-75 
+76 
 ‹am
 ->
 	`D‘”mšeBe¡SuµÜtšgPos™iÚ
 ();
 
-76 
+77 
 	}
 }
 
-78 
+79 
 	gA‰ackšg
 ::
 	$Ex™
@@ -14645,7 +15259,7 @@ B®lT—m
 ‹am
 )
 
-81 
+82 
 ‹am
 ->
 	`S‘SuµÜtšgPÏy”
@@ -14653,11 +15267,11 @@ B®lT—m
 NULL
 );
 
-82 
+83 
 	}
 }
 
-88 
+89 
 Deãndšg
 * 
 	gDeãndšg
@@ -14665,21 +15279,21 @@ Deãndšg
 	$In¡ªû
 ()
 
-90 
+91 
 Deãndšg
  
 š¡ªû
 ;
 
-92  &
+93  &
 š¡ªû
 ;
 
-93 
+94 
 	}
 }
 
-95 
+96 
 	gDeãndšg
 ::
 	$EÁ”
@@ -14689,11 +15303,11 @@ B®lT—m
 ‹am
 )
 
-97 #ifdeà
+98 #ifdeà
 DEBUG_TEAM_STATES
 
 
-98 
+99 
 debug_cÚ
  << 
 ‹am
@@ -14701,19 +15315,19 @@ debug_cÚ
 	`Name
 () << "ƒntering Defending state" << "\n";
 
-102 cÚ¡ 
+103 cÚ¡ 
 RedRegiÚs
 [
 T—mSize
 ] = {16,20,23,21,13};
 
-104 cÚ¡ 
+105 cÚ¡ 
 BlueRegiÚs
 [
 T—mSize
 ] = {1,6,8,3,5};
 
-107 ià(
+108 ià(
 ‹am
 ->
 	`CŞÜ
@@ -14723,7 +15337,7 @@ B®lT—m
 blue
 )
 
-109 
+110 
 	`ChªgePÏy”HomeRegiÚs
 (
 ‹am
@@ -14731,7 +15345,7 @@ blue
 BlueRegiÚs
 );
 
-113 
+114 
 	`ChªgePÏy”HomeRegiÚs
 (
 ‹am
@@ -14739,17 +15353,17 @@ BlueRegiÚs
 RedRegiÚs
 );
 
-118 
+119 
 ‹am
 ->
 	`Upd©eT¬g‘sOfWa™šgPÏy”s
 ();
 
-119 
+120 
 	}
 }
 
-121 
+122 
 	gDeãndšg
 ::
 	$Execu‹
@@ -14759,13 +15373,17 @@ B®lT—m
 ‹am
 )
 
-124 ià(
+125 ià(
 ‹am
 ->
 	`InCÚŒŞ
+(è&&—m->
+	`G‘Game
+()->
+	`GameOn
 ())
 
-126 
+127 
 ‹am
 ->
 	`G‘FSM
@@ -14777,11 +15395,11 @@ A‰ackšg
 	`In¡ªû
 ()); ;
 
-128 
+129 
 	}
 }
 
-131 
+132 
 	gDeãndšg
 ::
 	$Ex™
@@ -14793,27 +15411,27 @@ B®lT—m
 	}
 }
 
-135 
+136 
 P»·»FÜKickOff
 * P»·»FÜKickOff::
 	$In¡ªû
 ()
 
-137 
+138 
 P»·»FÜKickOff
  
 š¡ªû
 ;
 
-139  &
+140  &
 š¡ªû
 ;
 
-140 
+141 
 	}
 }
 
-142 
+143 
 	gP»·»FÜKickOff
 ::
 	$EÁ”
@@ -14823,7 +15441,7 @@ B®lT—m
 ‹am
 )
 
-145 
+146 
 ‹am
 ->
 	`S‘CÚŒŞlšgPÏy”
@@ -14831,7 +15449,7 @@ B®lT—m
 NULL
 );
 
-146 
+147 
 ‹am
 ->
 	`S‘SuµÜtšgPÏy”
@@ -14839,7 +15457,7 @@ NULL
 NULL
 );
 
-147 
+148 
 ‹am
 ->
 	`S‘Reûiv”
@@ -14847,7 +15465,7 @@ NULL
 NULL
 );
 
-148 
+149 
 ‹am
 ->
 	`S‘PÏy”Clo£¡ToB®l
@@ -14855,17 +15473,159 @@ NULL
 NULL
 );
 
-151 
+150 
 ‹am
 ->
-	`R‘uºAÎF›ldPÏy”sToHome
+	`G‘Game
+()->
+	`S‘GameOff
 ();
 
 152 
+	`´štf
+("now—m:%d scÜed\n", 
+‹am
+->
+	`G‘Game
+()->
+	`G‘ScÜed
+());
+
+153 if(
+‹am
+->
+	`CŞÜ
+(è=ğ
+B®lT—m
+::
+blue
+){
+
+154 if(
+‹am
+->
+	`G‘Game
+()->
+	`G‘ScÜed
+(è=ğ
+B®lT—m
+::
+blue
+){
+
+155 cÚ¡ 
+BlueRegiÚs
+[
+T—mSize
+] = {1,6,8,3,5};
+
+156 
+	`ChªgePÏy”HomeRegiÚs
+(
+‹am
+, 
+BlueRegiÚs
+);
+
+159 cÚ¡ 
+BlueRegiÚs
+[
+T—mSize
+] = {16,20,23,21,13};
+
+160 
+	`ChªgePÏy”HomeRegiÚs
+(
+‹am
+, 
+BlueRegiÚs
+);
+
+165 if(
+‹am
+->
+	`G‘Game
+()->
+	`G‘ScÜed
+(è=ğ
+B®lT—m
+::
+»d
+){
+
+166 cÚ¡ 
+RedRegiÚs
+[
+T—mSize
+] = {16,20,23,21,13};
+
+167 
+	`ChªgePÏy”HomeRegiÚs
+(
+‹am
+, 
+RedRegiÚs
+);
+
+170 cÚ¡ 
+RedRegiÚs
+[
+T—mSize
+] = {1,6,8,3,5};
+
+171 
+	`ChªgePÏy”HomeRegiÚs
+(
+‹am
+, 
+RedRegiÚs
+);
+
+174 
+‹am
+->
+	`Upd©eT¬g‘sOfWa™šgPÏy”s
+();
+
+175 if(
+‹am
+->
+	`G‘Game
+()->
+	`G‘ScÜed
+(è=ğ
+blue
+) {
+
+176 
+‹am
+->
+	`G‘Game
+()->
+	`G‘B®l
+()->
+	`PÏûAtPos™iÚ
+(
+	`VeùÜ2D
+(1,0));
+
+180 
+‹am
+->
+	`G‘Game
+()->
+	`G‘B®l
+()->
+	`PÏûAtPos™iÚ
+(
+	`VeùÜ2D
+(-1,0));
+
+182 
 	}
 }
 
-154 
+184 
 	gP»·»FÜKickOff
 ::
 	$Execu‹
@@ -14875,7 +15635,7 @@ B®lT—m
 ‹am
 )
 
-157 ià(
+186 ià(
 ‹am
 ->
 	`AÎPÏy”sAtHome
@@ -14883,7 +15643,11 @@ B®lT—m
 	`OµÚ’ts
 ()->AllPlayersAtHome())
 
-159 
+188 
+	`´štf
+("now in PrepareForKickOff\n");
+
+189 
 ‹am
 ->
 	`G‘FSM
@@ -14895,11 +15659,11 @@ Deãndšg
 	`In¡ªû
 ());
 
-161 
+191 
 	}
 }
 
-163 
+193 
 	gP»·»FÜKickOff
 ::
 	$Ex™
@@ -14909,7 +15673,7 @@ B®lT—m
 ‹am
 )
 
-165 
+195 
 ‹am
 ->
 	`G‘Game
@@ -14917,7 +15681,7 @@ B®lT—m
 	`S‘GameOn
 ();
 
-166 
+196 
 	}
 }
 

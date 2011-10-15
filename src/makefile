@@ -1,4 +1,4 @@
-CC=g++ -g
+CC=g++ -g -Wall
 CFLAGS= -c 
 LIB= -lm -lglut -lglui
 

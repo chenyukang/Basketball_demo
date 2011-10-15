@@ -32,6 +32,7 @@ private:
     PlayerBase*               m_pSupportingPlayer;
     PlayerBase*               m_pReceivingPlayer;
     PlayerBase*               m_pPlayerClosestToBall;
+    PlayerBase*               m_pScoredPlayer;
 
     //the squared distance the closest player is from the ball
     double                    m_dDistSqToBallOfClosestPlayer;
@@ -66,7 +67,7 @@ public:
     void        SetReceiver(PlayerBase*);
     void        SetPlayerClosestToBall(PlayerBase*);
     void        ReturnAllFieldPlayersToHome();
-    bool        AllPlayersAtHome() const { return false; }
+    bool        AllPlayersAtHome() const ;
     BallTeam*   Opponents() const { return m_pOpponents; }
     PlayerBase* PlayerClosestToBall() const { return m_pPlayerClosestToBall; }
     PlayerBase* Receiver() const { return m_pReceivingPlayer;}
@@ -75,6 +76,7 @@ public:
     Goal*       HomeGoal()const{return m_pHomeGoal;}
     StateMachine<BallTeam>*  GetFSM() const { return m_pStateMachine; }
     bool        CanShoot(const Vector2D& pos);
+    bool        CanDunk(const Vector2D& pos);
     void        RequestPass(PlayerBase* player);
 };
 

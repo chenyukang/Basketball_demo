@@ -48,7 +48,7 @@ public:
     bool isReady()
         {
             if( m_ElapseTime > m_UpdatePeriod ){
-                m_ElapseTime = 0;
+                //m_ElapseTime = 0;
                 return true;
             }
 
@@ -59,8 +59,12 @@ public:
             gettimeofday(&prevTime, NULL);
             return false;
         }
-};
 
+    double getElapseTime()
+        {
+            return m_ElapseTime;
+        }
+};
 
 #endif
 
