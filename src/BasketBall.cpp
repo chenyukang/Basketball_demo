@@ -5,8 +5,9 @@
 #include "geometry.h"
 #include "PlayerBase.h"
 #include "Goal.h"
+#include <string>
 #include <iostream>
-
+using namespace std;
 
 Vector2D AddNoiseToShot(Vector2D BallPos, Vector2D BallTarget)
 {
@@ -103,11 +104,24 @@ Vector2D BasketBall::FuturePosition(double time)const
 //
 //  Renders the ball
 //------------------------------------------------------------------------
+#define DEBUG_BALL 1 
 void BasketBall::Render()
 {
     gdi->SetPen(white);
     gdi->Circle(m_vPosition.x, m_vPosition.y, m_dBoundingRadius);
-
+    #ifdef DEBUG_BALL
+    string str;
+    switch( m_state ) {
+    case inUndefined: str = "undefined"; break;
+    case inControl:   str = "control";   break;
+    case inAir:       str = "inair";     break;
+    case inGround:    str = "ground";    break;
+    case inPrepareBegin: str = "prepare";break;
+    case inPassing:   str = "passing";   break;
+    default: str = "unknown";            break;
+    }
+    gdi->glPrint(m_vPosition.x, m_vPosition.y, "%s", str.c_str());
+    #endif
 }
 
 
@@ -162,7 +176,6 @@ void BasketBall::Shot(Vector2D direction, double force, Goal* goal)
     m_vVelocity = acceleration;
     m_pGoal = goal;
     //getchar();
-    //测试一下
 }
 
 void BasketBall::TestCollisionWithWalls(const std::vector<Wall2D>& walls)

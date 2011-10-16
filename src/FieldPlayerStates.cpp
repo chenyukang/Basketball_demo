@@ -82,16 +82,18 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
             return true;
         }
       
-        //make the pass   
+        //make the pass
+        double power = RandInRange(2.0,4.0);
         player->Ball()->Kick(receiver->Pos() - player->Ball()->Pos(),
-                             2.0);
-          
+                             power);
+        //player->SetUnControl();
+        printf("Player %d pass to %d\n",player->ID(), receiver->ID());
+//        getchar();
 #ifdef PLAYER_STATE_INFO_ON
         debug_con << "Player " << player->ID()
                   << " Passed ball to requesting player" << "";
 #endif
 
-        printf("player:%d pass ball to player:%d\n", player->ID(), receiver->ID());
         //getchar();
         //let the receiver know a pass is coming
         Vector2D pos = receiver->Pos();
@@ -124,9 +126,6 @@ void ChaseBall::Enter(FieldPlayer* player)
 
 void ChaseBall::Execute(FieldPlayer* player)
 {
-    bool res = player->Ball()->isCanControl();
-    if(res) printf("yes\n");
-    
     if (player->Ball()->isCanControl() &&
         player->BallWithinControlRange())
     {
@@ -183,7 +182,6 @@ void ReturnToHomeRegion::Execute(FieldPlayer* player)
         if ( player->isClosestTeamMemberToBall() &&
              (player->GetTeam()->Receiver() == NULL))
         {
-            //printf("returnhome ==> Chaseball\n");
             player->GetFSM()->ChangeState(ChaseBall::Instance());
             return;
         }
@@ -194,8 +192,8 @@ void ReturnToHomeRegion::Execute(FieldPlayer* player)
          player->isAheadOfAttacker() &&
          player->GetTeam()->Receiver()==NULL)
     {
-        player->GetTeam()->RequestPass(player);
         printf("Player %d request Pass\n", player->ID());
+        player->GetTeam()->RequestPass(player);
         return;
     }
 
@@ -347,8 +345,9 @@ void ReceiveBall::Enter(FieldPlayer* player)
     //doto
     printf("Player %d enter ReceiveBall\n",player->ID());
     player->GetTeam()->SetReceiver(player);
-    player->Steering()->PursuitOn();
-    player->setWaitTimeRegulator(RandInRange(1.0,2.0));
+    //  player->Steering()->PursuitOn();
+    player->setWaitTimeRegulator(RandInRange(2.0,3.0));
+    player->SetVelocity(Vector2D(0,0));
 }
 
 void ReceiveBall::Execute(FieldPlayer* player)
@@ -359,20 +358,21 @@ void ReceiveBall::Execute(FieldPlayer* player)
         return;
     }  
 
-    if (player->Steering()->PursuitIsOn())
-    {
-        player->Steering()->SetTarget(player->Ball()->Pos());
-    }
+    player->TrackBall();
+//    if (player->Steering()->PursuitIsOn())
+//    {
+//        player->Steering()->SetTarget(player->Ball()->Pos());
+//    }
 
     //if the player has 'arrived' at the steering target he should wait and
     //turn to face the ball
-    if (player->AtTarget())
-    {
-        player->Steering()->ArriveOff();
-        player->Steering()->PursuitOff();
-        player->TrackBall();    
-        player->SetVelocity(Vector2D(0,0));
-    }
+    // if (player->AtTarget())
+    // {
+    //     player->Steering()->ArriveOff();
+    //     player->Steering()->PursuitOff();
+    //     player->TrackBall();    
+    //     player->SetVelocity(Vector2D(0,0));
+    // }
 
     if(player->isRegulatorReady())
     {
@@ -382,7 +382,7 @@ void ReceiveBall::Execute(FieldPlayer* player)
 
 void ReceiveBall::Exit(FieldPlayer* player)
 {
-    player->Steering()->PursuitOff();
+//    player->Steering()->PursuitOff();
     player->GetTeam()->SetReceiver(NULL);
 }
 
@@ -404,12 +404,19 @@ void Wait::Enter(FieldPlayer* player)
     if (player->GetGame()->GameOn())
     {
         player->Steering()->SetTarget(player->HomeRegion()->Center());
-        //player->setWaitTimeRegulator(3.0);
+        player->setWaitTimeRegulator(RandInRange(5.0,7.0));
     }
 }
 
 void Wait::Execute(FieldPlayer* player)
-{    
+{
+    if(player->isRegulatorReady()) { //i wait too long, so i will chase the ball
+        if(!player->GetTeam()->InControl())
+            player->GetFSM()->ChangeState(ChaseBall::Instance());
+        else
+            player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
+    }
+
     //if the player has been jostled out of position, get back in position  
     if (!player->AtTarget())
     {
@@ -432,8 +439,8 @@ void Wait::Execute(FieldPlayer* player)
          player->isAheadOfAttacker() &&
          player->GetTeam()->Receiver()==NULL)
     {
-        player->GetTeam()->RequestPass(player);
         printf("Player %d request Pass\n", player->ID());
+        player->GetTeam()->RequestPass(player);
         return;
     }
 
@@ -448,6 +455,9 @@ void Wait::Execute(FieldPlayer* player)
     } 
 }
 
-void Wait::Exit(FieldPlayer* player){}
+void Wait::Exit(FieldPlayer* player)
+{
+    
+}
 
 

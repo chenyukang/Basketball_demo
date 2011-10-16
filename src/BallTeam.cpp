@@ -336,6 +336,9 @@ bool BallTeam::isPassSafeFromAllOpponents(const Vector2D& from,
 
 void BallTeam::RequestPass(PlayerBase* requester)
 {
+    if(ControllingPlayer()->Ball()->GetState() == inPassing||
+       ControllingPlayer()->Ball()->GetState() == inGround) //ball have been inpassing or inground
+        return;
     if (isPassSafeFromAllOpponents(ControllingPlayer()->Pos(),
                                    requester->Pos(),
                                    requester,

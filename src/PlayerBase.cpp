@@ -59,7 +59,7 @@ const Region* PlayerBase::HomeRegion() const
 
 bool PlayerBase::BallWithinReceivingRange() const
 {
-    return (Vec2DDistanceSq(Pos(), Ball()->Pos()) < 0.05);
+    return (Vec2DDistanceSq(Pos(), Ball()->Pos()) < 0.3);
 }
 
 bool PlayerBase::InHomeRegion() const
@@ -74,7 +74,6 @@ bool PlayerBase::BallWithinPassRange() const
 bool PlayerBase::BallWithinControlRange() const
 {
     double dist = Vec2DDistanceSq(this->Ball()->Pos(), Pos());
-    printf("%.3f\n", dist);
     return (Vec2DDistanceSq(this->Ball()->Pos(), Pos()) < 0.4);
 }
 

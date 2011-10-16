@@ -96,10 +96,12 @@ public:
     void      TestCollisionWithWalls(const std::vector<Wall2D>& walls);
     void      SetControllingPlayer(PlayerBase* player);
     PlayerBase* GetControlPlayer() const { return m_pControllingPlayer;}
-    void      SetUnControl() { m_pControllingPlayer=NULL; if(m_state!=inAir) m_state = inGround;}
-    bool      isCanControl() { if (m_state == inAir) {return false;}
+    void      SetUnControl() { m_pControllingPlayer=NULL;
+                               if(m_state!=inAir && m_state!=inPassing) m_state = inGround;}
+    bool      isCanControl() { if (m_state == inAir) { return false; }
                                 return m_state != inControl && m_pControllingPlayer == NULL;}
     bool      TestGetGoal();
+    BallState GetState() const { return m_state; } 
 
 };
 
