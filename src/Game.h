@@ -55,8 +55,10 @@ public:
     void         SetGameOn() { m_bState = true; }
     void         SetGameOff() { m_bState = false; }
     bool         GameOn() { return m_bState; }
-    int          isScored() ;
+    bool         isScored() ;
+    void         UpdateScored();
     int          GetScored() { return m_ScoreTeam;}
+    void         UnScored();
     const Region* const GetRegionFromIndex(int idx)                                
         {
             assert ( (idx >= 0) && (idx < (int)m_Regions.size()) );

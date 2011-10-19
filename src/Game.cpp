@@ -23,7 +23,8 @@ Game* Game::Instance()
 }
 
 Game::Game():m_bPause(false),m_bRenderRegions(false),m_bState(true),
-             m_Regions(NumRegionsHorizontal*NumRegionsVertical)
+             m_Regions(NumRegionsHorizontal*NumRegionsVertical),
+             m_ScoreTeam(-1)
 {
     m_pPlayingArea = new Region(14, 7.5, -14, - 7.5);
 
@@ -82,21 +83,14 @@ void Game::Update()
         return;
     
     m_pBall->Update();
-    //if(m_pRedGoal->Scored(m_pBall))
-//    {
-        //m_pBall->ChangePosition(Vector2D(0,0));
-        //m_pBall->SetVelocity(m_pBall->Velocity().GetReverse());
-    //  }
-//    else if(m_pBlueGoal->Scored(m_pBall))
-//    {
-        ///m_pBall->ChangePosition(Vector2D(0,0));
-        //m_pBall->SetVelocity(m_pBall->Velocity().GetReverse());
-//    }
 
-    if( this->isScored() ){
-        printf("yes scored\n");
+    if(!isScored())
+        this->UpdateScored();
+    
+    if( this->isScored() && this->GameOn() ){
         m_pBlueTeam->GetFSM()->ChangeState(PrepareForKickOff::Instance());
         m_pRedTeam->GetFSM()->ChangeState(PrepareForKickOff::Instance());
+        this->SetGameOff();
     }
     
     m_pBlueTeam->Update();
@@ -202,6 +196,16 @@ void Game::Render()
     
     gdi->glPrint(7,m_pPlayingArea->Top()+0.5,"LAL %d",m_pBlueGoal->NumGoalsScored());
     gdi->glPrint(-7,m_pPlayingArea->Top()+0.5,"HOU %d",m_pRedGoal->NumGoalsScored());
+    if(this->GameOn())
+    {
+        gdi->glPrint(0,m_pPlayingArea->Top()+0.5,"on");
+    }
+    else
+    {
+        gdi->glPrint(0,m_pPlayingArea->Top()+0.5,"off");
+    }
+        
+
 
     //篮球
     m_pBall->Render();
@@ -215,20 +219,29 @@ void Game::Render()
     
 }
 
-int Game::isScored()
+
+void Game::UpdateScored()
 {
     if(m_pBlueGoal->isScored())
     {
         m_pBlueGoal->UnScored();
         m_ScoreTeam = BallTeam::red;
-        return 1;
     }
     if(m_pRedGoal->isScored())
     {
         m_pRedGoal->UnScored();
         m_ScoreTeam = BallTeam::blue;
-        return 1;
     }
+}
+
+bool Game::isScored()
+{
+    if(m_ScoreTeam != -1)
+        return true;
+    return false;
+}
+
+void Game::UnScored()
+{
     m_ScoreTeam = -1;
-    return 0;
 }

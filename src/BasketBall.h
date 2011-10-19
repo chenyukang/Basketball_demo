@@ -47,7 +47,7 @@ public:
                std::vector<Wall2D>&       walls)
         //set up the base class
         :MovingEntity(pos,
-                      Vector2D(0.05,0.0),     
+                      Vector2D(0.0,0.0),     
                       Vector2D(0,1),
                       Vector2D(1.0,1.0),  //scale     - unused
                       BallSize,

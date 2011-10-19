@@ -59,7 +59,7 @@ public:
     void        SetPlayerHomeRegion(int player, int region) const;
     void        SetOpponents(BallTeam* opps){m_pOpponents = opps;}
     void        UpdateTargetsOfWaitingPlayers() const;
-    bool        InControl()const{if(m_pControllingPlayer)return true; else return false;}
+    bool        InControl()const{if(m_pControllingPlayer!=NULL)return true; else return false;}
     void        DetermineBestSupportingPosition();
     void        SetSupportingPlayer(PlayerBase*);
     void        SetControllingPlayer(PlayerBase*);
@@ -72,12 +72,15 @@ public:
     PlayerBase* PlayerClosestToBall() const { return m_pPlayerClosestToBall; }
     PlayerBase* Receiver() const { return m_pReceivingPlayer;}
     PlayerBase* ControllingPlayer() { return m_pControllingPlayer;}
+    PlayerBase* GetPlayer(int id) const { assert(id>=0 && id<=4 && "id error"); return m_Players[id];}
+    PlayerBase* GetPreparePlayer();
     Goal*       OpponentsGoal() const {return m_pOpponentsGoal;}
     Goal*       HomeGoal()const{return m_pHomeGoal;}
     StateMachine<BallTeam>*  GetFSM() const { return m_pStateMachine; }
     bool        CanShoot(const Vector2D& pos);
     bool        CanDunk(const Vector2D& pos);
     void        RequestPass(PlayerBase* player);
+    void        CallPlayerGoHome() const;
 };
 
 #endif

@@ -26,8 +26,8 @@ BallTeam::BallTeam(Goal* home_goal,
                                      m_pPlayerClosestToBall(NULL)
 {
     m_pStateMachine = new StateMachine<BallTeam>(this);
-    m_pStateMachine->SetCurrentState(Defending::Instance());
-    m_pStateMachine->SetPreviousState(Defending::Instance());
+    m_pStateMachine->SetCurrentState(Attacking::Instance());
+    m_pStateMachine->SetPreviousState(Attacking::Instance());
     m_pStateMachine->SetGlobalState(NULL);
     CreatePlayers();
 }
@@ -220,6 +220,24 @@ void BallTeam::SetPlayerHomeRegion(int player, int region) const
 }
 
 
+void BallTeam::CallPlayerGoHome() const
+{
+    std::vector<PlayerBase*>::const_iterator it = m_Players.begin();
+
+    for (it; it != m_Players.end(); ++it)
+    {  
+        FieldPlayer* plyr = static_cast<FieldPlayer*>(*it);
+        int id = plyr->ID();
+        //tell the player to make the pass
+        //let the receiver know a pass is coming 
+        Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
+                                -1,
+                                id,
+                                Msg_GoHome,
+                                NULL);
+    } 
+}
+
 void BallTeam::UpdateTargetsOfWaitingPlayers() const
 {
   std::vector<PlayerBase*>::const_iterator it = m_Players.begin();
@@ -234,9 +252,11 @@ void BallTeam::UpdateTargetsOfWaitingPlayers() const
            plyr->GetFSM()->isInState(*ReceiveBall::Instance()))
       {
         plyr->Steering()->SetTarget(plyr->HomeRegion()->Center());
+        //plyr->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
       }
       if( plyr == PlayerClosestToBall() && plyr != m_pControllingPlayer &&
-          plyr->GetGame()->GameOn()){
+          plyr->GetGame()->GameOn())
+      {
           plyr->GetFSM()->ChangeState(ChaseBall::Instance());
       }
   }
@@ -266,6 +286,13 @@ void BallTeam::CalculateClosestPlayerToBall()
 
     m_dDistSqToBallOfClosestPlayer = ClosestSoFar;
 }
+
+PlayerBase* BallTeam::GetPreparePlayer()
+{
+    CalculateClosestPlayerToBall();
+    return m_pPlayerClosestToBall;
+}
+
 void BallTeam::DetermineBestSupportingPosition()
 {
     //TODO
@@ -336,6 +363,11 @@ bool BallTeam::isPassSafeFromAllOpponents(const Vector2D& from,
 
 void BallTeam::RequestPass(PlayerBase* requester)
 {
+    Vector2D ball_pos = ControllingPlayer()->Ball()->Pos();
+    Vector2D plyr_pos = requester->Pos();
+    double dist  =plyr_pos.Distance(ball_pos);
+    if(dist  > 5.0f)
+        return;
     if(ControllingPlayer()->Ball()->GetState() == inPassing||
        ControllingPlayer()->Ball()->GetState() == inGround) //ball have been inpassing or inground
         return;
@@ -365,7 +397,7 @@ bool BallTeam::AllPlayersAtHome() const
         if( (*it)->Pos().x * center.x > 0)
             cnt ++;
     }
-    if(cnt>=3)
+    if(cnt>=4)
         return true;
     return false;
 }

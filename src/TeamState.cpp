@@ -15,6 +15,8 @@
 #include "Game.h"
 #include "Debug.h"
 #include "BasketBall.h"
+#include "FieldPlayer.h"
+#include "FieldPlayerStates.h"
 
 #define DEBUG_TEAM_STATES
 
@@ -61,6 +63,7 @@ void Attacking::Enter(BallTeam* team)
   //steering target must be updated to that of its new home region to enable
   //it to move into the correct position.
   team->UpdateTargetsOfWaitingPlayers();
+  //team->CallPlayerGoHome();
 }
 
 
@@ -140,6 +143,31 @@ PrepareForKickOff* PrepareForKickOff::Instance()
   return &instance;
 }
 
+// PrepareDefanding* PrepareDefanding::Instance()
+// {
+//     static PrepareDefanding instance;
+//     return &instance;
+// }
+
+// PrepareDefanding::Enter(BallTeam* team)
+// {
+//     const int BlueRegions[TeamSize] = {1,6,8,3,5};
+//     ChangePlayerHomeRegions(team, BlueRegions);
+// }
+
+// PrepareDefanding::Exit(BallTeam* team)
+// {
+    
+// }
+
+// PrepareAttacking* PrepareAttacking::Instance()
+// {
+//     static PrepareAttacking instance;
+//     return &instance;
+// }
+
+// PrepareAttacking*
+
 void PrepareForKickOff::Enter(BallTeam* team)
 {
     //reset key player pointers
@@ -147,15 +175,18 @@ void PrepareForKickOff::Enter(BallTeam* team)
     team->SetSupportingPlayer(NULL);
     team->SetReceiver(NULL);
     team->SetPlayerClosestToBall(NULL);
-    team->GetGame()->SetGameOff();
 
-    printf("now team:%d scored\n", team->GetGame()->GetScored());
+    int color = team->GetGame()->GetScored();
+    if(color == BallTeam::blue)
+        printf("blue get scored\n");
+    else
+        printf("red get scored\n");
     if(team->Color() == BallTeam::blue){
         if(team->GetGame()->GetScored() == BallTeam::blue){
             const int BlueRegions[TeamSize] = {1,6,8,3,5};
             ChangePlayerHomeRegions(team, BlueRegions);
         }
-        else {
+        else {//red team get score
             const int BlueRegions[TeamSize] = {16,20,23,21,13};
             ChangePlayerHomeRegions(team, BlueRegions);
         }
@@ -172,27 +203,60 @@ void PrepareForKickOff::Enter(BallTeam* team)
         }
     }
     team->UpdateTargetsOfWaitingPlayers();
-    if(team->GetGame()->GetScored() == blue) {
-        team->GetGame()->GetBall()->PlaceAtPosition(Vector2D(1,0));
+    if(team->GetGame()->GetScored() == BallTeam::blue) {
+        double x = team->GetGame()->PlayingArea()->Left();
+        double top = team->GetGame()->PlayingArea()->Top();
+        double y = RandInRange(-top, top);
+        team->GetGame()->GetBall()->PlaceAtPosition(Vector2D(x,y));
     }
-    else
+    else if(team->GetGame()->GetScored() == BallTeam::red) 
     {
-        team->GetGame()->GetBall()->PlaceAtPosition(Vector2D(-1,0));
+        double x = team->GetGame()->PlayingArea()->Right();
+        double top = team->GetGame()->PlayingArea()->Top();
+        double y = RandInRange(-top, top);
+        team->GetGame()->GetBall()->PlaceAtPosition(Vector2D(x,y));
     }
+
+    if(team->GetGame()->GetScored() != team->Color()){
+        PlayerBase* it = team->GetPreparePlayer();
+        FieldPlayer* plyr = static_cast<FieldPlayer*>(it);
+        plyr->GetFSM()->ChangeState(ChaseBall::Instance());
+        printf("I let player:%d to get ball\n",plyr->ID());
+        //getchar();
+    }
+
 }
 
 void PrepareForKickOff::Execute(BallTeam* team)
 {
-    if (team->AllPlayersAtHome() && team->Opponents()->AllPlayersAtHome())
+    if(team->GetGame()->GetScored() != team->Color())
     {
-        printf("now in PrepareForKickOff\n");
-        team->GetFSM()->ChangeState(Defending::Instance());
+        if(team->InControl()){
+            if(team->Opponents()->AllPlayersAtHome())
+                team->GetFSM()->ChangeState(Attacking::Instance());
+        }
     }
+    else {
+        if(team->AllPlayersAtHome()) {
+            team->GetFSM()->ChangeState(Defending::Instance());
+        }
+    }
+    
+    // if (team->AllPlayersAtHome() && team->Opponents()->AllPlayersAtHome())
+    // {
+    //     printf("now in PrepareForKickOff\n");
+    //    team->GetFSM()->ChangeState(Defending::Instance());
+    //    //getchar();
+    //  }
+    
 }
 
 void PrepareForKickOff::Exit(BallTeam* team)
 {
-  team->GetGame()->SetGameOn();
+    if(team->GetGame()->GetScored() != team->Color()){
+        team->GetGame()->SetGameOn();
+        team->GetGame()->UnScored();
+    }
 }
 
 

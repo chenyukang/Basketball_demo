@@ -46,11 +46,29 @@ void GlobalPlayerState::Execute(FieldPlayer* player)
 {
     //printf("\n now in GlobalPlayerState::Execute\n");
     ///player->SetMaxSpeed(player->Get);
+
+    if(player->isControllingPlayer())
+    {
+        player->SetMaxSpeed(0.08);
+    }
+
+    else
+    {
+        player->SetMaxSpeed(0.1);
+    }
+
 }
 
 bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
 {
     switch(telegram.Msg){
+    case Msg_GoHome:
+    {
+        player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
+        printf("I get message\n");
+        getchar();
+        return true;
+    }
     case Msg_ReceiveBall:
     {
         //set the target
@@ -122,10 +140,15 @@ void ChaseBall::Enter(FieldPlayer* player)
     cout<<"Player "<<player->ID()<<" Enter ChaseBall"<<endl;
 #endif
     player->Steering()->SeekOn();
+    player->Steering()->SetTarget(player->Ball()->Pos());
 }
 
 void ChaseBall::Execute(FieldPlayer* player)
 {
+    if(!player->GetGame()->GameOn() &&
+       player->GetGame()->GetScored() == player->GetTeam()->Color()) {
+        player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
+    }
     if (player->Ball()->isCanControl() &&
         player->BallWithinControlRange())
     {
@@ -140,7 +163,10 @@ void ChaseBall::Execute(FieldPlayer* player)
 #ifdef PLAYER_STATE_INFO_ON
         cout<<player->ID()<<" ChaseBall ==> ReturnToHomeRegion"<<endl;
 #endif
-        player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
+        if(player->GetGame()->GameOn())
+            player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
+        else
+            player->Steering()->SetTarget(player->Ball()->Pos());
     }
 }
 
@@ -166,7 +192,7 @@ void ReturnToHomeRegion::Enter(FieldPlayer* player)
     {
         player->Steering()->SetTarget(player->HomeRegion()->Center());
     }
-    
+    player->setWaitTimeRegulator(RandInRange(4.0,8.0));
 #ifdef PLAYER_STATE_INFO_ON
     cout << "Player " << player->ID() << " enters ReturnToHome state" << ""<<endl;
 #endif
@@ -174,7 +200,14 @@ void ReturnToHomeRegion::Enter(FieldPlayer* player)
 
 void ReturnToHomeRegion::Execute(FieldPlayer* player)
 {
-    if (player->GetGame()->GameOn())
+    if(player->isRegulatorReady())
+    {
+        player->GetFSM()->ChangeState(Wait::Instance());
+        return;
+    }
+    
+    if (player->GetGame()->GameOn() &&
+        player->GetGame()->GetScored()!=player->GetTeam()->Color())
     {
         //if the ball is nearer this player than any other team member  &&
         //there is not an assigned receiver && the goalkeeper does not gave
@@ -190,9 +223,10 @@ void ReturnToHomeRegion::Execute(FieldPlayer* player)
     if ( r < 0.2 &&  player->GetTeam()->InControl()    &&
          (!player->isControllingPlayer()) &&
          player->isAheadOfAttacker() &&
-         player->GetTeam()->Receiver()==NULL)
+         player->GetTeam()->Receiver()==NULL &&
+         player->GetGame()->GameOn())
     {
-        printf("Player %d request Pass\n", player->ID());
+        //printf("Player %d request Pass\n", player->ID());
         player->GetTeam()->RequestPass(player);
         return;
     }
@@ -233,7 +267,7 @@ void ControlBall::Enter(FieldPlayer* player)
     Vector2D target  = Vector2D((player->GetTeam()->OpponentsGoal()->Center().x + RandInRange(-2.0,2.0)),
                                 player->GetTeam()->OpponentsGoal()->Center().y + RandInRange(-2.0, 2.0));
     player->Steering()->SetTarget(target);
-    player->setWaitTimeRegulator(RandInRange(3.0,4.0));
+    player->setWaitTimeRegulator(RandInRange(5.0,6.0));
                                   
 #ifdef PLAYER_STATE_INFO_ON
     cout<< "Player " << player->ID() << " enters ControlBall state" <<endl;
@@ -251,12 +285,12 @@ void ControlBall::Execute(FieldPlayer* player)
         bool lose = false;
         if((r < 0.4 &&
             player->isRegulatorReady() && 
-            player->GetTeam()->Opponents()->GetClosestDistToBall() < 1.0) ||
+            player->GetTeam()->Opponents()->GetClosestDistToBall() < 0.5) ||
            (player->getRegulatorTime()>7.0)){
 
             lose = true;
             player->Ball()->Kick(player->GetTeam()->HomeGoal()->Facing(),
-                                 2.0);
+                                 1.0);
             player->GetFSM()->ChangeState(Dummpy::Instance()); //lose ball
         }
     }
@@ -401,20 +435,24 @@ void Wait::Enter(FieldPlayer* player)
     //if the game is not on make sure the target is the center of the player's
     //home region. This is ensure all the players are in the correct positions
     //ready for kick off
-    if (player->GetGame()->GameOn())
-    {
+    // if (player->GetGame()->GameOn())
+//    {
         player->Steering()->SetTarget(player->HomeRegion()->Center());
         player->setWaitTimeRegulator(RandInRange(5.0,7.0));
-    }
+        //  }
 }
 
 void Wait::Execute(FieldPlayer* player)
 {
-    if(player->isRegulatorReady()) { //i wait too long, so i will chase the ball
+    if(player->isRegulatorReady() &&
+       player->GetGame()->GameOn() &&
+       player->GetGame()->GetScored()!=player->GetTeam()->Color())
+    { //i wait too long, so i will chase the ball
         if(!player->GetTeam()->InControl())
             player->GetFSM()->ChangeState(ChaseBall::Instance());
         else
             player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance());
+        return;
     }
 
     //if the player has been jostled out of position, get back in position  
@@ -439,12 +477,13 @@ void Wait::Execute(FieldPlayer* player)
          player->isAheadOfAttacker() &&
          player->GetTeam()->Receiver()==NULL)
     {
-        printf("Player %d request Pass\n", player->ID());
+        //printf("Player %d request Pass\n", player->ID());
         player->GetTeam()->RequestPass(player);
         return;
     }
 
-    if (player->GetGame()->GameOn())
+    if (player->GetGame()->GameOn() &&
+        player->GetGame()->GetScored() != player->GetTeam()->Color())
     {
         if (player->isClosestTeamMemberToBall() &&
             player->GetTeam()->Receiver() == NULL)
