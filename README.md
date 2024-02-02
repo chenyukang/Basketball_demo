@@ -11,10 +11,10 @@ glu, glut, glui.
 
 TODO list:
 
-1 More detailed AI in game, more real than now.
-2 Read some parameters from conf file, this is going to be implemented through Lua.
-3 User control from keyboard, so user can play with computer.
-4 ...
+1. More detailed AI in game, more real than now.
+2. Read some parameters from conf file, this is going to be implemented through Lua.
+3. User control from keyboard, so user can play with computer.
+4. ...
 
 
 #snapshot
